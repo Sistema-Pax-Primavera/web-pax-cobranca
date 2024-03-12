@@ -1,0 +1,20 @@
+
+.container-header-cobranca{
+    display: flex;
+    align-items: start;
+    gap: 3px;
+    flex-direction: column;
+    width: 12%;
+}
+
+.container-header-cobranca button{
+    display: flex;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 12px;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--verde);
+    color: var(--branco);
+    width: 100%;
+}

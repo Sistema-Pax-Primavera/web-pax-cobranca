@@ -1,0 +1,141 @@
+.informacoes-cont-cobr {
+  width: 99%;
+  display: flex;
+  gap: 10px;
+}
+
+.container-cobranca-escritorio {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2px;
+  margin-top: 25px;
+}
+
+.container-cobranca-escritorio button {
+  width: 10%;
+  color: var(--branco);
+  background-color: var(--verde);
+  display: flex;
+  font-weight: 600;
+  font-size: 12px;
+  align-items: center;
+  gap: 10px;
+}
+
+.button-retorn3 {
+  width: 90%;
+}
+
+.retorna-cobranca {
+  display: flex;
+  align-items: start;
+  width: 100%;
+}
+
+.filtro-cobrancaca-escritorio {
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  width: 50%;
+}
+
+.button-retorn-cobran {
+  width: 5%;
+}
+
+.crm-escritorio-container {
+  width: 45%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.crm-escritorio-container label {
+  color: var(--verde);
+  margin-top: 8px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.button-retorn2 {
+  margin-right: 10px;
+}
+
+.container-modal-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.campos-filtro {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 5px;
+}
+
+.filtro-colun-cobran {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 40%;
+}
+
+.filtro-colun-cobran select {
+  background-color: var(--cinza-leve);
+  font-weight: 500;
+  border-radius: 5px;
+  width: 100%;
+  padding: 7px;
+}
+
+.filtro-data-cobran {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 19%;
+}
+
+.filtro-data-cobran input {
+  width: 100%;
+  background-color: var(--cinza-leve);
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+.campos-01-cobranca input {
+  width: 93%;
+  padding: 8px;
+  font-weight: 500;
+  background-color: var(--cinza-leve);
+}
+
+.campos-01-cobranca {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  flex-wrap: wrap;
+  width: 40%;
+}
+
+.indicacoes-cliente-cobran {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+.indicacoes-cliente-cobran input {
+  width: 100%;
+  font-weight: 500;
+  background-color: var(--cinza-leve);
+}
+
+.pesquisa-filtro-cobran {
+  height: 100px;
+  width: 25%;
+  display: flex;
+  align-items: flex-end;
+}
