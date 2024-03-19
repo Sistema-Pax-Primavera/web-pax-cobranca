@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ColunasCobranca from "../../componentes/colunas-cobranca";
 import "./escritorio.css";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -11,6 +11,7 @@ import ButtonText from "../../../../pax-associado/src/components/button-texto/in
 import ModalClientes from "../../componentes/modal-clientes";
 import BallotIcon from "@mui/icons-material/Ballot";
 import Checkbox from "@mui/material/Checkbox";
+import { useCRM } from "../../service/api";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -18,6 +19,9 @@ const EscritorioCobranca = () => {
   const [modalAberta, setModalAberta] = useState(false); // Estado para a modal existente
   const [modalClientes, setModalClientes] = useState(false);
   const [selectedCardData, setSelectedCardData] = useState(null);
+  const { getCRMEsc, getCRMEsBusca } = useCRM();
+  const navigate = useNavigate();
+
   const handleCloseFormulario = () => {
     navigate("/");
     localStorage.setItem("page-cobranca", "/");
@@ -203,6 +207,12 @@ const EscritorioCobranca = () => {
     ],
     // Adicione dados para outras colunas conforme necessário
   };
+
+  useEffect(() => {
+    getCRMEsc().then((data) => {
+      console.log(data)
+    });
+  }, []);
 
   return (
     <div className="container-cobranca-escritorio">
