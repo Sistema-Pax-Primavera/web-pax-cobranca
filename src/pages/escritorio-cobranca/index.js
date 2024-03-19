@@ -9,19 +9,19 @@ import ButtonIcon from "../../../../pax-associado/src/components/button-icon";
 import ModalLateral from "../../componentes/modal-lateral";
 import ButtonText from "../../../../pax-associado/src/components/button-texto/index";
 import ModalClientes from "../../componentes/modal-clientes";
-import BallotIcon from '@mui/icons-material/Ballot';
-import Checkbox from '@mui/material/Checkbox';
+import BallotIcon from "@mui/icons-material/Ballot";
+import Checkbox from "@mui/material/Checkbox";
 
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const EscritorioCobranca = () => {
+  const [modalAberta, setModalAberta] = useState(false); // Estado para a modal existente
+  const [modalClientes, setModalClientes] = useState(false);
+  const [selectedCardData, setSelectedCardData] = useState(null);
   const handleCloseFormulario = () => {
     navigate("/");
     localStorage.setItem("page-cobranca", "/");
   };
-
-  const [modalAberta, setModalAberta] = useState(false); // Estado para a modal existente
-  const [modalClientes, setModalClientes] = useState(false); // Estado para a nova modal
 
   const toggleModal = () => {
     setModalAberta(!modalAberta);
@@ -29,6 +29,15 @@ const EscritorioCobranca = () => {
 
   const toggleModalClientes = () => {
     setModalClientes(!modalClientes);
+  };
+
+  const handleCardClick = (cardData) => {
+    setSelectedCardData(cardData);
+    setModalClientes(true);
+  };
+
+  const handleCloseFormularioModal = () => {
+    setModalClientes(false);
   };
 
   const dadosPorColuna = {
@@ -207,7 +216,10 @@ const EscritorioCobranca = () => {
           </div>
         </div>
         <div className="crm-escritorio-container">
-          <label><BallotIcon fontSize={'small'}/>CRM Escritório</label>
+          <label>
+            <BallotIcon fontSize={"small"} />
+            CRM Escritório
+          </label>
         </div>
 
         <div className="filtro-cobrancaca-escritorio">
@@ -255,26 +267,30 @@ const EscritorioCobranca = () => {
                     </div>
                     <div className="campos-filtro">
                       <div>
-                         <Checkbox {...label} />
-                         <label>1º Parcela</label>
+                        <Checkbox {...label} />
+                        <label>1º Parcela</label>
                       </div>
                       <div>
-                         <Checkbox {...label} />
-                         <label>2º Parcela</label>
+                        <Checkbox {...label} />
+                        <label>2º Parcela</label>
                       </div>
                       <div>
-                         <Checkbox {...label} />
-                         <label>3º Parcela</label>
+                        <Checkbox {...label} />
+                        <label>3º Parcela</label>
                       </div>
                     </div>
                     <div className="campos-filtro">
                       <div>
-                         <Checkbox {...label} />
-                         <label>Óbito Inadimplente</label>
+                        <Checkbox {...label} />
+                        <label>Óbito Inadimplente</label>
                       </div>
                       <div>
-                         <Checkbox {...label} />
-                         <label>Anual</label>
+                        <Checkbox {...label} />
+                        <label>Anual</label>
+                      </div>
+                      <div>
+                        <Checkbox {...label} />
+                        <label>3º Parcela</label>
                       </div>
                     </div>
                     <div className="pesquisa-filtro-cobran">
@@ -294,15 +310,15 @@ const EscritorioCobranca = () => {
             titulo={titulo}
             dados={dados}
             numeros={2}
-            toggleModalClientes={toggleModalClientes} // Passando a função toggleModalClientes
+            onCardClick={handleCardClick} // Passando a função de callback
           />
         ))}
 
-        {modalClientes && (
+        {modalClientes && selectedCardData && (
           <ModalClientes
-            isOpen={modalClientes}
-            toggleModal={toggleModalClientes}
-            conteudo={<div>Conteúdo da nova modal</div>}
+            open={modalClientes}
+            onClose={handleCloseFormularioModal}
+            cardData={selectedCardData}
           />
         )}
       </div>

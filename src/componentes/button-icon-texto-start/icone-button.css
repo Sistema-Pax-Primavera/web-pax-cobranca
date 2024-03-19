@@ -1,0 +1,11 @@
+.icones-buttons-start{
+    width: 100%;
+}
+
+.icones-buttons-start button{
+    width: 100%;
+    display: flex;
+    font-size: 12px;
+    align-items: center;
+    cursor: pointer;
+}
