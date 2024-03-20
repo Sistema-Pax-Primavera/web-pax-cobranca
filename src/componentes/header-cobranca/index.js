@@ -40,9 +40,7 @@ const HeaderCobranca = () => {
       <button
         onClick={() => handleMenuClick("/escritorio")}
         className={
-          activeRoute && activeRoute.startsWith("/escritorio")
-            ? "active"
-            : ""
+          activeRoute && activeRoute.startsWith("/escritorio") ? "active" : ""
         }
       >
         Escritório
@@ -50,9 +48,7 @@ const HeaderCobranca = () => {
       <button
         onClick={() => handleMenuClick("/boleto")}
         className={
-          activeRoute && activeRoute.startsWith("/boleto")
-            ? "active"
-            : ""
+          activeRoute && activeRoute.startsWith("/boleto") ? "active" : ""
         }
       >
         Boleto
@@ -60,12 +56,50 @@ const HeaderCobranca = () => {
       <button
         onClick={() => handleMenuClick("/cobrador")}
         className={
-          activeRoute && activeRoute.startsWith("/cobrador")
+          activeRoute && activeRoute.startsWith("/cobrador") ? "active" : ""
+        }
+      >
+        Cobrador
+      </button>
+      <button
+        onClick={() => handleMenuClick("/movimentacao-diaria")}
+        className={
+          activeRoute && activeRoute.startsWith("/movimentacao-diaria")
             ? "active"
             : ""
         }
       >
-        Cobrador
+        Mov. Diárias
+      </button>
+      <button
+        onClick={() => handleMenuClick("/envios")}
+        className={
+          activeRoute && activeRoute.startsWith("/envios")
+            ? "active"
+            : ""
+        }
+      >
+        Envios
+      </button>
+      <button
+        onClick={() => handleMenuClick("/rotas")}
+        className={
+          activeRoute && activeRoute.startsWith("/rotas")
+            ? "active"
+            : ""
+        }
+      >
+        Rotas
+      </button>
+      <button
+        onClick={() => handleMenuClick("/gerencial")}
+        className={
+          activeRoute && activeRoute.startsWith("/gerencial")
+            ? "active"
+            : ""
+        }
+      >
+        Gerencial
       </button>
     </div>
   );

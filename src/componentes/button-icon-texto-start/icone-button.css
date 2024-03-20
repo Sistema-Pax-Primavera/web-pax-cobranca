@@ -4,6 +4,7 @@
 
 .icones-buttons-start button{
     width: 100%;
+    font-family: 'Montserrat', sans-serif;;
     display: flex;
     font-size: 12px;
     align-items: center;
