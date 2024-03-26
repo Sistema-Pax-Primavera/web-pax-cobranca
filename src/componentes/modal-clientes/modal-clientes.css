@@ -1,4 +1,4 @@
-.sidebar-cobranca{
+.sidebar-cobranca {
     display: flex;
     align-items: center;
     width: 100%;
@@ -8,7 +8,7 @@
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.cliente-cobran-nome{
+.cliente-cobran-nome {
     width: 65%;
     display: flex;
     padding: 10px;
@@ -17,41 +17,44 @@
     gap: 10px;
 }
 
-.nomes-cobranca{
+.nomes-cobranca {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
 .custom-modal {
-    padding: 0 !important; /* Sobrescreve o padding do arquivo CSS externo */
-  }
+    padding: 0 !important;
+    /* Sobrescreve o padding do arquivo CSS externo */
+}
 
-.nomes-cobranca label{
+.nomes-cobranca label {
     font-size: 18px;
     color: black;
     font-weight: 500;
 
 }
 
-.nomes-cobranca p{
+.nomes-cobranca p {
     font-size: 12px;
     color: black;
     font-weight: 200;
-    
+
 }
 
-.atender-clientes-cobranca{
+.atender-clientes-cobranca {
     background-color: var(--verde);
+    margin-left: 12%;
+    margin-right: 2%;
     width: 15%;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50px;
+    height: 40px;
     border-radius: 5px;
 }
 
-.atender-clientes-cobranca button{
+.atender-clientes-cobranca button {
     color: var(--branco);
     cursor: pointer;
     width: 100%;
@@ -61,7 +64,20 @@
     background-color: var(--verde);
 }
 
-.like-deslike-atendimento{
+.contador-cobranca {
+    width: 15%;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.contador-cobranca p {
+    color: var(--vermelho);
+    font-size: 20px;
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+.like-deslike-atendimento {
     width: 20%;
     display: flex;
     align-items: center;
@@ -69,26 +85,25 @@
     gap: 50px;
 }
 
-.container-modal-cobran{
-    display: flex;
+.container-modal-cobran {
     z-index: 5;
-    gap: 10px;
+    gap: 1px;
     padding: 10px;
     width: 100%;
 }
 
-.like-atendimento{
+.like-atendimento {
     color: var(--verde);
     cursor: pointer;
 }
 
-.deslike-atendimento{
+.deslike-atendimento {
     color: var(--vermelho);
     cursor: pointer;
 }
 
-.dados-basico-cobran{
-    width: 60%;
+.dados-basico-cobran {
+    width: 100%;
     gap: 15px;
     display: flex;
     flex-direction: column;
@@ -102,24 +117,24 @@
     gap: 10px;
 }
 
-.origin-lead-cobran{
+.origin-lead-cobran {
     display: flex;
-    align-items: center;
+    align-items: end;
     gap: 5px;
-    width: 40%;
+    width: 100%;
 }
 
-.alert-dados-basico-cobran button{
+.alert-dados-basico-cobran button {
     color: var(--verde);
 }
 
-.alert-dados-basico-cobran label{
+.alert-dados-basico-cobran label {
     color: black;
     font-size: 19px;
     font-weight: 500;
 }
 
-.infor-modal-cobrancas{
+.infor-modal-cobrancas {
     display: flex;
     align-items: center;
     overflow: auto;
@@ -127,83 +142,84 @@
     gap: 10px;
 }
 
-.lead-origin-cobran{
+.lead-origin-cobran {
     display: flex;
     flex-direction: column;
 }
 
-.lead-origin-cobran label{
+.lead-origin-cobran label {
     font-size: 11px;
     color: var(--preto);
     font-weight: 500;
 }
 
-.tipo-atendimento-cobran{
-    width: 85%;
+.tipo-atendimento-cobran {
+    width: 95%;
     display: flex;
-    border: 1px solid rgba(0,0,0,.6);
+    border: 1px solid rgba(0, 0, 0, .6);
     border-radius: 5px;
     padding: 10px;
     flex-direction: column;
 }
 
-.tipo-atendimento-cobran label{
+.tipo-atendimento-cobran label {
     color: var(--preto);
     font-weight: 500;
     font-size: 12px;
 }
 
-.aten-whatsapp{
+.aten-whatsapp {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.aten-whatsapp label{
+.aten-whatsapp label {
     font-size: 12px;
     color: var(--verde);
     font-weight: 500;
 }
 
-.dados-contato-cobran{
+.dados-contato-cobran {
     display: flex;
     width: 100%;
     flex-direction: column;
 }
 
-.dados-contato-cobran p{
+.dados-contato-cobran p {
     color: var(--preto);
     font-weight: 500;
     font-size: 13px;
     margin-left: 45px;
 }
 
-.container-linhas-cobranças2{
+.container-linhas-cobranças2 {
     display: flex;
     gap: 10px;
     align-items: center;
 }
-.container-linhas-cobranças2 label{
+
+.container-linhas-cobranças2 label {
     font-weight: 500;
 }
 
-.container-linhas-cobran{
-    display: flex;
+.container-linhas-cobran {
+
     gap: 10px;
 }
 
-.container-linhas-cobran label{
+.container-linhas-cobran label {
     color: var(--preto);
     font-weight: 500;
 }
 
-.container-linhas-cobran2{
+.container-linhas-cobran2 {
     display: flex;
     gap: 10px;
     align-items: center;
 }
 
-.container-linhas-dowload-cobran label{
+.container-linhas-dowload-cobran label {
     color: var(--preto);
     font-weight: 600;
     font-size: 18px;
@@ -216,11 +232,11 @@
 
 .container-linhas-cobran {
     display: flex;
-    gap: 10px;
+    gap: 1px;
     align-items: center;
 }
 
-.tarefa-data-cobran{
+.tarefa-data-cobran {
     display: flex;
     flex-direction: column;
     margin-left: 50px;
@@ -229,14 +245,14 @@
 
 
 
-.agenda-etiqueta-cobran{
+.agenda-etiqueta-cobran {
     width: 55%;
     display: flex;
     align-items: end;
     justify-content: end;
 }
 
-.tipos-status-cobran{
+.tipos-status-cobran {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -246,25 +262,25 @@
     background-color: #f0f0f0;
 }
 
-.tipos-status-cobran label{
+.tipos-status-cobran label {
     font-size: 10px;
 }
 
-.acoes-cobranca{
+.acoes-cobranca {
     display: flex;
     flex-direction: column;
     width: 30%;
 }
 
-.obs-cobranca-dados{
+.obs-cobranca-dados {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 40%;
+    width: 100%;
 
 }
 
-.icon-buton-cobran{
+.icon-buton-cobran {
     margin-top: 3px;
     display: flex;
     border-radius: 5px;
@@ -273,21 +289,22 @@
     width: 100%;
 }
 
-.icon-buton-cobran button{
+.icon-buton-cobran button {
     width: 100%;
 }
-.button-acoes-cobran{
+
+.button-acoes-cobran {
     width: 90%;
     gap: 5px;
 }
 
-.obs-cobran-lead{
+.obs-cobran-lead {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 85%;
 }
 
-.obs-cobran-lead textarea{
+.obs-cobran-lead textarea {
     border-radius: 5px;
     padding: 10px;
     border: none;
@@ -297,43 +314,43 @@
     background-color: var(--cinza-leve);
 }
 
-.atividade-cobranca{
+.atividade-cobranca {
     display: flex;
     flex-direction: column;
     width: 88%;
 }
 
-.icon-atividade-cobran{
+.icon-atividade-cobran {
     display: flex;
     align-items: center;
 }
 
-.icon-atividade-cobran label{
+.icon-atividade-cobran label {
     font-size: 18px;
     font-weight: 600;
     color: var(--preto);
 }
 
-.campos-atividade-cobranca{
+.campos-atividade-cobranca {
     display: flex;
     gap: 5px;
     width: 100%;
 }
 
-.campos-atividade-cobranca select{
+.campos-atividade-cobranca select {
     width: 100%;
     background-color: var(--cinza-leve);
     font-weight: 500;
 }
 
-.atividade-cobranca input{
+.atividade-cobranca input {
     background-color: var(--cinza-leve);
     margin-top: -10px;
     width: 80%;
     justify-content: end;
 }
 
-.select-text-area-cobran{
+.select-text-area-cobran {
     gap: 3px;
     border-radius: 5px;
     width: 90%;
@@ -341,7 +358,7 @@
     flex-direction: column;
 }
 
-.select-text-area-cobran textarea{
+.select-text-area-cobran textarea {
     height: 50px;
     border: none;
     border-radius: 5px;
@@ -355,12 +372,12 @@
     width: 30%;
 }
 
-.close-modal-cobran{
+.close-modal-cobran {
     width: 5%;
 }
 
 
-.historico-cobranca-comentarios{
+.historico-cobranca-comentarios {
     display: flex;
     width: 76%;
     gap: 5px;
@@ -368,10 +385,10 @@
     flex-direction: column;
     border-radius: 5px;
     padding: 5px;
-   
+
 }
 
-.tipos-comentarios-cobran{
+.tipos-comentarios-cobran {
     width: 100%;
     margin-bottom: 3px;
     z-index: 0;
@@ -379,7 +396,7 @@
 
 
 
-.historico-cobranca-comentarios label{
+.historico-cobranca-comentarios label {
     font-size: 12px;
     font-weight: 500;
     max-width: 100%;
@@ -387,7 +404,7 @@
     word-wrap: break-word;
 }
 
-.comentario2-cobranca{
+.comentario2-cobranca {
     display: flex;
     padding: 5px;
     border-radius: 5px;
@@ -397,12 +414,12 @@
     background-color: var(--cinza-leve);
 }
 
-.comentario2-cobranca p{
+.comentario2-cobranca p {
     font-size: 12px;
 
 }
 
-.add-contato-cobran{
+.add-contato-cobran {
     display: flex;
     overflow: hidden;
     padding: 15px;
@@ -410,13 +427,13 @@
     gap: 10px;
 }
 
-.call-add-pro{
+.call-add-pro {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.call-add-pro label{
+.call-add-pro label {
     font-size: 15px;
     display: flex;
     align-items: center;
@@ -426,33 +443,34 @@
 }
 
 
-.estado3-mun label{
+.estado3-mun label {
     font-size: 13px;
     font-weight: 500;
 }
-.estado3-mun select{
+
+.estado3-mun select {
     width: 100%;
     font-weight: 500;
     margin-top: -2px;
     background-color: var(--cinza-leve);
 }
 
-.estado3-mun{
+.estado3-mun {
     gap: 0px;
     width: 50%;
 }
 
-.estado2-mun label{
+.estado2-mun label {
     font-weight: 500;
 }
 
-.estado2-mun input{
+.estado2-mun input {
     padding: 8px;
     font-weight: 500;
     background-color: var(--cinza-leve);
 }
 
-.cell-delet-cobran{
+.cell-delet-cobran {
     display: flex;
     background-color: var(--cinza-leve);
     padding: 5px;
@@ -462,26 +480,26 @@
     border-radius: 5px;
 }
 
-.cell-delet-cobran label{
+.cell-delet-cobran label {
     font-size: 13px;
     font-weight: 500;
 }
 
-.espaco-contatos{
+.espaco-contatos {
     display: flex;
     flex-direction: column;
     gap: 3px;
 }
 
-.icon-cell-cobranca{
+.icon-cell-cobranca {
     width: 15%;
 }
 
-.cell-delet-cobran label{
+.cell-delet-cobran label {
     width: 70%;
 }
 
-.tipos-arquivos-anexos{
+.tipos-arquivos-anexos {
     display: flex;
     gap: 10px;
     align-items: center;
@@ -492,7 +510,7 @@
     flex-direction: column;
 }
 
-.tipos-arquivos-anexos2{
+.tipos-arquivos-anexos2 {
     display: flex;
     gap: 10px;
     background-color: var(--cinza-leve);
@@ -505,25 +523,26 @@
     flex-direction: column;
 }
 
-.tipos-arquivos-anexos2 a{
-    font-size:12px;
+.tipos-arquivos-anexos2 a {
+    font-size: 12px;
     text-align: center;
     width: 100%;
     font-weight: 700;
 }
 
-tipos-arquivos-anexos a{
-    font-size:10px;
+tipos-arquivos-anexos a {
+    font-size: 10px;
     width: 100%;
     font-weight: 700;
 }
-.selecione-arquivo-cobran{
+
+.selecione-arquivo-cobran {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.selecione-arquivo-cobran label{
+.selecione-arquivo-cobran label {
     font-size: 10px;
     font-weight: 700;
 }
@@ -533,13 +552,13 @@ tipos-arquivos-anexos a{
     gap: 10px;
 }
 
-.download-delet-cobran{
+.download-delet-cobran {
     display: flex;
     align-items: center;
     justify-items: center;
 }
 
-.calendar-cobran{
+.calendar-cobran {
     display: flex;
     width: 100%;
     align-items: start;
@@ -548,75 +567,77 @@ tipos-arquivos-anexos a{
     gap: 10px;
 }
 
-.linha-calendarios-cobran{
+.linha-calendarios-cobran {
     display: flex;
     align-items: center;
     width: 100%;
 }
 
-.horario-calenda-cobran{
+.horario-calenda-cobran {
     display: flex;
     width: 35%;
     flex-direction: column;
 }
-.horario-calenda-cobran label{
+
+.horario-calenda-cobran label {
     color: var(--preto);
     font-weight: 500;
     font-size: 12px;
 }
 
-.horario-calenda-cobran input{
+.horario-calenda-cobran input {
     background-color: var(--cinza-leve);
 }
 
-.horario-calenda-cobran select{
+.horario-calenda-cobran select {
     background-color: var(--cinza-leve);
 }
 
-.data-clock-cobran label{
+.data-clock-cobran label {
     font-size: 12px;
-    color: var(--preto
-    );
+    color: var(--preto);
     font-weight: 500;
 }
 
-.data-clock-cobran{
+.data-clock-cobran {
     display: flex;
     align-items: center;
     gap: 10px;
     width: 60%;
 }
 
-.horario-calenda-cobran3{
+.horario-calenda-cobran3 {
     display: flex;
     width: 100%;
     flex-direction: column;
 }
-.horario-calenda-cobran3 label{
+
+.horario-calenda-cobran3 label {
     color: var(--preto);
     font-weight: 500;
     font-size: 12px;
 }
 
-.horario-calenda-cobran3 select{
+.horario-calenda-cobran3 select {
     background-color: var(--cinza-leve);
 }
 
-.linha-calendarios-cobran4{
+.linha-calendarios-cobran4 {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.linha-calendarios-cobran4 label{
+.linha-calendarios-cobran4 label {
     font-size: 12px;
     font-weight: 500;
 }
 
-.linha-calendarios-cobran4 textarea{
+.linha-calendarios-cobran4 textarea {
     background-color: var(--cinza-leve);
     border: none;
-    overflow-wrap: break-word; /* Para navegadores modernos */
+    overflow-wrap: break-word;
+    /* Para navegadores modernos */
     word-wrap: break-word;
     outline: none;
     padding: 10px;
@@ -625,38 +646,67 @@ tipos-arquivos-anexos a{
 }
 
 
-.tarefa-agendada-cobran{
+.tarefa-agendada-cobran {
     display: flex;
     align-items: start;
     gap: 10px;
     flex-direction: column;
 }
 
-.tarefa-agendada-cobran h1{
+.tarefa-agendada-cobran h1 {
     font-size: 15px;
     font-weight: 700;
 }
 
 
-.horario-cliente-cobran{
+.horario-cliente-cobran {
     display: flex;
     width: 50%;
     flex-direction: column;
     margin-right: 10px;
 }
-.horario-cliente-cobran label{
+
+.horario-cliente-cobran label {
     color: var(--preto);
     font-weight: 500;
     font-size: 12px;
 }
 
-.horario-cliente-cobran input{
+.horario-cliente-cobran input {
     background-color: var(--cinza-leve);
 }
 
-.fecha-modal-tarefa-cobra{
+.fecha-modal-tarefa-cobra {
     width: 20%;
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.opcoes-modal-cobranca {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+}
+
+.opcoes-modal-cobranca button {
+    width: 18%;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border: 1px solid black;
+}
+
+.botao-ativo {
+    background-color: var(--verde);
+    color: var(--verde);
+    border: var(--verde)
 }

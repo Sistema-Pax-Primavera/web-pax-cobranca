@@ -17,87 +17,53 @@ const HeaderCobranca = () => {
     localStorage.setItem("page-cobranca", route);
     // Atualizar a rota ativa
     setActiveRoute(route);
-    // Selecionar automaticamente "Perfil" ao clicar em "Usuários"
-    if (route === "/cobranca") {
-      navigate("/cobranca/escritorio");
-      setActiveRoute("/cobranca/escritorio");
-    }
   };
 
   useEffect(() => {
     const savedPage = localStorage.getItem("page-cobranca");
-
-    if (savedPage && savedPage !== location.pathname) {
-      localStorage.removeItem("page-cobranca");
-      setActiveRoute("");
-    } else {
-      setActiveRoute(savedPage);
-    }
-  }, [location.pathname]);
+    setActiveRoute(savedPage);
+  }, []);
 
   return (
     <div className="container-header-cobranca">
       <button
         onClick={() => handleMenuClick("/escritorio")}
-        className={
-          activeRoute && activeRoute.startsWith("/escritorio") ? "active" : ""
-        }
-      >
-        Escritório
+        className={activeRoute === "/escritorio" ? "active" : ""}
+      > Escritório
       </button>
       <button
         onClick={() => handleMenuClick("/boleto")}
-        className={
-          activeRoute && activeRoute.startsWith("/boleto") ? "active" : ""
-        }
+        className={activeRoute === "/boleto" ? "active" : ""}
       >
         Boleto
       </button>
       <button
         onClick={() => handleMenuClick("/cobrador")}
-        className={
-          activeRoute && activeRoute.startsWith("/cobrador") ? "active" : ""
-        }
+        className={activeRoute === "/cobrador" ? "active" : ""}
       >
         Cobrador
       </button>
       <button
         onClick={() => handleMenuClick("/movimentacao-diaria")}
-        className={
-          activeRoute && activeRoute.startsWith("/movimentacao-diaria")
-            ? "active"
-            : ""
-        }
+        className={activeRoute === "/movimentacao-diaria" ? "active" : ""}
       >
         Mov. Diárias
       </button>
       <button
         onClick={() => handleMenuClick("/envios")}
-        className={
-          activeRoute && activeRoute.startsWith("/envios")
-            ? "active"
-            : ""
-        }
+        className={activeRoute === "/envios" ? "active" : ""}
       >
         Envios
       </button>
       <button
         onClick={() => handleMenuClick("/rotas")}
-        className={
-          activeRoute && activeRoute.startsWith("/rotas")
-            ? "active"
-            : ""
-        }
+        className={activeRoute === "/rotas" ? "active" : ""}
       >
         Rotas
       </button>
       <button
         onClick={() => handleMenuClick("/gerencial")}
-        className={
-          activeRoute && activeRoute.startsWith("/gerencial")
-            ? "active"
-            : ""
-        }
+        className={activeRoute === "/gerencial" ? "active" : ""}
       >
         Gerencial
       </button>

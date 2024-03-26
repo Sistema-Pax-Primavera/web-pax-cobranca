@@ -1,11 +1,11 @@
-.container-cobranca{
+.container-cobranca {
     width: 100%;
     display: flex;
     margin-top: 25px;
     gap: 10px;
 }
 
-.colunas-cobranca{
+.colunas-cobranca {
     width: 88%;
     display: flex;
     align-items: center;
@@ -14,11 +14,11 @@
     flex-direction: column;
 }
 
-.colunas-cobranca img{
+.colunas-cobranca img {
     width: 30%;
 }
 
-.colunas-cobranca h1{
+.colunas-cobranca h1 {
     font-size: 20px;
     color: var(--verde);
 }

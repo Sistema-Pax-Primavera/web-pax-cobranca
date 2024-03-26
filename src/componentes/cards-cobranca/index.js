@@ -8,36 +8,36 @@ import PersonIcon from "@mui/icons-material/Person";
 import AssessmentIcon from "@mui/icons-material/Assessment";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
+import { converterData, formatarTelefone } from "../../utils/fuctions";
 
-const CardsCobranca = ({
-  titleNome,
-  numeroTelefone,
-  titleIndicacao,
-  titleResultado,
-  data,
-  onClick, // Adicione um prop para o evento de clique
-}) => {
+const CardsCobranca = ({ item, onClick, }) => {
+  const { nome, contrato, valor_em_aberto, ultimo_pagamento, dia_pagamento, ultimo_mes_pago, rota } = item;
+
   return (
     <div className="container-cards-cobranca" onClick={onClick}>
       <div className="info-card-cobran">
         <AccountCircleIcon fontSize={"small"} />
-        <label>{titleNome}</label>
+        <label>{nome} - CT:{contrato}</label>
       </div>
       <div className="info-card-cobran">
-        <PhoneIcon fontSize={"small"} />
-        <label>{numeroTelefone}</label>
-      </div>
-      <div className="info-card-cobran">
-        <PersonIcon fontSize={"small"} />
-        <label>{titleIndicacao}</label>
-      </div>
-      <div className="info-card-cobran">
-        <AssessmentIcon fontSize={"small"} />
-        <label>{titleResultado}</label>
+        <DateRangeIcon fontSize={"small"} />
+        <label>Último pagamento: {ultimo_pagamento}</label>
       </div>
       <div className="info-card-cobran">
         <QueryBuilderIcon fontSize={"small"} />
-        <label>{data}</label>
+        <label>Valor em Aberto: R$ {valor_em_aberto}</label>
+      </div>
+      <div className="info-card-cobran">
+        <DateRangeIcon fontSize={"small"} />
+        <label>Último mês pago: {ultimo_mes_pago}</label>
+      </div>
+      <div className="info-card-cobran">
+        <DateRangeIcon fontSize={"small"} />
+        <label>Dia Pagamento: {dia_pagamento}</label>
+      </div>
+      <div className="info-card-cobran">
+        <DateRangeIcon fontSize={"small"} />
+        <label>Rota: {rota}</label>
       </div>
     </div>
   );
