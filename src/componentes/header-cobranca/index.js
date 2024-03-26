@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./header-cobranca.css";
-import ArticleIcon from "@mui/icons-material/Article";
-import ContactPageIcon from "@mui/icons-material/ContactPage";
-import TaskIcon from "@mui/icons-material/Task";
 
 const HeaderCobranca = () => {
   const [activeRoute, setActiveRoute] = useState("");
@@ -21,8 +18,15 @@ const HeaderCobranca = () => {
 
   useEffect(() => {
     const savedPage = localStorage.getItem("page-cobranca");
-    setActiveRoute(savedPage);
-  }, []);
+
+    if (savedPage && savedPage !== location.pathname) {
+      localStorage.removeItem("page-cobranca");
+      setActiveRoute("");
+    } else {
+      setActiveRoute(savedPage);
+    }
+  }, [location.pathname]);
+
 
   return (
     <div className="container-header-cobranca">
@@ -60,6 +64,12 @@ const HeaderCobranca = () => {
         className={activeRoute === "/rotas" ? "active" : ""}
       >
         Rotas
+      </button>
+      <button
+        onClick={() => handleMenuClick("/solicitacoes-cobradores")}
+        className={activeRoute === "/solicitacoes-cobradores" ? "active" : ""}
+      >
+        Sol. Cobradores
       </button>
       <button
         onClick={() => handleMenuClick("/gerencial")}

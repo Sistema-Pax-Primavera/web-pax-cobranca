@@ -7,6 +7,7 @@
     font-family: 'Montserrat', sans-serif;;
     display: flex;
     font-size: 12px;
+    gap: 5px;
     align-items: center;
     cursor: pointer;
 }

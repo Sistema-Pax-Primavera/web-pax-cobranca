@@ -1,0 +1,49 @@
+.container-soli-cobradores {
+  width: 88%;
+  display: flex;
+  gap: 10px;
+}
+
+.buttaos-soli{
+    width: 48%;
+}
+
+
+.buttaos-soli2{
+  width: 100%;
+}
+
+.solicitacoes-cobradores01 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: var(--cinza-leve);
+  width: 40%;
+}
+
+.solicitacoes-cobradores01 label {
+  color: var(--verde);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.solicitacoes-cobradores02 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: var(--cinza-leve);
+  width: 40%;
+}
+
+.solicitacoes-cobradores02 label {
+  color: var(--verde);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
