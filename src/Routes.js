@@ -6,6 +6,7 @@ import Envios from './pages/envios/index'
 import MovimentacaoDiaria from "./pages/moventacao-diaria";
 import SolicitacoesCobradores from "./pages/solicitacoes-cobradores";
 import Rotas from "./pages/rotas";
+import Gerencial from "./pages/gerencial";
 
 const RoutesApp = () => (
     <BrowserRouter basename="pax-primavera/cobranca">
@@ -17,6 +18,7 @@ const RoutesApp = () => (
             <Route exact path="/movimentacao-diaria" element={<MovimentacaoDiaria />} />
             <Route exact path="/solicitacoes-cobradores" element={<SolicitacoesCobradores/>} />
             <Route exact path="/rotas" element={<Rotas />} />
+            <Route exact path="/gerencial" element={<Gerencial />} />
         </Routes>
     </BrowserRouter>
 );

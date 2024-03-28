@@ -6,7 +6,7 @@ import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'; // Ícone para o botão "Aguardando sincronização"
 
-const CardsSolicitacoesCobradores = ({ onAceitar, mostraBotoes, onRejeitar, onAguardandoSincronizacao }) => {
+const CardsSolicitacoesCobradores = ({ onAceitar, mostraBotoes, onRejeitar, onAguardandoSincronizacao, textoAdicional }) => {
   const [status, setStatus] = useState('pendente');
 
   const handleAceitar = () => {
@@ -55,6 +55,7 @@ const handleAguardandoSincronizacao = () => {
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's.
       </p>
+      <div>{textoAdicional}</div>
       <div className="aceita-regeita-soli-cob">
         {status === 'pendente' && mostraBotoes && (
           <>

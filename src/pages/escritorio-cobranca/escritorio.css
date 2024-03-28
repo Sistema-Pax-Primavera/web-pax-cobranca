@@ -1,9 +1,22 @@
 .informacoes-cont-cobr {
-
-  width: 100%;
+  width:1700px;
   display: flex;
-  gap: 10px;
+  height:480px;
+  overflow-x: auto;
+  gap: 5px;
+
 }
+
+.alinhando-loading{
+  margin-top: 150px;
+}
+
+
+/* Estilizando a barra de rolagem para navegadores Gecko (Firefox) */
+.container-cobranca-escritorio {
+  scrollbar-width: thin; /* cor do controle de rolagem e cor de fundo da trilha */
+}
+
 
 .container-cobranca-escritorio {
   display: flex;

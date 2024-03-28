@@ -25,8 +25,8 @@ export const headerObservacao = [
         sort: true
     },
     {
-        key: 'descricao',
-        label: ['Descrição', 'Descripción'],
+        key: 'acao',
+        label: ['Ação', 'Acción'],
         sort: true
     },
 ];

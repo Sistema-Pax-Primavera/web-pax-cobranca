@@ -1,0 +1,51 @@
+.vendas-filtro-contrato{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}
+
+.vendas-filtro-campos{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 95%;
+    padding: 10px;
+    background-color: var(--cinza-leve);
+    border-radius: 10px;
+}
+
+.numero-contrato-venda{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+
+}
+.numero-contrato-venda label{
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.numero-contrato-venda input{
+    background-color: var(--branco);
+}
+
+.numero-adicionar-contrato{
+    width: 15%;
+    margin-top: 15px;
+}
+
+.check-contrato-label{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.check-contrato-label label{
+    font-size: 12px;
+    font-weight: 50;
+}
+
+.table-venda-filtro-camp{
+    width: 99%;
+}

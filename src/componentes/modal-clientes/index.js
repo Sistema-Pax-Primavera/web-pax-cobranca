@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Box, Typography, Grid } from '@mui/material';
+import { Modal, Box, Typography, Grid } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "./modal-clientes.css";
 import ButtonText from "../../../../pax-associado/src/components/button-texto";
@@ -17,8 +17,9 @@ import { headerObservacao } from "../../entities/headers/header-observacao";
 import { headerDependente } from "../../entities/headers/header-dependente";
 import { formatarTelefone } from "../../utils/fuctions";
 import { toast } from "react-toastify";
-import Switch from '@material-ui/core/Switch';
-
+import Switch from "@material-ui/core/Switch";
+import ModalHistorico from "../modal-historico";
+import Button from '@mui/material/Button';
 const style = {
   position: "absolute",
   top: "50%",
@@ -34,29 +35,46 @@ const style = {
   boxShadow: 24,
 };
 
-
 const ModalClientes = ({ open, onClose, clienteData }) => {
-  const { nome, contrato, plano, valor_plano, dia_pagamento, data_contrato } = clienteData;
+  const { nome, contrato, plano, valor_plano, dia_pagamento, data_contrato } =
+    clienteData;
   const titular = clienteData.dados_cliente.titular;
   const pagamentos = clienteData.dados_cliente.pagamentos;
   const deps = clienteData.dados_cliente.dependentes;
   const observacao = clienteData.dados_cliente.observacao;
   const [mostrarFormularioBasico, setMostrarFormularioBasico] = useState(false);
-  const [mostrarFormularioCadastro, setMostrarFormularioCadastro] = useState(false);
-  const [mostrarFormularioEndereco, setMostrarFormularioEndereco] = useState(false);
-  const [mostrarFormularioContato, setMostrarFormularioContato] = useState(false);
-  const [mostrarFormularioPagamento, setMostrarFormularioPagamento] = useState(false);
-  const [mostrarFormularioDependente, setMostrarFormularioDependente] = useState(false);
-  const [mostrarFormularioObservacao, setMostrarFormularioObservacao] = useState(false);
+  const [mostrarFormularioCadastro, setMostrarFormularioCadastro] =
+    useState(false);
+  const [mostrarFormularioEndereco, setMostrarFormularioEndereco] =
+    useState(false);
+  const [mostrarFormularioContato, setMostrarFormularioContato] =
+    useState(false);
+  const [mostrarFormularioPagamento, setMostrarFormularioPagamento] =
+    useState(false);
+  const [mostrarFormularioDependente, setMostrarFormularioDependente] =
+    useState(false);
+  const [mostrarFormularioObservacao, setMostrarFormularioObservacao] =
+    useState(false);
   const [isAtendimento, setIsAtendimento] = useState(false);
-  const [contador, setContador] = useState({ horas: 0, minutos: 0, segundos: 0 });
+  const [contador, setContador] = useState({
+    horas: 0,
+    minutos: 0,
+    segundos: 0,
+  });
   const [contadorAtivo, setContadorAtivo] = useState(false);
   const [categoria, setCategoria] = useState("");
   const [subcategoria, setSubCategoria] = useState("");
   const [comentario, setComentario] = useState("");
   const [historico, setHistorico] = useState([]);
   const [isAtendeu, setIsAtendeu] = useState(false);
+  const [openModal, setOpenModal] = React.useState(false);
 
+  const handleOpen = () => {
+    setOpenModal(true);
+  };
+  const handleClose2 = () => {
+    setOpenModal(false);
+  };
   const handleCheckboxChange = () => {
     setIsAtendeu(!isAtendeu);
     console.log("isAtendeu mudou para:", !isAtendeu);
@@ -79,11 +97,10 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
 
   const handleClose = () => {
     if (isAtendimento) {
-      toast.error("Finalize o atendimento antes de fechar a janela!")
+      toast.error("Finalize o atendimento antes de fechar a janela!");
     } else {
       onClose();
     }
-
   };
 
   const handleAtender = () => {
@@ -94,7 +111,6 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
       setContadorAtivo(true);
       setIsAtendimento(true);
     }
-
   };
 
   const formatTime = (time) => {
@@ -102,7 +118,7 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
   };
 
   const mostrarMensagem = () => {
-    toast.warning('Inicie o atendimento para liberar essa informação!');
+    toast.warning("Inicie o atendimento para liberar essa informação!");
   };
 
   const mostrarFormulario = (tipo) => {
@@ -130,7 +146,7 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
       setMostrarFormularioBasico(false);
       setMostrarFormularioContato(false);
       setMostrarFormularioPagamento(true);
-    } else if (tipo === 'dependente') {
+    } else if (tipo === "dependente") {
       setMostrarFormularioCadastro(false);
       setMostrarFormularioEndereco(false);
       setMostrarFormularioBasico(false);
@@ -138,7 +154,7 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
       setMostrarFormularioPagamento(false);
       setMostrarFormularioObservacao(false);
       setMostrarFormularioDependente(true);
-    } else if (tipo == 'historico') {
+    } else if (tipo == "historico") {
       setMostrarFormularioCadastro(false);
       setMostrarFormularioEndereco(false);
       setMostrarFormularioDependente(false);
@@ -146,7 +162,7 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
       setMostrarFormularioContato(false);
       setMostrarFormularioPagamento(false);
       setMostrarFormularioObservacao(true);
-    } else if (tipo == 'endereco') {
+    } else if (tipo == "endereco") {
       setMostrarFormularioCadastro(false);
       setMostrarFormularioDependente(false);
       setMostrarFormularioBasico(false);
@@ -154,7 +170,7 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
       setMostrarFormularioPagamento(false);
       setMostrarFormularioObservacao(false);
       setMostrarFormularioEndereco(true);
-    } else if (tipo === 'cadastro') {
+    } else if (tipo === "cadastro") {
       setMostrarFormularioEndereco(false);
       setMostrarFormularioDependente(false);
       setMostrarFormularioBasico(false);
@@ -164,7 +180,6 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
       setMostrarFormularioCadastro(true);
     }
   };
-
 
   useEffect(() => {
     let intervalId;
@@ -211,17 +226,23 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                 />
               </div>
               <div className="nomes-cobranca">
-                <label>{nome} - CT: {contrato}</label>
+                <label>
+                  {nome} - CT: {contrato}
+                </label>
                 {/* <p>{cardData.titleResultado}</p> */}
               </div>
             </div>
             <div className="atender-clientes-cobranca">
-              <ButtonText title={contadorAtivo ? "ENCERRAR" : "ATENDER CLIENTE"} funcao={() => handleAtender()} />
+              <ButtonText
+                title={contadorAtivo ? "ENCERRAR" : "ATENDER CLIENTE"}
+                funcao={() => handleAtender()}
+              />
             </div>
             <div className="contador-cobranca">
-              <p>{`${formatTime(contador.horas)}:${formatTime(contador.minutos)}:${formatTime(contador.segundos)}`}</p>
+              <p>{`${formatTime(contador.horas)}:${formatTime(
+                contador.minutos
+              )}:${formatTime(contador.segundos)}`}</p>
             </div>
-
           </div>
         </Typography>
         <Grid container spacing={1}>
@@ -234,49 +255,87 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                       <div className="tipo-atendimento-cobran">
                         <div className="opcoes-modal-cobranca">
                           <button
-                            className={mostrarFormularioBasico ? "" : "botao-ativo"}
+                            className={
+                              mostrarFormularioBasico ? "" : "botao-ativo"
+                            }
                             onClick={() => mostrarFormulario("basico")}
                           >
                             Dados Básicos
                           </button>
                           <button
-                            className={mostrarFormularioCadastro ? "" : "botao-ativo"}
-                            onClick={isAtendimento ? () => mostrarFormulario("cadastro") : mostrarMensagem}
+                            className={
+                              mostrarFormularioCadastro ? "" : "botao-ativo"
+                            }
+                            onClick={
+                              isAtendimento
+                                ? () => mostrarFormulario("cadastro")
+                                : mostrarMensagem
+                            }
                           >
                             Titular
                           </button>
 
                           <button
-                            className={mostrarFormularioEndereco ? "" : "botao-ativo"}
-                            onClick={isAtendimento ? () => mostrarFormulario("endereco") : mostrarMensagem}
+                            className={
+                              mostrarFormularioEndereco ? "" : "botao-ativo"
+                            }
+                            onClick={
+                              isAtendimento
+                                ? () => mostrarFormulario("endereco")
+                                : mostrarMensagem
+                            }
                           >
                             Endereço
                           </button>
 
                           <button
-                            className={mostrarFormularioContato ? "" : "botao-ativo"}
-                            onClick={isAtendimento ? () => mostrarFormulario("contato") : mostrarMensagem}
+                            className={
+                              mostrarFormularioContato ? "" : "botao-ativo"
+                            }
+                            onClick={
+                              isAtendimento
+                                ? () => mostrarFormulario("contato")
+                                : mostrarMensagem
+                            }
                           >
                             Contatos
                           </button>
 
                           <button
-                            className={mostrarFormularioPagamento ? "" : "botao-ativo"}
-                            onClick={isAtendimento ? () => mostrarFormulario("pagamento") : mostrarMensagem}
+                            className={
+                              mostrarFormularioPagamento ? "" : "botao-ativo"
+                            }
+                            onClick={
+                              isAtendimento
+                                ? () => mostrarFormulario("pagamento")
+                                : mostrarMensagem
+                            }
                           >
                             Pagamentos
                           </button>
 
                           <button
-                            className={mostrarFormularioDependente ? "" : "botao-ativo"}
-                            onClick={isAtendimento ? () => mostrarFormulario("dependente") : mostrarMensagem}
+                            className={
+                              mostrarFormularioDependente ? "" : "botao-ativo"
+                            }
+                            onClick={
+                              isAtendimento
+                                ? () => mostrarFormulario("dependente")
+                                : mostrarMensagem
+                            }
                           >
                             Dependentes
                           </button>
 
                           <button
-                            className={mostrarFormularioObservacao ? "" : "botao-ativo"}
-                            onClick={isAtendimento ? () => mostrarFormulario("historico") : mostrarMensagem}
+                            className={
+                              mostrarFormularioObservacao ? "" : "botao-ativo"
+                            }
+                            onClick={
+                              isAtendimento
+                                ? () => mostrarFormulario("historico")
+                                : mostrarMensagem
+                            }
                           >
                             Historico F9
                           </button>
@@ -302,35 +361,45 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                         </div>
                       </div>
                       <div className="origin-lead-cobran">
-                        <ButtonIconFundo icon={<PersonIcon fontSize={"small"} />} />
+                        <ButtonIconFundo
+                          icon={<PersonIcon fontSize={"small"} />}
+                        />
                         <div className="lead-origin-cobran">
                           <label>Valor Plano</label>
                           <label>{valor_plano}</label>
                         </div>
                       </div>
                       <div className="origin-lead-cobran">
-                        <ButtonIconFundo icon={<PersonIcon fontSize={"small"} />} />
+                        <ButtonIconFundo
+                          icon={<PersonIcon fontSize={"small"} />}
+                        />
                         <div className="lead-origin-cobran">
                           <label>Valor Adicional</label>
                           <label>-</label>
                         </div>
                       </div>
                       <div className="origin-lead-cobran">
-                        <ButtonIconFundo icon={<PersonIcon fontSize={"small"} />} />
+                        <ButtonIconFundo
+                          icon={<PersonIcon fontSize={"small"} />}
+                        />
                         <div className="lead-origin-cobran">
                           <label>Valor Cremação</label>
                           <label>-</label>
                         </div>
                       </div>
                       <div className="origin-lead-cobran">
-                        <ButtonIconFundo icon={<PersonIcon fontSize={"small"} />} />
+                        <ButtonIconFundo
+                          icon={<PersonIcon fontSize={"small"} />}
+                        />
                         <div className="lead-origin-cobran">
                           <label>Valor PET</label>
                           <label>-</label>
                         </div>
                       </div>
                       <div className="origin-lead-cobran">
-                        <ButtonIconFundo icon={<PersonIcon fontSize={"small"} />} />
+                        <ButtonIconFundo
+                          icon={<PersonIcon fontSize={"small"} />}
+                        />
                         <div className="lead-origin-cobran">
                           <label>Valor Total</label>
                           <label>182,00</label>
@@ -339,7 +408,9 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                     </div>
                     <div className="infor-modal-cobrancas">
                       <div className="origin-lead-cobran">
-                        <ButtonIconFundo icon={<PersonIcon fontSize={"small"} />} />
+                        <ButtonIconFundo
+                          icon={<PersonIcon fontSize={"small"} />}
+                        />
                         <div className="lead-origin-cobran">
                           <label>Bordero</label>
                           <label>ESC.TOSHI</label>
@@ -364,7 +435,9 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                         </div>
                       </div>
                       <div className="origin-lead-cobran">
-                        <ButtonIconFundo icon={<PersonIcon fontSize={"small"} />} />
+                        <ButtonIconFundo
+                          icon={<PersonIcon fontSize={"small"} />}
+                        />
                         <div className="lead-origin-cobran">
                           <label>Dia Vencimento</label>
                           <label>{dia_pagamento}</label>
@@ -452,14 +525,20 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                         />
                         <div className="lead-origin-cobran">
                           <label>Endereço Residencial</label>
-                          <label>Rua Tal, Bairro Tal, nº 5, QD LT DOURADOS -MS</label>
+                          <label>
+                            Rua Tal, Bairro Tal, nº 5, QD LT DOURADOS -MS
+                          </label>
                         </div>
                       </div>
                       <div className="origin-lead-cobran">
-                        <ButtonIconFundo icon={<PersonIcon fontSize={"small"} />} />
+                        <ButtonIconFundo
+                          icon={<PersonIcon fontSize={"small"} />}
+                        />
                         <div className="lead-origin-cobran">
                           <label>Endereço Comercial</label>
-                          <label>Rua Tal, Bairro Tal, nº 10, QD LT JARDIM -MS</label>
+                          <label>
+                            Rua Tal, Bairro Tal, nº 10, QD LT JARDIM -MS
+                          </label>
                         </div>
                       </div>
                     </div>
@@ -479,11 +558,14 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                           />
                           <div className="lead-origin-cobran">
                             <label>{item.tipo}</label>
-                            <label>{item.tipo === 'Telefone' ? formatarTelefone(item.valor) : item.valor}</label>
+                            <label>
+                              {item.tipo === "Telefone"
+                                ? formatarTelefone(item.valor)
+                                : item.valor}
+                            </label>
                           </div>
                         </div>
                       ))}
-
                     </div>
                   </div>
                 </div>
@@ -530,13 +612,29 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                         headers={headerObservacao}
                         rows={observacao}
                         actionsLabel={["Ações", "Acciones"]}
-                        actionCalls={{}}
+                        actionCalls={{
+                          view: (e) => handleOpen(e), // Certifique-se de que 'handleOpenModalHistorico' seja passado aqui
+                        }}
                       />
                     </div>
                   </div>
                 </div>
               </Typography>
             )}
+            <Modal
+              open={openModal}
+              onClose={handleClose2}
+              aria-labelledby="child-modal-title"
+              aria-describedby="child-modal-description"
+            >
+              <Box sx={{ ...style, width: 500 }}>
+                <h2 id="child-modal-title">Text in a child modal</h2>
+                <p id="child-modal-description">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                </p>
+                <Button onClick={handleClose}>Close Child Modal</Button>
+              </Box>
+            </Modal>
           </Grid>
           <Grid item xs={4}>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
@@ -559,41 +657,60 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                       </div>
 
                       <div className="atividade-cobranca">
-
                         <div className="campos-atividade-cobranca">
-
                           <div className="select-text-area-cobran">
                             <label>Tipo de Contato</label>
-                            <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-                              <option value={null}>Selecione tipo de contato</option>
-                              <option value={1}>
-                                Ligação via Telefone
+                            <select
+                              value={categoria}
+                              onChange={(e) => setCategoria(e.target.value)}
+                            >
+                              <option value={null}>
+                                Selecione tipo de contato
                               </option>
+                              <option value={1}>Ligação via Telefone</option>
                               <option value={2}>Ligação via Whatsapp</option>
                               <option value={3}>Mensagem via Whatsapp</option>
                             </select>
-                            {categoria ?
+                            {categoria ? (
                               <>
                                 <Switch
                                   checked={isAtendeu}
                                   onChange={() => setIsAtendeu(!isAtendeu)}
                                   name="conseguiuFalar"
-                                  inputProps={{ 'aria-label': 'conseguiu falar com o cliente' }}
+                                  inputProps={{
+                                    "aria-label":
+                                      "conseguiu falar com o cliente",
+                                  }}
                                 />
-                                <p>Conseguiu falar com o cliente? {isAtendeu ? 'Sim' : 'Não'}</p>
+                                <p>
+                                  Conseguiu falar com o cliente?{" "}
+                                  {isAtendeu ? "Sim" : "Não"}
+                                </p>
                                 <label>Tipo de Categoria</label>
-                                <select value={subcategoria} onChange={(e) => setSubCategoria(e.target.value)}>
-                                  <option value={null}>Selecione tipo de contato</option>
+                                <select
+                                  value={subcategoria}
+                                  onChange={(e) =>
+                                    setSubCategoria(e.target.value)
+                                  }
+                                >
+                                  <option value={null}>
+                                    Selecione tipo de contato
+                                  </option>
                                   <option value={1}>
                                     Ligação via Telefone
                                   </option>
-                                  <option value={2}>Ligação via Whatsapp</option>
-                                  <option value={3}>Mensagem via Whatsapp</option>
+                                  <option value={2}>
+                                    Ligação via Whatsapp
+                                  </option>
+                                  <option value={3}>
+                                    Mensagem via Whatsapp
+                                  </option>
                                 </select>
                               </>
-                              : <></>
-                            }
-                            {isAtendimento ?
+                            ) : (
+                              <></>
+                            )}
+                            {isAtendimento ? (
                               <>
                                 <div className="add-comentario-cobran">
                                   <ButtonText
@@ -602,7 +719,9 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                                   />
                                 </div>
                               </>
-                              : <></>}
+                            ) : (
+                              <></>
+                            )}
                           </div>
                         </div>
                       </div>

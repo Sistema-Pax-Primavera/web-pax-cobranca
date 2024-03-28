@@ -11,8 +11,15 @@ import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import ButtonIconTextoStart from "../button-icon-texto-start";
+import ButtonIcon from '../button-icon/index'
 
-const TableComponent = ({ headers, rows, actionCalls = {}, actionsLabel, openModalFunction }) => {
+const TableComponent = ({
+  headers,
+  rows,
+  actionCalls = {},
+  actionsLabel,
+  openModalFunction,
+}) => {
   const [orderedBy, setOrderedBy] = useState(null);
   const [pageList, setPageList] = useState([]);
   const [idioma, setIdioma] = useState(null);
@@ -36,11 +43,11 @@ const TableComponent = ({ headers, rows, actionCalls = {}, actionsLabel, openMod
 
   let headersList = hasActions
     ? headers.concat([
-      {
-        key: "actions",
-        label: actionsLabel,
-      },
-    ])
+        {
+          key: "actions",
+          label: actionsLabel,
+        },
+      ])
     : [...headers];
 
   const acoes = (action, row) => {
@@ -52,29 +59,34 @@ const TableComponent = ({ headers, rows, actionCalls = {}, actionsLabel, openMod
           icon={<DeleteForeverIcon fontSize={"small"} />}
         />
       ),
-      edit: (
-        console.log('edit')
-        // <ButtonIcon
-        //   funcao={() => actionCalls.edit(row)}
-        //   key="edit"
-        //   icon={<ModeEditOutlineIcon fontSize={"small"} />}
-        // />
-      ),
+      // edit: console.log("edit"),
+      // // <ButtonIcon
+      // //   funcao={() => actionCalls.edit(row)}
+      // //   key="edit"
+      // //   icon={<ModeEditOutlineIcon fontSize={"small"} />}
+      // // />
       view: (
-        console.log('view')
-        // <ButtonIcon
-        //   funcao={() => actionCalls.view(row)}
-        //   key="view"
-        //   icon={<VisibilityIcon fontSize={"small"} />}
-        // />
+        <ButtonIcon
+          funcao={() => actionCalls.view(row)}
+          key="view"
+          icon={<VisibilityIcon fontSize={"small"} />}
+        />
       ),
+      
       promote: (
-        <div key="promote" style={{ padding: '2.5px', backgroundColor: '#006b33', borderRadius: '5px' }}>
+        <div
+          key="promote"
+          style={{
+            padding: "2.5px",
+            backgroundColor: "#006b33",
+            borderRadius: "5px",
+          }}
+        >
           <ButtonIconTextoStart
             key="promote"
             title="PROMOVER"
             funcao={() => actionCalls.promote(row)}
-            style={{ padding: '80px' }}
+            style={{ padding: "80px" }}
           />
         </div>
       ),

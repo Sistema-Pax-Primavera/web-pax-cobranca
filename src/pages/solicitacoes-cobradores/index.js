@@ -4,7 +4,7 @@ import HeaderCobranca from "../../componentes/header-cobranca";
 import SpeakerNotesIcon from "@mui/icons-material/SpeakerNotes";
 import CardsSolicitacoesCobradores from "../../componentes/cards-solicitacoes-cobradores";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
-
+import BallotIcon from "@mui/icons-material/Ballot";
 const SolicitacoesCobradores = () => {
   const [solicitacoesPendentes, setSolicitacoesPendentes] = useState([
     {
@@ -56,30 +56,44 @@ const SolicitacoesCobradores = () => {
           <label>
             <SpeakerNotesIcon fontSize={"small"} /> Solicitações
           </label>
-          {/* Renderiza os cards pendentes */}
-          {solicitacoesPendentes.map((solicitacao) => (
-            <div key={solicitacao.id}>
-              <CardsSolicitacoesCobradores
-                mostraBotoes={solicitacao.mostraBotoes}
-                onAceitar={() => handleAceitar(solicitacao.id)}
-                onRejeitar={() => handleRejeitar(solicitacao.id)}
-              />
+          {/* Renderiza os cards pendentes ou exibe a mensagem */}
+          {solicitacoesPendentes.length === 0 ? (
+            <div className="nenhuma-solicitacao-cobra">
+              <p>
+                <BallotIcon fontSize={"medium"} />
+                Nenhuma solicitação!
+              </p>
             </div>
-          ))}
+          ) : (
+            solicitacoesPendentes.map((solicitacao) => (
+              <div key={solicitacao.id}>
+                <CardsSolicitacoesCobradores
+                  mostraBotoes={solicitacao.mostraBotoes}
+                  onAceitar={() => handleAceitar(solicitacao.id)}
+                  onRejeitar={() => handleRejeitar(solicitacao.id)}
+                />
+              </div>
+            ))
+          )}
         </div>
 
         <div className="solicitacoes-cobradores02">
           <label>
             <AccessTimeOutlinedIcon fontSize={"small"} /> Em Atendimento
           </label>
-          {/* Renderiza os cards em atendimento */}
           {solicitacoesEmAtendimento.map((solicitacao) => (
             <div key={solicitacao.id}>
               <CardsSolicitacoesCobradores
-                mostraBotoes={false} // Não mostra os botões nesta coluna
+                mostraBotoes={false}
                 onAguardandoSincronizacao={() =>
                   handleAguardandoSincronizacao(solicitacao.id)
-                } // Passa a função para o componente
+                }
+                textoAdicional={
+                  <div className="aguardando-sincronismo-soli">
+                    <label>AGUARDANDO SINCRONISMO</label>
+                  </div>
+                } // Não mostra os botões nesta coluna
+                // Passa a função para o componente
               />
             </div>
           ))}
