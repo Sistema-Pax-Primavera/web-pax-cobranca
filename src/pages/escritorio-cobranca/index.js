@@ -12,31 +12,45 @@ import BallotIcon from "@mui/icons-material/Ballot";
 import Checkbox from "@mui/material/Checkbox";
 import { useCRM } from "../../service/api";
 import { toast } from "react-toastify";
+import { converterDataParaFormatoBackend } from "../../utils/fuctions";
 
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const EscritorioCobranca = () => {
+  const { getCRMEsc } = useCRM();
+  const navigate = useNavigate();
   const colunasDinamicas = {
-    "1ª Parcela em atraso": [],
-    "2ª Parcela em atraso": [],
-    "3ª Parcela em atraso": [],
-    "Pagou mas em Debito 1ª Parcela": [],
-    "Pagou mas em Debito 2ª Parcela": [],
-    "Pagou mas em Debito 3ª Parcela": [],
-    "Em dia": [],
-    Adiantados: [],
-    Anuais: [],
+    "1ª Parcela em atraso": { id: 1, clientes: [] },
+    "2ª Parcela em atraso": { id: 2, clientes: [] },
+    "3ª Parcela em atraso": { id: 3, clientes: [] },
+    "Pagou mas em Debito 1ª Parcela": { id: 4, clientes: [] },
+    "Pagou mas em Debito 2ª Parcela": { id: 5, clientes: [] },
+    "Pagou mas em Debito 3ª Parcela": { id: 6, clientes: [] },
+    "Em dia": { id: 7, clientes: [] },
+    "Adiantados": { id: 8, clientes: [] },
+    "Anuais": { id: 9, clientes: [] },
   };
-  const [colunaSelecionada, setColunaSelecionada] = useState(null);
+
+  const [colunaSelecionada, setColunaSelecionada] = useState('');
   const [dadosPorColuna, setDadosPorColuna] = useState({});
-  const mesAtual = new Date().getMonth() + 1;
-  const anoAtual = new Date().getFullYear();
   const [modalAberta, setModalAberta] = useState(false); // Estado para a modal existente
   const [modalClientes, setModalClientes] = useState(false);
   const [selectedCardData, setSelectedCardData] = useState(null);
-  const { getCRMEsc } = useCRM();
-  const navigate = useNavigate();
+  //FILTRO
+  const dataAtual = new Date();
+  const [dataContrato, setDataContrato] = useState(null);
+  const [nomeCliente, setNomeCliente] = useState(null);
+  const [diaPagamento, setDiaPagamento] = useState(null);
+  const [rota, setRota] = useState(null);
+  const [isAgendemento, setIsAgendamento] = useState(false);
+  const [isSemJustificativa, setIsSemJustificativa] = useState(false);
+  const [isPagouMesPassado, setIsPagouMesPassado] = useState(false);
+  const [isClienteLigar, setIsClientesLigar] = useState(false);
+  const [isCategoriaF9, setIsCategoriaF9] = useState(false);
+  const [categoriaF9, setCategoriaF9] = useState(null);
+  const [isJustificativa, setIsJustificativa] = useState(false);
+  const [justificativa, setJustificativa] = useState(null);
 
   const handleCloseFormulario = () => {
     navigate("/");
@@ -61,36 +75,179 @@ const EscritorioCobranca = () => {
     setModalClientes(false);
   };
 
-  const construirColunasDinamicamente = (dadosClientes) => {
-    const mesAtual = new Date().getMonth() + 1;
-    const anoAtual = new Date().getFullYear();
-
-    dadosClientes.forEach((cliente) => {
-      const mesUltimoMesPago = parseInt(cliente.ultimo_mes_pago.split('/')[1]);
-      const mesUltimoPagamento = parseInt(cliente.ultimo_pagamento.split('/')[1]);
-      const anoUltimoMesPago = parseInt(cliente.ultimo_mes_pago.split('/')[2]);
-      const anoUltimoPagamento = parseInt(cliente.ultimo_pagamento.split('/')[2]);
-
-      if (mesUltimoMesPago === mesAtual && anoUltimoMesPago === anoAtual) {
-        colunasDinamicas["Em dia"].push(cliente);
-      } else if (mesUltimoMesPago < mesAtual && mesUltimoPagamento === mesAtual) {
-        const diferencaAnos = anoAtual - anoUltimoMesPago;
-        const diferencaMeses = (diferencaAnos * 12) + mesAtual - mesUltimoMesPago;
-        colunasDinamicas[`Pagou mas em Debito ${diferencaMeses}ª Parcela`].push(cliente);
-      } else if (mesUltimoMesPago < mesAtual && anoUltimoMesPago === anoAtual) {
-        const diferencaAnos = anoAtual - anoUltimoMesPago;
-        const diferencaMeses = (diferencaAnos * 12) + mesAtual - mesUltimoMesPago;
-        colunasDinamicas[`${diferencaMeses}ª Parcela em atraso`].push(cliente);
+  const filtro = () => {
+    let clientesFiltrados = dadosPorColuna[colunaSelecionada].clientes.slice();
+    if (dataContrato) {
+      clientesFiltrados = clientesFiltrados.filter(cliente => {
+        const dataContratoFormat = converterDataParaFormatoBackend(cliente.data_contrato)
+        return dataContrato === dataContratoFormat;
+      });
+    }
+    if (nomeCliente) {
+      const nomeClienteUpper = nomeCliente.toUpperCase();
+      clientesFiltrados = clientesFiltrados.filter(cliente => {
+        const nomeClienteAtual = cliente.nome.toUpperCase();
+        return nomeClienteAtual.includes(nomeClienteUpper);
+      });
+    }
+    if (diaPagamento) {
+      const diaPagamentoFormat = parseInt(diaPagamento)
+      clientesFiltrados = clientesFiltrados.filter(cliente => {
+        return cliente.dia_pagamento === diaPagamentoFormat;
+      });
+    }
+    if (rota) {
+      const rotaFormat = parseInt(rota)
+      if (rotaFormat == 1) {
+        clientesFiltrados = clientesFiltrados
       } else {
+        clientesFiltrados = clientesFiltrados.filter(cliente => {
+          return cliente.rota_id === rotaFormat;
+        });
+      }
+    }
+    if (isAgendemento) {
+
+    }
+    if (isClienteLigar) {
+
+    }
+    if (isCategoriaF9) {
+      const idCategoriaFormat = parseInt(categoriaF9);
+      const mesAtual = dataAtual.getMonth();
+      const anoAtual = dataAtual.getFullYear();
+      if (idCategoriaFormat == 1) {
+        clientesFiltrados = clientesFiltrados
+      } else {
+        clientesFiltrados = clientesFiltrados.filter(cliente => {
+          if (cliente.dados_cliente.observacao) {
+            return cliente.dados_cliente.observacao.some(obs => {
+              const dataUltJustificativa = new Date(converterDataParaFormatoBackend(obs.data_criacao));
+              const anoObs = dataUltJustificativa.getFullYear();
+              const mesObs = dataUltJustificativa.getMonth();
+              return obs.id_categoria === idCategoriaFormat &&
+                anoObs === anoAtual && mesObs === mesAtual;
+            });
+          }
+          return false;
+        });
+        console.log('Clientes com F9 nesse mes: ', clientesFiltrados)
+      }
+    }
+    if (isJustificativa) {
+      const idJustFormat = parseInt(justificativa)
+      const mesAtual = dataAtual.getMonth();
+      const anoAtual = dataAtual.getFullYear();
+      if (idJustFormat == 1) {
+        clientesFiltrados = clientesFiltrados
+      } else {
+        clientesFiltrados = clientesFiltrados.filter(cliente => {
+          if (cliente.dados_cliente.agendamentos) {
+            return cliente.dados_cliente.agendamentos.some(agendamento => {
+              const dataUltJustificativa = new Date(converterDataParaFormatoBackend(agendamento.ult_justificativa));
+              const anoAgendamento = dataUltJustificativa.getFullYear();
+              const mesAgendamento = dataUltJustificativa.getMonth();
+              // Verificar se a justificativa e a data de agendamento correspondem
+              return agendamento.id_justificativa === idJustFormat &&
+                anoAgendamento === anoAtual && mesAgendamento === mesAtual;
+            });
+          }
+          return false;
+        });
+      }
+    }
+    if (isPagouMesPassado) {
+      const ultimoMesPassado = new Date(dataAtual.getFullYear(), dataAtual.getMonth() - 1);
+      clientesFiltrados = clientesFiltrados.filter(cliente => {
+        const ultimoPagamento = new Date(converterDataParaFormatoBackend(cliente.ultimo_pagamento));
+        return ultimoPagamento.getFullYear() === ultimoMesPassado.getFullYear() && ultimoPagamento.getMonth() === ultimoMesPassado.getMonth();
+      });
+    }
+    if (isSemJustificativa) {
+      const mesAtual = dataAtual.getMonth();
+      const anoAtual = dataAtual.getFullYear();
+
+      clientesFiltrados = clientesFiltrados.filter(cliente => {
+        // Verificar se o cliente não possui agendamentos para o mês e ano atual
+        if (cliente.agendamentos) {
+          return !cliente.agendamentos.some(agendamento => {
+            const dataUltJustificativa = new Date(converterDataParaFormatoBackend(agendamento.ult_justificativa));
+            console.log(dataUltJustificativa)
+            const anoAgendamento = dataUltJustificativa.getFullYear();
+            const mesAgendamento = dataUltJustificativa.getMonth();
+
+            // Verifica se a data do agendamento é igual ao mês e ano atual
+            return anoAgendamento === anoAtual && mesAgendamento === mesAtual;
+          });
+        } else {
+          return true;
+        }
+      });
+    }
+  }
+
+  const construirColunasDinamicamente = (dadosClientes) => {
+    dadosClientes.forEach(cliente => {
+      const ultimoPagamento = new Date(converterDataParaFormatoBackend(cliente.ultimo_pagamento));
+      const ultimoMesPago = new Date(converterDataParaFormatoBackend(cliente.ultimo_mes_pago));
+      const pagamentos = cliente.dados_cliente.pagamentos.map(pagamento =>
+        new Date(converterDataParaFormatoBackend(pagamento.data_pagamento))
+      );
+
+      const ultimo12PagamentosIguais = pagamentos.length >= 12 && pagamentos.slice(-12).every((pagamento, index, array) => {
+        // Verifica se o mês e o dia do pagamento atual são iguais aos dos outros pagamentos
+        const mesAtual = pagamento.getMonth();
+        const diaAtual = pagamento.getDate();
+        return array.slice(0, index).every(pagamentoAnterior => {
+          return pagamentoAnterior.getMonth() === mesAtual && pagamentoAnterior.getDate() === diaAtual;
+        });
+      });
+
+      if (ultimo12PagamentosIguais) {
+        colunasDinamicas['Anuais'].clientes.push(cliente);
+      } else {
+        if (ultimoPagamento.getFullYear() === dataAtual.getFullYear() && ultimoPagamento.getMonth() === dataAtual.getMonth()) {
+          if (ultimoMesPago.getFullYear() === dataAtual.getFullYear() && ultimoMesPago.getMonth() === dataAtual.getMonth()) {
+            colunasDinamicas["Em dia"].clientes.push(cliente);
+          } else if (ultimoMesPago > dataAtual) {
+            colunasDinamicas['Adiantados'].clientes.push(cliente);
+          } else {
+            const diferencaMeses = (dataAtual.getMonth() - ultimoMesPago.getMonth() +
+              (12 * (dataAtual.getFullYear() - ultimoMesPago.getFullYear())));
+            switch (diferencaMeses) {
+              case 1:
+                colunasDinamicas['Pagou mas em Debito 1ª Parcela'].clientes.push(cliente);
+                break;
+              case 2:
+                colunasDinamicas['Pagou mas em Debito 2ª Parcela'].clientes.push(cliente);
+                break;
+              case 3:
+                colunasDinamicas['Pagou mas em Debito 3ª Parcela'].clientes.push(cliente);
+                break;
+            }
+          }
+        } else {
+          const diferencaMeses = (dataAtual.getMonth() - ultimoMesPago.getMonth() +
+            (12 * (dataAtual.getFullYear() - ultimoMesPago.getFullYear())));
+          switch (diferencaMeses) {
+            case 1:
+              colunasDinamicas['1ª Parcela em atraso'].clientes.push(cliente);
+              break;
+            case 2:
+              colunasDinamicas['2ª Parcela em atraso'].clientes.push(cliente);
+              break;
+            case 3:
+              colunasDinamicas['3ª Parcela em atraso'].clientes.push(cliente);
+              break;
+          }
+        }
       }
     });
-
     return colunasDinamicas;
   };
 
   useEffect(() => {
     getCRMEsc().then((data) => {
-      console.log(data)
       const colunas = construirColunasDinamicamente(data);
       setDadosPorColuna(colunas);
     }).catch((error) => {
@@ -127,47 +284,93 @@ const EscritorioCobranca = () => {
                   <div className="container-modal-lateral">
                     <h1>Filtro para {colunaSelecionada}</h1>
                     <div className="campos-filtro">
-                      <div className="filtro-data-cobran">
-                        <label>Data Contrato</label>
-                        <input type="date"></input>
-                      </div>
+                      <label>Data Contrato</label>
+                      <input type="date" value={dataContrato} onChange={(e) => setDataContrato(e.target.value)} />
                     </div>
                     <div className="campos-filtro">
                       <div className="campos-01-cobranca">
                         <label>Nome</label>
-                        <input placeholder="Informe o Nome"></input>
+                        <input placeholder="Informe o Nome" value={nomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
                       </div>
-                      <div className="indicacoes-cliente-cobran">
-                        <label>Dia Pagamento</label>
-                        <input type="number"></input>
-                      </div>
-                    </div>
-                    <div className="campos-filtro">
-                      <div className="indicacoes-cliente-cobran">
-                        <label>Ultimo Mês Pago</label>
-                        <input type="date"></input>
-                      </div>
-                      <div className="indicacoes-cliente-cobran">
-                        <label>Ultimo Pagamento</label>
-                        <input type="date"></input>
-                      </div>
-                    </div>
-                    <div className="campos-filtro">
-                      <label>Mais Filtros:</label>
-                    </div>
-                    <div className="campos-filtro">
                       <div>
                         <label>Rota:</label>
-                        <select>
-                          <option value={null}>Todos</option>
-                          <option value={1}>ROTA ESC. TOSHI</option>
+                        <select value={rota} onChange={(e) => setRota(e.target.value)}>
+                          <option value={1}>Todos</option>
                           <option value={2}>ROTA ESC. MARCELINO</option>
-                          <option value={3}>Rota A</option>
+                          <option value={3}>ROTA ESC. TOSHI</option>
                         </select>
                       </div>
                     </div>
+                    <div className="campos-filtro">
+                      <label>Dia Pagamento</label>
+                      <input type="number" value={diaPagamento} onChange={(e) => setDiaPagamento(e.target.value)} />
+                    </div>
+                    <div className="campos-filtro">
+                      <label>Sem agendamentos</label>
+                      <Checkbox checked={isAgendemento} onChange={(e) => setIsAgendamento(e.target.checked)} />
+                      <label>Sem justificativa</label>
+                      <Checkbox checked={isSemJustificativa} onChange={(e) => setIsSemJustificativa(e.target.checked)} />
+                    </div>
+                    <div className="campos-filtro">
+                      <label>Pagaram mês passado</label>
+                      <Checkbox checked={isPagouMesPassado} onChange={(e) => setIsPagouMesPassado(e.target.checked)} />
+                      <label>Clientes a ligar</label>
+                      <Checkbox checked={isClienteLigar} onChange={(e) => setIsClientesLigar(e.target.checked)} />
+                    </div>
+                    <div className="campos-filtro">
+                      <label>Justificativa</label>
+                      <Checkbox checked={isJustificativa} onChange={(e) => setIsJustificativa(e.target.checked)} />
+                      <label>Categoria F9</label>
+                      <Checkbox checked={isCategoriaF9} onChange={(e) => setIsCategoriaF9(e.target.checked)} />
+                    </div>
+                    {/* <div className="campos-filtro">
+                      <label>Agendamentos do dia</label>
+                      <input type="number"></input>
+                    </div> */}
+                    {isCategoriaF9
+                      ?
+                      <div className="campos-filtro">
+                        <div>
+                          <label>Categorias:</label>
+                          <select value={categoriaF9} onChange={(e) => setCategoriaF9(e.target.value)}>
+                            <option value={1}>Todos</option>
+                            <option value={2}>RETORNAR LIGAÇÃO</option>
+                            <option value={3}>AGENDAMENTO</option>
+                            <option value={4}>SEM CONTATO</option>
+                            <option value={5}>DIVULGAÇÃO DE BENEFICIOS</option>
+                            <option value={6}>SOLICITOU CANCELAMENTO</option>
+                            <option value={7}>ATUALIZAÇÃO DE CONTATO</option>
+                            <option value={8}>BOLETO ENVIADO</option>
+                          </select>
+                        </div>
+                      </div>
+                      : <></>
+                    }
+                    {isJustificativa
+                      ?
+                      <div className="campos-filtro">
+                        <div>
+                          <label>Justificativas:</label>
+                          <select value={justificativa} onChange={(e) => setJustificativa(e.target.value)}>
+                            <option value={1}>Todos</option>
+                            <option value={2}>MUDOU-SE</option>
+                            <option value={3}>TITULAR NÃO ESTAVA EM CASA</option>
+                            <option value={4}>AGENDOU PARA:</option>
+                            <option value={5}>SOLICITOU CANCELAMENTO</option>
+                            <option value={6}>IRÁ AO ESCRITORIO</option>
+                            <option value={7}>LIGARA P/ COB OU ESC QUANDO FOR PAGAR</option>
+                            <option value={8}>TRANSFERIR PARA OUTRA ROTA</option>
+                            <option value={9}>EFETUA PAGAMENTO ANTECIPADO</option>
+                            <option value={10}>EM VIAGEM</option>
+                            <option value={11}>ENDEREÇO RES. E COM. NÃO CORRESPONDE AO CLIENTE</option>
+                            <option value={12}>OUTROS</option>
+                          </select>
+                        </div>
+                      </div>
+                      : <></>
+                    }
                     <div className="pesquisa-filtro-cobran">
-                      <ButtonText title="PESQUISAR" />
+                      <ButtonText funcao={filtro} title="PESQUISAR" />
                     </div>
                   </div>
                 }
@@ -181,8 +384,8 @@ const EscritorioCobranca = () => {
           <ColunasCobranca
             key={index}
             titulo={titulo}
-            dados={dados}
-            numeros={dados.length}
+            dados={dados.clientes}
+            numeros={dados.clientes.length}
             onCardClick={handleCardClick} // Passando a função de callback
             onFilterIconClick={(coluna) => toggleModal(coluna)}
           />

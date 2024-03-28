@@ -9,11 +9,9 @@ export const useCRM = () => {
             const response = await https.get("/crm-escritorio");
             const data = response.data;
             if (data && Array.isArray(data)) {
-                // Mapear os dados para a classe CRM
                 const crmData = data.map(item => {
                     return new CRM(item);
                 });
-                // Retorna os dados mapeados
                 return crmData;
             } else {
                 return null;

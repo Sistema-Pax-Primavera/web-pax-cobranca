@@ -37,7 +37,7 @@ export const CRM = (data) => ({
       cpf: formatCPF(dependente?.cpf),
     })),
     pagamentos: data?.dadosCliente?.pagamentos?.map((pagamento) => ({
-      mes: pagamento?.mesPago,
+      mes: converterData(pagamento?.mesPago),
       data_pagamento: converterData(pagamento?.dataPagamento),
       status: pagamento?.status,
       valor: pagamento?.valor,
@@ -47,9 +47,19 @@ export const CRM = (data) => ({
       data_criacao: converterData(historico?.dataCriacao),
       titulo: historico?.titulo,
       categoria: historico?.categoria,
+      id_categoria: historico?.categoriaId,
       subcategoria: historico?.subCategoria,
       usuario: historico?.usuario,
       descricao: historico.descricao
+    })),
+    agendamentos: data?.dadosCliente?.agendamentos?.map((agendamento) => ({
+      id: agendamento.id,
+      ult_agendamento_cob: converterData(agendamento?.UltAgCob),
+      ult_agendamento_tel: converterData(agendamento?.UltAgTel),
+      ult_justificativa: converterData(agendamento?.UltJustificativa),
+      id_justificativa: agendamento?.IdJustificativa,
+      motivo_justificativa: agendamento?.MotivoJustificativa,
+      observacao: agendamento.Observacao
     })),
   },
 });
