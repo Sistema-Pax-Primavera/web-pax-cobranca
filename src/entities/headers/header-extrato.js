@@ -1,7 +1,12 @@
 export const headerExtrato = [
     {
+        key: 'mes',
+        label: ['Data de Vencimento', 'Data de Vencimento'],
+        sort: true
+    },
+    {
         key: 'data_pagamento',
-        label: ['Vencimento', 'Vencimento '],
+        label: ['Data de Pagamento', 'Data de Pagamento'],
         sort: true
     },
     {
