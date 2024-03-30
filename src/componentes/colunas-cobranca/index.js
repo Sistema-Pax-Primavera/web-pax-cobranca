@@ -16,11 +16,13 @@ const ColunasCobranca = ({ titulo, dados, numeros, onCardClick, onFilterIconClic
         <FilterAltIcon fontSize={"small"} onClick={() => onFilterIconClick(titulo)} />
         <p>{numeros}</p>
       </div>
-      {dados.map((item, index) => (
-        <div key={index} onClick={() => handleClickCard(item)}>
-          <CardsCobranca item={item} onClick={onCardClick} />
-        </div>
-      ))}
+      <div class="cards">
+        {dados.map((item, index) => (
+          <div class="item" key={index} onClick={() => handleClickCard(item)}>
+            <CardsCobranca item={item} onClick={onCardClick} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

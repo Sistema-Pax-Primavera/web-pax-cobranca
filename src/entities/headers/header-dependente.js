@@ -16,7 +16,22 @@ export const headerDependente = [
     },
     {
         key: 'parentesco',
-        label: ['parentesco', 'parentesco'],
+        label: ['Parentesco', 'parentesco'],
+        sort: true
+    },
+    {
+        key: 'data_nascimento',
+        label: ['Data Nascimento', 'Data Nascimento'],
+        sort: true
+    },
+    {
+        key: 'tipo',
+        label: ['Tipo', 'Tipo'],
+        sort: true
+    },
+    {
+        key: 'data_falecimento',
+        label: ['Falecimento', 'Falecimento'],
         sort: true
     },
 ];

@@ -1,27 +1,27 @@
-.continaer-colunas-cobr{
+.continaer-colunas-cobr {
     display: flex;
     flex-direction: column;
     gap: 5px;
     background-color: var(--cinza-leve);
     border-radius: 5px;
-    overflow: auto;
-    max-height: 450px;
+
+    max-height: 72vh;
     width: 20%;
     padding: 5px;
 }
 
-.title-filtro-info{
+.title-filtro-info {
     display: flex;
     align-items: center;
     width: 100%;
 }
 
-.title-filtro-info label{
+.title-filtro-info label {
     width: 90%;
     font-size: 9px;
 }
 
-.title-filtro-info p{
+.title-filtro-info p {
     width: 10%;
     background-color: var(--branco);
     border-radius: 50px;
@@ -30,4 +30,12 @@
     padding: 3px;
     font-weight: 700;
     text-align: center;
+}
+
+.cards {
+    overflow: auto;
+}
+
+.cards .item {
+    margin-top: 5px;
 }

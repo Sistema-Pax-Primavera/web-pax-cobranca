@@ -31,21 +31,24 @@ const HeaderCobranca = () => {
   return (
     <div className="container-header-cobranca">
       <button
+        onClick={() => handleMenuClick("/gerencial")}
+        className={activeRoute === "/gerencial" ? "active" : ""}
+      >Dashboard Supervisor
+      </button>
+      <button
         onClick={() => handleMenuClick("/escritorio")}
         className={activeRoute === "/escritorio" ? "active" : ""}
-      > Escritório
+      > CRM Escritório
       </button>
       <button
         onClick={() => handleMenuClick("/boleto")}
         className={activeRoute === "/boleto" ? "active" : ""}
-      >
-        Boleto
+      >CRM Boleto
       </button>
       <button
         onClick={() => handleMenuClick("/cobrador")}
         className={activeRoute === "/cobrador" ? "active" : ""}
-      >
-        Cobrador
+      >CRM Cobrador
       </button>
       <button
         onClick={() => handleMenuClick("/movimentacao-diaria")}
@@ -68,15 +71,9 @@ const HeaderCobranca = () => {
       <button
         onClick={() => handleMenuClick("/solicitacoes-cobradores")}
         className={activeRoute === "/solicitacoes-cobradores" ? "active" : ""}
-      >
-        Sol. Cobradores
+      >Solitações Cob.
       </button>
-      <button
-        onClick={() => handleMenuClick("/gerencial")}
-        className={activeRoute === "/gerencial" ? "active" : ""}
-      >
-        Gerencial
-      </button>
+
     </div>
   );
 };
