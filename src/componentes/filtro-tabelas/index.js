@@ -41,18 +41,24 @@ const linhas = [
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-const FiltroTabelas1 = () => {
+const FiltroTabelas1 = ({toggleHeaderVisibility }) => {
   const [showSecondFilter, setShowSecondFilter] = useState(false);
   const [showFiltroContrato, setShowFiltroContrato] = useState(false);
-
+  const [showHeader, setShowHeader] = useState(true);
+  
   const toggleSecondFilter = () => {
     setShowSecondFilter(!showSecondFilter);
   };
 
   const toggleFiltroContrato = () => {
+    toggleHeaderVisibility();
     setShowFiltroContrato(!showFiltroContrato);
   };
 
+  const handleToggleFiltroContrato = () => {
+    setShowFiltroContrato(!showFiltroContrato);
+  };
+  
   return (
     <div>
       {!showFiltroContrato && (
@@ -224,7 +230,7 @@ const FiltroTabelas1 = () => {
           </div>
         </div>
       )}
-      {showFiltroContrato && <FiltroContrato toggleFiltros={toggleFiltroContrato} />}
+      {showFiltroContrato && <FiltroContrato toggleFiltros={toggleFiltroContrato} onBack={handleToggleFiltroContrato} />}
     </div>
   );
 };

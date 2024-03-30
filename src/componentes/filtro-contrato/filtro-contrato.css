@@ -1,14 +1,10 @@
-.vendas-filtro-contrato{
-    display: flex;
-    flex-direction: column;
-    gap:5px;
-}
+
 
 .vendas-filtro-campos{
     display: flex;
     align-items: center;
     gap: 5px;
-    width: 95%;
+    width: 108%;
     padding: 10px;
     background-color: var(--cinza-leve);
     border-radius: 10px;
@@ -47,5 +43,100 @@
 }
 
 .table-venda-filtro-camp{
+    width: 110%;
+}
+
+
+.tipos-campos-envios01{
+    display: flex;
+    flex-direction: column;
+    width: 108%;
+    gap: 10px;
+    background-color: var(--cinza-leve);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+.numero-contrato-venda2{
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+}
+
+.numero-contrato-venda2 label{
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.enviar-transferir-somente{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.enviar-transferir-somente label{
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.numero-contrato-venda3 label{
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.numero-contrato-venda3{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+}
+
+.todos-campos-envios{
+    display: flex;
+    flex-direction: column;
     width: 99%;
+    background-color: var(--cinza-leve);
+    border-radius: 10px;
+}
+
+
+.observacao-do-envio{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.observacao-do-envio label{
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.observacao-do-envio textarea{
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: 500;
+    font-size: 12px;
+    outline: none;
+}
+
+
+.vendas-filtro-campos3{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+}
+
+
+.vendas-filtro-contrato{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.tamanho-salva-contrato{
+    width: 20%;
+    margin-top: 10px;
 }
