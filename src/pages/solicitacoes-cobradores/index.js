@@ -5,6 +5,7 @@ import SpeakerNotesIcon from "@mui/icons-material/SpeakerNotes";
 import CardsSolicitacoesCobradores from "../../componentes/cards-solicitacoes-cobradores";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import BallotIcon from "@mui/icons-material/Ballot";
+
 const SolicitacoesCobradores = () => {
   const [solicitacoesPendentes, setSolicitacoesPendentes] = useState([
     {

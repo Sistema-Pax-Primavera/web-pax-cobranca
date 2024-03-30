@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ColunasCobranca from "../../componentes/colunas-cobranca";
-import "./escritorio.css";
+import "./cobrador.css";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useNavigate } from "react-router-dom";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
@@ -11,13 +11,14 @@ import ModalClientes from "../../componentes/modal-clientes";
 import BallotIcon from "@mui/icons-material/Ballot";
 import Checkbox from "@mui/material/Checkbox";
 import { useCRM } from "../../service/api";
+import AddToQueueIcon from '@mui/icons-material/AddToQueue';
 import { toast } from "react-toastify";
 import { converterDataParaFormatoBackend } from "../../utils/fuctions";
-
+import CalendarViewDayIcon from '@mui/icons-material/CalendarViewDay';
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-const EscritorioCobranca = () => {
+const Cobrador = () => {
   const { getCRMEsc } = useCRM();
   const navigate = useNavigate();
   const colunasDinamicas = {
@@ -32,7 +33,7 @@ const EscritorioCobranca = () => {
     "Anuais": { id: 9, clientes: [] },
   };
 
-  const [colunaSelecionada, setColunaSelecionada] = useState('');
+  const [colunaSelecionadaBoletos, setColunaSelecionadaBoletos] = useState('');
   const [dadosPorColuna, setDadosPorColuna] = useState({});
   const [modalAberta, setModalAberta] = useState(false); // Estado para a modal existente
   const [modalClientes, setModalClientes] = useState(false);
@@ -56,31 +57,31 @@ const EscritorioCobranca = () => {
   const [dataInicio, setDataInicio] = useState(null);
   const [dataFinal, setDataFinal] = useState(null);
 
-  const handleCloseFormulario = () => {
+  const handleCloseFormularioBoleto = () => {
     navigate("/");
     localStorage.setItem("page-cobranca", "/");
   };
 
   const toggleModal = (coluna) => {
     setModalAberta(!modalAberta);
-    setColunaSelecionada(coluna);
+    setColunaSelecionadaBoletos(coluna);
   };
 
   const toggleModalClientes = () => {
     setModalClientes(!modalClientes);
   };
 
-  const handleCardClick = (cardData) => {
+  const handleCardClickBoleto = (cardData) => {
     setSelectedCardData(cardData);
     setModalClientes(true);
   };
 
-  const handleCloseFormularioModal = () => {
+  const handleCloseFormularioModalBoleto = () => {
     setModalClientes(false);
   };
 
   const filtro = () => {
-    let clientesFiltrados = dadosPorColuna[colunaSelecionada].clientes.slice();
+    let clientesFiltrados = dadosPorColuna[colunaSelecionadaBoletos].clientes.slice();
     if (contrato) {
       clientesFiltrados = clientesFiltrados.filter(cliente => {
         return cliente.contrato.toString().includes(contrato);
@@ -294,46 +295,43 @@ const EscritorioCobranca = () => {
   }, []);
 
   return (
-    <div className="container-cobranca-escritorio">
-      <div className="retorna-cobranca">
-        <div className="button-retorn-cobran">
-          <div className="button-retorn3">
+    <div className="container-cobranca-escritorio-cobrador">
+      <div className="retorna-cobranca-cobrador">
+        <div className="button-retorn-cobran-cobrador">
+          <div className="button-retorn3-cobrador">
             <ButtonIcon
-              funcao={handleCloseFormulario}
+              funcao={handleCloseFormularioBoleto}
               icon={<ArrowBackIosNewIcon fontSize={"small"} />}
             />
           </div>
         </div>
-        <div className="crm-escritorio-container">
+        <div className="crm-escritorio-container-cobrador">
           <label>
-            <BallotIcon fontSize={"small"} />
-            CRM Escritório
+            <AddToQueueIcon fontSize={"small"} />
+            CRM Cobrador
           </label>
         </div>
 
-        <div className="filtro-cobrancaca-escritorio">
-          <div className="button-retorn2">
+        <div className="filtro-cobrancaca-escritorio-cobrador">
+          <div className="button-retorn2-cobrador">
             {modalAberta && (
               <ModalLateral
                 isOpen={modalAberta}
                 toggleModal={toggleModal}
-                colunaSelecionada={colunaSelecionada}
+                colunaSelecionadaBoletosy={colunaSelecionadaBoletos}
                 conteudo={
-                  <div className="container-modal-lateral">
-                    <h1>Filtro para {colunaSelecionada}</h1>
-                    <div className="campos-filtro">
-                      <div className="campos-01-cobranca">
+                  <div className="container-modal-lateral-cobrador">
+                    <h1>Filtro para {colunaSelecionadaBoletos}</h1>
+                    <div className="campos-filtro-venda-poso">
+                      <div className="campos-01-cobranca-cobrador">
                         <label>Contrato</label>
                         <input placeholder="N Contrato" type="number" value={contrato} onChange={(e) => setContrato(e.target.value)} />
-                        
-                      </div>
-                      <div className="campos-filtro">
-                      <label>Data Contrato</label>
+                        <label>Data Contrato</label>
                         <input type="date" value={dataContrato} onChange={(e) => setDataContrato(e.target.value)} />
                       </div>
                     </div>
-                    <div className="campos-filtro">
-                      <div className="campos-01-cobranca">
+                    <div className="campos-filtro-venda-poso">
+                      <div className="campos-01-cobranca-cobrador">
                         <label>Nome</label>
                         <input placeholder="Informe o Nome" value={nomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
                       </div>
@@ -346,13 +344,13 @@ const EscritorioCobranca = () => {
                         </select>
                       </div>
                     </div>
-                    <div className="campos-filtro">
-                      <div className="campos-01-cobranca">
+                    <div className="campos-filtro-venda-poso">
+                      <div className="campos-01-cobranca-cobrador">
                         <label>Dia Pagamento</label>
                         <input type="number" value={diaPagamento} onChange={(e) => setDiaPagamento(e.target.value)} />
                       </div>
                     </div>
-                    <div className="campos-filtro">
+                    <div className="campos-filtro-venda-poso">
                       <label>Sem agendamentos</label>
                       <Checkbox checked={isSemAgendamento} onChange={(e) => setIsSemAgendamento(e.target.checked)} />
                       {/* <label>Sem justificativa</label>
@@ -361,7 +359,7 @@ const EscritorioCobranca = () => {
                       <label>Pagaram mês passado</label>
                       <Checkbox checked={isPagouMesPassado} onChange={(e) => setIsPagouMesPassado(e.target.checked)} />
                     </div>
-                    <div className="campos-filtro">
+                    <div className="campos-filtro-venda-poso">
                       <label>Clientes a ligar</label>
                       <Checkbox checked={isClienteLigar} onChange={(e) => setIsClientesLigar(e.target.checked)} />
                       <label>Categoria F9</label>
@@ -370,14 +368,14 @@ const EscritorioCobranca = () => {
                       <Checkbox checked={isAgendamentoDia} onChange={(e) => setIsAgendamentoDia(e.target.checked)} />
 
                     </div>
-                    <div className="campos-filtro">
+                    <div className="campos-filtro-venda-poso">
                       {/* <label>Justificativa</label>
                       <Checkbox checked={isJustificativa} onChange={(e) => setIsJustificativa(e.target.checked)} />
                       */}
                     </div>
                     {isCategoriaF9
                       ?
-                      <div className="campos-filtro">
+                      <div className="campos-filtro-venda-poso">
                         <div>
                           <label>Categorias:</label>
                           <select value={categoriaF9} onChange={(e) => setCategoriaF9(e.target.value)}>
@@ -396,7 +394,7 @@ const EscritorioCobranca = () => {
                     }
                     {isAgendamentoDia
                       ?
-                      <div className="campos-filtro">
+                      <div className="campos-filtro-venda-poso">
                         <div>
                           <label>Periodo Inicial</label>
                           <input type="date" value={dataInicio} onChange={(e) => setDataInicio(e.target.value)} />
@@ -408,7 +406,7 @@ const EscritorioCobranca = () => {
                     }
                     {/* {isJustificativa
                       ?
-                      <div className="campos-filtro">
+                      <div className="campos-filtro-venda-poso">
                         <div>
                           <label>Justificativas:</label>
                           <select value={justificativa} onChange={(e) => setJustificativa(e.target.value)}>
@@ -429,7 +427,7 @@ const EscritorioCobranca = () => {
                       </div>
                       : <></>
                     } */}
-                    <div className="pesquisa-filtro-cobran">
+                    <div className="pesquisa-filtro-cobran-cobrador">
                       <ButtonText funcao={filtro} title="PESQUISAR" />
                     </div>
                   </div>
@@ -439,14 +437,14 @@ const EscritorioCobranca = () => {
           </div>
         </div>
       </div>
-      <div className="informacoes-cont-cobr">
+      <div className="informacoes-cont-cobr-cobrador">
         {Object.entries(dadosPorColuna).map(([titulo, dados], index) => (
           <ColunasCobranca
             key={index}
             titulo={titulo}
             dados={dados.clientes}
             numeros={dados.clientes.length}
-            onCardClick={handleCardClick} // Passando a função de callback
+            onCardClick={handleCardClickBoleto} // Passando a função de callback
             onFilterIconClick={(coluna) => toggleModal(coluna)}
           />
         ))}
@@ -454,7 +452,7 @@ const EscritorioCobranca = () => {
         {modalClientes && selectedCardData && (
           <ModalClientes
             open={modalClientes}
-            onClose={handleCloseFormularioModal}
+            onClose={handleCloseFormularioModalBoleto}
             clienteData={selectedCardData}
           />
         )}
@@ -463,4 +461,4 @@ const EscritorioCobranca = () => {
   );
 };
 
-export default EscritorioCobranca;
+export default Cobrador;

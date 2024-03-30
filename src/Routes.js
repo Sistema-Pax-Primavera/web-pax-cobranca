@@ -7,6 +7,8 @@ import MovimentacaoDiaria from "./pages/moventacao-diaria";
 import SolicitacoesCobradores from "./pages/solicitacoes-cobradores";
 import Rotas from "./pages/rotas";
 import Gerencial from "./pages/gerencial";
+import Boleto from "./pages/boleto";
+import Cobrador from "./pages/cobrador";
 
 const RoutesApp = () => (
     <BrowserRouter basename="pax-primavera/cobranca">
@@ -14,6 +16,8 @@ const RoutesApp = () => (
             {/* <Route exact path="pax-primavera/cobranca" element={<Cobranca />} />*/}
             <Route exact path="/" element={<Cobranca />} />
             <Route exact path="/escritorio" element={<EscritorioCobranca />} />
+            <Route exact path="/boleto" element={<Boleto />} />
+            <Route exact path="/cobrador" element={<Cobrador />} />
             <Route exact path="/envios" element={<Envios />} />
             <Route exact path="/movimentacao-diaria" element={<MovimentacaoDiaria />} />
             <Route exact path="/solicitacoes-cobradores" element={<SolicitacoesCobradores/>} />
