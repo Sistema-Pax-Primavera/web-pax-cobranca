@@ -66,7 +66,9 @@
 }
 
 .modal-content h1 {
-  font-family: 900;
+  font-family: 700;
+  max-width: 70%;
+
   color: var(--verde);
-  font-size: 20px;
+  font-size: 15px;
 }

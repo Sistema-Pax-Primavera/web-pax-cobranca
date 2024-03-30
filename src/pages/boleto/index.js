@@ -317,67 +317,106 @@ const Boleto = () => {
               <ModalLateral
                 isOpen={modalAberta}
                 toggleModal={toggleModal}
-                colunaSelecionadaBoletosy={colunaSelecionadaBoletos}
+                colunaSelecionadaBoletos={colunaSelecionadaBoletos}
                 conteudo={
-                  <div className="container-modal-lateral-boleto">
+                  <div className="container-modal-lateral">
                     <h1>Filtro para {colunaSelecionadaBoletos}</h1>
-                    <div className="campos-filtro-venda-poso">
-                      <div className="campos-01-cobranca-boleto">
-                        <label>Contrato</label>
-                        <input placeholder="N Contrato" type="number" value={contrato} onChange={(e) => setContrato(e.target.value)} />
+                    <div className="campos-filtro">
+                      <div className="campos-01-cobranca-nome">
+                        <label>Nome</label>
+                        <input
+                          placeholder="Informe o Nome"
+                          value={nomeCliente}
+                          onChange={(e) => setNomeCliente(e.target.value)}
+                        />
+                      </div>
+                      <div className="campos-01-cobranca-data">
                         <label>Data Contrato</label>
-                        <input type="date" value={dataContrato} onChange={(e) => setDataContrato(e.target.value)} />
+                        <input
+                          type="date"
+                          value={dataContrato}
+                          onChange={(e) => setDataContrato(e.target.value)}
+                        />
                       </div>
                     </div>
-                    <div className="campos-filtro-venda-poso">
-                      <div className="campos-01-cobranca-boleto">
-                        <label>Nome</label>
-                        <input placeholder="Informe o Nome" value={nomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
+                    <div className="campos-filtro">
+                      <div className="campos-01-cobranca-contrato">
+                        <label>Contrato</label>
+                        <input
+                          placeholder="N Contrato"
+                          type="number"
+                          value={contrato}
+                          onChange={(e) => setContrato(e.target.value)}
+                        />
                       </div>
-                      <div>
+                      <div className="campos-filtro-dia-pag">
                         <label>Rota:</label>
-                        <select value={rota} onChange={(e) => setRota(e.target.value)}>
+                        <select
+                          value={rota}
+                          onChange={(e) => setRota(e.target.value)}
+                        >
                           <option value={1}>Todos</option>
                           <option value={2}>ROTA ESC. MARCELINO</option>
                           <option value={3}>ROTA ESC. TOSHI</option>
                         </select>
                       </div>
-                    </div>
-                    <div className="campos-filtro-venda-poso">
-                      <div className="campos-01-cobranca-boleto">
+                      <div className="campos-01-escritorio">
                         <label>Dia Pagamento</label>
-                        <input type="number" value={diaPagamento} onChange={(e) => setDiaPagamento(e.target.value)} />
+                        <input
+                          type="number"
+                          value={diaPagamento}
+                          onChange={(e) => setDiaPagamento(e.target.value)}
+                        />
                       </div>
                     </div>
-                    <div className="campos-filtro-venda-poso">
+                    <div className="campos-filtro"></div>
+                    <div className="campos-filtro">
                       <label>Sem agendamentos</label>
-                      <Checkbox checked={isSemAgendamento} onChange={(e) => setIsSemAgendamento(e.target.checked)} />
+                      <Checkbox
+                        checked={isSemAgendamento}
+                        onChange={(e) => setIsSemAgendamento(e.target.checked)}
+                      />
                       {/* <label>Sem justificativa</label>
                       <Checkbox checked={isSemJustificativa} onChange={(e) => setIsSemJustificativa(e.target.checked)} />
                     */}
                       <label>Pagaram mês passado</label>
-                      <Checkbox checked={isPagouMesPassado} onChange={(e) => setIsPagouMesPassado(e.target.checked)} />
+                      <Checkbox
+                        checked={isPagouMesPassado}
+                        onChange={(e) => setIsPagouMesPassado(e.target.checked)}
+                      />
                     </div>
-                    <div className="campos-filtro-venda-poso">
+                    <div className="campos-filtro">
                       <label>Clientes a ligar</label>
-                      <Checkbox checked={isClienteLigar} onChange={(e) => setIsClientesLigar(e.target.checked)} />
+                      <Checkbox
+                        checked={isClienteLigar}
+                        onChange={(e) => setIsClientesLigar(e.target.checked)}
+                      />
                       <label>Categoria F9</label>
-                      <Checkbox checked={isCategoriaF9} onChange={(e) => setIsCategoriaF9(e.target.checked)} />
-                      <label>Agendamentos do dia</label>
-                      <Checkbox checked={isAgendamentoDia} onChange={(e) => setIsAgendamentoDia(e.target.checked)} />
-
+                      <Checkbox
+                        checked={isCategoriaF9}
+                        onChange={(e) => setIsCategoriaF9(e.target.checked)}
+                      />
                     </div>
-                    <div className="campos-filtro-venda-poso">
+                    <div className="campos-filtro">
+                      <label>Agendamentos do dia</label>
+                      <Checkbox
+                        checked={isAgendamentoDia}
+                        onChange={(e) => setIsAgendamentoDia(e.target.checked)}
+                      />
+                    </div>
+                    <div className="campos-filtro">
                       {/* <label>Justificativa</label>
                       <Checkbox checked={isJustificativa} onChange={(e) => setIsJustificativa(e.target.checked)} />
                       */}
                     </div>
-                    {isCategoriaF9
-                      ?
-                      <div className="campos-filtro-venda-poso">
-                        <div>
+                    {isCategoriaF9 ? (
+                      <div className="campos-filtro">
+                        <div className="categoriasdof9">
                           <label>Categorias:</label>
-                          <select value={categoriaF9} onChange={(e) => setCategoriaF9(e.target.value)}>
+                          <select
+                            value={categoriaF9}
+                            onChange={(e) => setCategoriaF9(e.target.value)}
+                          >
                             <option value={1}>Todos</option>
                             <option value={2}>RETORNAR LIGAÇÃO</option>
                             <option value={3}>AGENDAMENTO</option>
@@ -389,23 +428,34 @@ const Boleto = () => {
                           </select>
                         </div>
                       </div>
-                      : <></>
-                    }
-                    {isAgendamentoDia
-                      ?
-                      <div className="campos-filtro-venda-poso">
-                        <div>
+                    ) : (
+                      <></>
+                    )}
+                    {isAgendamentoDia ? (
+                      <div className="campos-filtro">
+                        <div className="categoriasdof9">
                           <label>Periodo Inicial</label>
-                          <input type="date" value={dataInicio} onChange={(e) => setDataInicio(e.target.value)} />
+                          <input
+                            type="date"
+                            value={dataInicio}
+                            onChange={(e) => setDataInicio(e.target.value)}
+                          />
+                        </div>
+                        <div className="categoriasdof9">
                           <label>Periodo Final</label>
-                          <input type="date" value={dataFinal} onChange={(e) => setDataFinal(e.target.value)} />
+                          <input
+                            type="date"
+                            value={dataFinal}
+                            onChange={(e) => setDataFinal(e.target.value)}
+                          />
                         </div>
                       </div>
-                      : <></>
-                    }
+                    ) : (
+                      <></>
+                    )}
                     {/* {isJustificativa
                       ?
-                      <div className="campos-filtro-venda-poso">
+                      <div className="campos-filtro">
                         <div>
                           <label>Justificativas:</label>
                           <select value={justificativa} onChange={(e) => setJustificativa(e.target.value)}>
@@ -426,7 +476,7 @@ const Boleto = () => {
                       </div>
                       : <></>
                     } */}
-                    <div className="pesquisa-filtro-cobran-boleto">
+                    <div className="pesquisa-filtro-cobran">
                       <ButtonText funcao={filtro} title="PESQUISAR" />
                     </div>
                   </div>

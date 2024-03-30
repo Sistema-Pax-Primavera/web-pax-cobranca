@@ -83,8 +83,27 @@
 .container-modal-lateral {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 3px;
   width: 100%;
+}
+
+.campos-filtro-dia-pag {
+  display: flex;
+  width: 30%;
+}
+
+.campos-filtro-dia-pag label{
+  font-weight: 500;
+}
+
+.campos-filtro-dia-pag select{
+  background-color: var(--cinza-leve);
+  font-weight: 500;
+}
+
+.campos-filtro-dia-pag{
+  display: flex;
+  flex-direction: column;
 }
 
 .campos-filtro {
@@ -92,6 +111,10 @@
   align-items: center;
   width: 100%;
   gap: 5px;
+}
+
+.campos-filtro label{
+  font-weight: 500;
 }
 
 .filtro-colun-cobran {
@@ -123,6 +146,52 @@
   border-radius: 5px;
 }
 
+.campos-01-cobranca-nome label{
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.campos-01-cobranca-nome input {
+  width: 93%;
+  padding: 8px;
+  font-weight: 500;
+  background-color: var(--cinza-leve);
+}
+
+.campos-01-cobranca-nome {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  flex-wrap: wrap;
+  width: 45%;
+}
+
+.categoriasdof9{
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+}
+
+.categoriasdof9 label{
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.categoriasdof9 select{
+  font-weight: 500;
+  background-color: var(--cinza-leve);
+}
+
+.categoriasdof9 input{
+  font-weight: 500;
+  background-color: var(--cinza-leve);
+}
+
+.campos-01-cobranca-nome select{
+  background-color: var(--cinza-leve);
+  font-weight: 500;
+}
+
 .campos-01-cobranca label{
   font-weight: 500;
   font-size: 12px;
@@ -140,7 +209,12 @@
   flex-direction: column;
   align-items: start;
   flex-wrap: wrap;
-  width: 25%;
+  width: 35%;
+}
+
+.campos-01-cobranca select{
+  background-color: var(--cinza-leve);
+  font-weight: 500;
 }
 
 .indicacoes-cliente-cobran {
@@ -159,4 +233,61 @@
   width: 25%;
   display: flex;
   align-items: flex-end;
+}
+
+.campos-01-cobranca-contrato label{
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.campos-01-cobranca-contrato input {
+  width: 80%;
+  padding: 8px;
+  font-weight: 500;
+  background-color: var(--cinza-leve);
+}
+
+.campos-01-cobranca-contrato {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  flex-wrap: wrap;
+  width: 18%;
+}
+
+.campos-01-escritorio {
+  width: 20%;
+}
+
+.campos-01-escritorio label{
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.campos-01-escritorio input {
+  width: 85%;
+  padding: 8px;
+  font-weight: 500;
+  background-color: var(--cinza-leve);
+}
+
+
+.campos-01-cobranca-data label{
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.campos-01-cobranca-data input {
+  width: 93%;
+  padding: 8px;
+  font-weight: 500;
+  background-color: var(--cinza-leve);
+}
+
+.campos-01-cobranca-data {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  flex-wrap: wrap;
+  width: 20%;
 }
