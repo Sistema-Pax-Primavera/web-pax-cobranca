@@ -8,7 +8,7 @@ import ButtonIcon from "../../../../pax-associado/src/components/button-icon";
 import ModalLateral from "../../componentes/modal-lateral";
 import ButtonText from "../../../../pax-associado/src/components/button-texto/index";
 import ModalClientes from "../../componentes/modal-clientes";
-import BallotIcon from "@mui/icons-material/Ballot";
+import StoreIcon from '@mui/icons-material/Store';
 import Checkbox from "@mui/material/Checkbox";
 import { useCRM } from "../../service/api";
 import { toast } from "react-toastify";
@@ -361,7 +361,7 @@ const EscritorioCobranca = () => {
         </div>
         <div className="crm-escritorio-container">
           <label>
-            <BallotIcon fontSize={"small"} />
+            <StoreIcon fontSize={"small"} />
             CRM Escritório
           </label>
         </div>

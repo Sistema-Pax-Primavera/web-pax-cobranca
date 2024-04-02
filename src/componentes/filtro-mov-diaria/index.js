@@ -125,8 +125,13 @@ const FiltroMovDiaria = () => {
   };
 
   const handleRetornar = () => {
-    setMostrarSegundaParte(true); // Atualiza o estado para mostrar a segunda parte da tabela
-    setMostrarDetalhes(false); // Esconde os detalhes
+    if (mostrarSegundaParte) {
+      setMostrarSegundaParte(false);
+      setMostrarDetalhes(false);
+    } else {
+      setMostrarSegundaParte(true); // Atualiza o estado para mostrar a segunda parte da tabela
+      setMostrarDetalhes(false); // Esconde os detalhes
+    }
   };
   return (
     <div className="container-filtros-mov">
