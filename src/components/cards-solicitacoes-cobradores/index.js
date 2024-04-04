@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./cards-solicitacoes-cobradores.css";
 import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
-import ButtonIconTextoStart from "../../components/button-icon-texto-start";
+import ButtonIconTextoStart from '../button-icon-texto-start'
 import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'; // Ícone para o botão "Aguardando sincronização"

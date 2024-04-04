@@ -17,9 +17,22 @@ import { headerObservacao } from "../../entities/headers/header-observacao";
 import { headerDependente } from "../../entities/headers/header-dependente";
 import { formatarTelefone } from "../../utils/fuctions";
 import { toast } from "react-toastify";
+import DescriptionIcon from "@mui/icons-material/Description";
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import Switch from "@material-ui/core/Switch";
+import AddHomeWorkIcon from "@mui/icons-material/AddHomeWork";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import ModalHistorico from "../modal-historico";
-import Button from '@mui/material/Button';
+import ContactPageOutlinedIcon from "@mui/icons-material/ContactPageOutlined";
+import AddCardOutlinedIcon from "@mui/icons-material/AddCardOutlined";
+import Button from "@mui/material/Button";
+import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
+import PsychologyAltOutlinedIcon from "@mui/icons-material/PsychologyAltOutlined";
+import AddIcCallOutlinedIcon from "@mui/icons-material/AddIcCallOutlined";
+import ScheduleOutlinedIcon from "@mui/icons-material/ScheduleOutlined";
+import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 const style = {
   position: "absolute",
   top: "50%",
@@ -349,56 +362,58 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
             {mostrarFormularioBasico && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran">
+                  <div className="dados-basico-cobran2">
                     <div className="infor-modal-cobrancas">
-                      <div className="origin-lead-cobran">
+                      <div className="origin-lead-cobran2">
                         <ButtonIconFundo
-                          icon={<AddLocationIcon fontSize={"small"} />}
+                          icon={<ContactPageOutlinedIcon fontSize={"small"} />}
                         />
                         <div className="lead-origin-cobran">
                           <label>Plano</label>
                           <label>{plano}</label>
                         </div>
                       </div>
-                      <div className="origin-lead-cobran">
+                      <div className="origin-lead-cobran2">
                         <ButtonIconFundo
-                          icon={<PersonIcon fontSize={"small"} />}
+                          icon={<CurrencyExchangeIcon fontSize={"small"} />}
                         />
                         <div className="lead-origin-cobran">
                           <label>Valor Plano</label>
                           <label>{valor_plano}</label>
                         </div>
                       </div>
-                      <div className="origin-lead-cobran">
+                      <div className="origin-lead-cobran2">
                         <ButtonIconFundo
-                          icon={<PersonIcon fontSize={"small"} />}
+                          icon={<CurrencyExchangeIcon fontSize={"small"} />}
                         />
                         <div className="lead-origin-cobran">
                           <label>Valor Adicional</label>
                           <label>-</label>
                         </div>
                       </div>
-                      <div className="origin-lead-cobran">
+                      <div className="origin-lead-cobran2">
                         <ButtonIconFundo
-                          icon={<PersonIcon fontSize={"small"} />}
+                          icon={<CurrencyExchangeIcon fontSize={"small"} />}
                         />
                         <div className="lead-origin-cobran">
                           <label>Valor Cremação</label>
                           <label>-</label>
                         </div>
                       </div>
-                      <div className="origin-lead-cobran">
+                      <div className="origin-lead-cobran2">
                         <ButtonIconFundo
-                          icon={<PersonIcon fontSize={"small"} />}
+                          icon={<CurrencyExchangeIcon fontSize={"small"} />}
                         />
                         <div className="lead-origin-cobran">
                           <label>Valor PET</label>
                           <label>-</label>
                         </div>
                       </div>
-                      <div className="origin-lead-cobran">
+                      <div className="origin-lead-cobran2">
                         <ButtonIconFundo
-                          icon={<PersonIcon fontSize={"small"} />}
+                          icon={
+                            <PersonOutlineOutlinedIcon fontSize={"small"} />
+                          }
                         />
                         <div className="lead-origin-cobran">
                           <label>Valor Total</label>
@@ -407,43 +422,46 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                       </div>
                     </div>
                     <div className="infor-modal-cobrancas">
-                      <div className="origin-lead-cobran">
+                      <div className="origin-lead-cobran2">
                         <ButtonIconFundo
-                          icon={<PersonIcon fontSize={"small"} />}
+                          icon={<LocalAtmIcon fontSize={"small"} />}
                         />
                         <div className="lead-origin-cobran">
                           <label>Bordero</label>
                           <label>ESC.TOSHI</label>
                         </div>
                       </div>
-                      <div className="origin-lead-cobran">
+
+                      <div className="origin-lead-cobran2">
                         <ButtonIconFundo
-                          icon={<DomainAddIcon fontSize={"small"} />}
+                          icon={<AddCardOutlinedIcon fontSize={"small"} />}
                         />
                         <div className="lead-origin-cobran">
                           <label>Tipo</label>
                           <label>Bancario</label>
                         </div>
                       </div>
-                      <div className="origin-lead-cobran">
+                      <div className="origin-lead-cobran2">
                         <ButtonIconFundo
-                          icon={<AddLocationIcon fontSize={"small"} />}
+                          icon={<LocationOnOutlinedIcon fontSize={"small"} />}
                         />
                         <div className="lead-origin-cobran">
                           <label>Rota</label>
                           <label>ESC</label>
                         </div>
                       </div>
-                      <div className="origin-lead-cobran">
+                      <div className="origin-lead-cobran2">
                         <ButtonIconFundo
-                          icon={<PersonIcon fontSize={"small"} />}
+                          icon={
+                            <CalendarMonthOutlinedIcon fontSize={"small"} />
+                          }
                         />
                         <div className="lead-origin-cobran">
                           <label>Dia Vencimento</label>
                           <label>{dia_pagamento}</label>
                         </div>
                       </div>
-                      <div className="origin-lead-cobran">
+                      <div className="origin-lead-cobran2">
                         <ButtonIconFundo
                           icon={<DomainAddIcon fontSize={"small"} />}
                         />
@@ -460,11 +478,13 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
             {mostrarFormularioCadastro && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran">
+                  <div className="dados-basico-cobran2">
                     <div className="infor-modal-cobrancas">
                       <div className="origin-lead-cobran">
                         <ButtonIconFundo
-                          icon={<AddLocationIcon fontSize={"small"} />}
+                          icon={
+                            <PersonOutlineOutlinedIcon fontSize={"small"} />
+                          }
                         />
                         <div className="lead-origin-cobran">
                           <label>Gereno</label>
@@ -473,7 +493,9 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                       </div>
                       <div className="origin-lead-cobran">
                         <ButtonIconFundo
-                          icon={<AddLocationIcon fontSize={"small"} />}
+                          icon={
+                            <CalendarMonthOutlinedIcon fontSize={"small"} />
+                          }
                         />
                         <div className="lead-origin-cobran">
                           <label>Data Contrato</label>
@@ -482,7 +504,7 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                       </div>
                       <div className="origin-lead-cobran">
                         <ButtonIconFundo
-                          icon={<AddLocationIcon fontSize={"small"} />}
+                          icon={<GroupOutlinedIcon fontSize={"small"} />}
                         />
                         <div className="lead-origin-cobran">
                           <label>Estado Civil</label>
@@ -491,7 +513,9 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                       </div>
                       <div className="origin-lead-cobran">
                         <ButtonIconFundo
-                          icon={<AddLocationIcon fontSize={"small"} />}
+                          icon={
+                            <PsychologyAltOutlinedIcon fontSize={"small"} />
+                          }
                         />
                         <div className="lead-origin-cobran">
                           <label>Religião</label>
@@ -502,7 +526,9 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                     <div className="infor-modal-cobrancas">
                       <div className="origin-lead-cobran">
                         <ButtonIconFundo
-                          icon={<AddLocationIcon fontSize={"small"} />}
+                          icon={
+                            <CalendarMonthOutlinedIcon fontSize={"small"} />
+                          }
                         />
                         <div className="lead-origin-cobran">
                           <label>Data Nascimento</label>
@@ -517,11 +543,11 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
             {mostrarFormularioEndereco && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran">
+                  <div className="dados-basico-cobran2">
                     <div className="infor-modal-cobrancas">
                       <div className="origin-lead-cobran">
                         <ButtonIconFundo
-                          icon={<AddLocationIcon fontSize={"small"} />}
+                          icon={<LocationOnOutlinedIcon fontSize={"small"} />}
                         />
                         <div className="lead-origin-cobran">
                           <label>Endereço Residencial</label>
@@ -532,7 +558,7 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                       </div>
                       <div className="origin-lead-cobran">
                         <ButtonIconFundo
-                          icon={<PersonIcon fontSize={"small"} />}
+                          icon={<LocationOnOutlinedIcon fontSize={"small"} />}
                         />
                         <div className="lead-origin-cobran">
                           <label>Endereço Comercial</label>
@@ -549,12 +575,12 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
             {mostrarFormularioContato && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran">
+                  <div className="dados-basico-cobran2">
                     <div className="infor-modal-cobrancas">
                       {titular.contatos.map((item) => (
                         <div key={item.id} className="origin-lead-cobran">
                           <ButtonIconFundo
-                            icon={<AddLocationIcon fontSize={"small"} />}
+                            icon={<AddIcCallOutlinedIcon fontSize={"small"} />}
                           />
                           <div className="lead-origin-cobran">
                             <label>{item.tipo}</label>
@@ -574,7 +600,7 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
             {mostrarFormularioPagamento && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran">
+                  <div className="dados-basico-cobran2">
                     <div className="infor-modal-cobrancas">
                       <TableComponent
                         headers={headerExtrato}
@@ -590,7 +616,7 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
             {mostrarFormularioDependente && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran">
+                  <div className="dados-basico-cobran2">
                     <div className="infor-modal-cobrancas">
                       <TableComponent
                         headers={headerDependente}
@@ -606,7 +632,7 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
             {mostrarFormularioObservacao && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran">
+                  <div className="dados-basico-cobran2">
                     <div className="infor-modal-cobrancas">
                       <TableComponent
                         headers={headerObservacao}
@@ -627,12 +653,49 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
               aria-labelledby="child-modal-title"
               aria-describedby="child-modal-description"
             >
-              <Box sx={{ ...style, width: 500 }}>
-                <h2 id="child-modal-title">Text in a child modal</h2>
-                <p id="child-modal-description">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                </p>
-                <Button onClick={handleClose}>Close Child Modal</Button>
+              <Box sx={{ ...style, width: 500, height:350 }}>
+                <div className="historicof9">
+                  <div className="historicof9-close">
+                    <h1>
+                      <ScheduleOutlinedIcon fontSize={"small"} />
+                      Historico F9
+                    </h1>
+                    <button onClick={handleClose}>
+                      <HighlightOffIcon />
+                    </button>
+                  </div>
+                  <p>Informações</p>
+                  <div className="historicof9-campos">
+                    <div className="campos-tiposf9">
+                      <label>Data</label>
+                      <p>22/03/2024</p>
+                    </div>
+                    <div className="campos-tiposf92">
+                      <label>Titulo</label>
+                      <p>F9 Teste</p>
+                    </div>
+                    <div className="campos-tiposf9">
+                      <label>Categoria</label>
+                      <p>Negociação</p>
+                    </div>
+                  </div>
+                  <div className="historicof9-campos">
+                    <div className="campos-tiposf9">
+                      <label>Subcategoria</label>
+                      <p>22/03/2024</p>
+                    </div>
+                    <div className="campos-tiposf92">
+                      <label>Usuário</label>
+                      <p>F9 Teste</p>
+                    </div>
+                  </div>
+                  <div className="historicof9-campos">
+                    <div className="campos-tiposf923">
+                      <label>Descrição</label>
+                      <a></a>
+                    </div>
+                  </div>
+                </div>
               </Box>
             </Modal>
           </Grid>
