@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import ColunasCobranca from "../../componentes/colunas-cobranca";
+import ColunasCobranca from "../../components/colunas-cobranca";
 import "./escritorio.css";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useNavigate } from "react-router-dom";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import ButtonIcon from "../../../../pax-associado/src/components/button-icon";
-import ModalLateral from "../../componentes/modal-lateral";
+import ModalLateral from "../../components/modal-lateral";
 import ButtonText from "../../../../pax-associado/src/components/button-texto/index";
-import ModalClientes from "../../componentes/modal-clientes";
+import ModalClientes from "../../components/modal-clientes";
 import StoreIcon from '@mui/icons-material/Store';
 import Checkbox from "@mui/material/Checkbox";
 import { useCRM } from "../../service/api";

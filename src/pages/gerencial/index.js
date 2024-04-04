@@ -1,7 +1,7 @@
 import React from "react";
 import "./gerencial.css";
-import HeaderCobranca from "../../componentes/header-cobranca";
-import CardsControladoras from "../../componentes/cards-controladoras";
+import HeaderCobranca from "../../components/header-cobranca";
+import CardsControladoras from "../../components/cards-controladoras";
 
 const Gerencial = () => {
   return (

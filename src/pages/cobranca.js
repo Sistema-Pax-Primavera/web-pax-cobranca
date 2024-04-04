@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderCobranca from "../componentes/header-cobranca";
+import HeaderCobranca from "../components/header-cobranca";
 import './cobranca.css'
 import Controladoria from '../assets/controladoria.svg'
 

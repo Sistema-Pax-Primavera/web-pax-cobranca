@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./envios.css";
-import HeaderCobranca from "../../componentes/header-cobranca";
-import FiltroTabelas1 from "../../componentes/filtro-tabelas";
-import FiltroContrato from "../../componentes/filtro-contrato";
+import HeaderCobranca from "../../components/header-cobranca";
+import FiltroTabelas1 from "../../components/filtro-tabelas";
+import FiltroContrato from "../../components/filtro-contrato";
 
 const Envios = () => {
   const [showHeader, setShowHeader] = useState(true);
@@ -22,7 +22,7 @@ const Envios = () => {
       {showHeader && <HeaderCobranca />}
       <div className="container-envios-padrao">
         {showFilterTabelas ? (
-          <FiltroTabelas1 toggleFiltros={toggleFiltros} toggleHeaderVisibility={toggleHeaderVisibility}/>
+          <FiltroTabelas1 toggleFiltros={toggleFiltros} toggleHeaderVisibility={toggleHeaderVisibility} />
         ) : (
           <FiltroContrato toggleFiltros={toggleFiltros} />
         )}

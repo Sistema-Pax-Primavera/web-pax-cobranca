@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./solicitacoes-cobradores.css";
-import HeaderCobranca from "../../componentes/header-cobranca";
+import HeaderCobranca from "../../components/header-cobranca";
 import SpeakerNotesIcon from "@mui/icons-material/SpeakerNotes";
-import CardsSolicitacoesCobradores from "../../componentes/cards-solicitacoes-cobradores";
+import CardsSolicitacoesCobradores from "../../components/cards-solicitacoes-cobradores";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import BallotIcon from "@mui/icons-material/Ballot";
 
@@ -94,7 +94,7 @@ const SolicitacoesCobradores = () => {
                     <label>AGUARDANDO SINCRONISMO</label>
                   </div>
                 } // Não mostra os botões nesta coluna
-                // Passa a função para o componente
+              // Passa a função para o componente
               />
             </div>
           ))}

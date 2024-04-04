@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./cards-solicitacoes-cobradores.css";
 import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
-import ButtonIconTextoStart from "../../componentes/button-icon-texto-start";
+import ButtonIconTextoStart from "../../components/button-icon-texto-start";
 import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'; // Ícone para o botão "Aguardando sincronização"
@@ -20,12 +20,12 @@ const CardsSolicitacoesCobradores = ({ onAceitar, mostraBotoes, onRejeitar, onAg
   };
 
   // Função para definir o status como "Aguardando sincronização"
-// Função para definir o status como "Aguardando sincronização"
-const handleAguardandoSincronizacao = () => {
-  console.log("Chamando função handleAguardandoSincronizacao");
-  setStatus('aguardandoSincronizacao');
-  onAguardandoSincronizacao(); // Chama a função fornecida pelo pai
-};
+  // Função para definir o status como "Aguardando sincronização"
+  const handleAguardandoSincronizacao = () => {
+    console.log("Chamando função handleAguardandoSincronizacao");
+    setStatus('aguardandoSincronizacao');
+    onAguardandoSincronizacao(); // Chama a função fornecida pelo pai
+  };
 
 
 
@@ -62,7 +62,7 @@ const handleAguardandoSincronizacao = () => {
             <div className="buttaos-soli">
               <ButtonIconTextoStart
                 title={"ACEITAR"}
-                icon={<AddTaskOutlinedIcon fontSize={'small'}/>}
+                icon={<AddTaskOutlinedIcon fontSize={'small'} />}
                 fontSize="10"
                 fontWeightBotao="700"
                 corFundoBotao="#006b33"
@@ -73,7 +73,7 @@ const handleAguardandoSincronizacao = () => {
             <div className="buttaos-soli">
               <ButtonIconTextoStart
                 title={"REJEITAR"}
-                icon={<HighlightOffOutlinedIcon fontSize={'small'}/>}
+                icon={<HighlightOffOutlinedIcon fontSize={'small'} />}
                 fontSize="10"
                 fontWeightBotao="700"
                 corFundoBotao="#FF0000"
@@ -87,7 +87,7 @@ const handleAguardandoSincronizacao = () => {
           <div className="buttaos-soli">
             <ButtonIconTextoStart
               title={"Aguardando sincronização"}
-              icon={<HourglassEmptyIcon fontSize={'small'}/>}
+              icon={<HourglassEmptyIcon fontSize={'small'} />}
               fontSize="10"
               fontWeightBotao="700"
               corFundoBotao="#999"
