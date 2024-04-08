@@ -1,0 +1,105 @@
+.container-balao {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+    gap: 10px;
+  }
+  
+  .container-balao2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+    gap: 10px;
+    background-color: var(--cinza-leve);
+  }
+  
+  .linhas-campo-balao {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+  }
+  
+  .campos-balao01 {
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+  }
+  
+  .campos-balao01 label {
+    font-weight: 500;
+    font-size: 12px;
+  }
+  
+  .campos-balao02 {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+  }
+  
+  .campos-balao02 label {
+    font-weight: 500;
+    font-size: 12px;
+  }
+  
+  .campos-balao01-buttao {
+    margin-top: 15px;
+    width: 20%;
+  }
+  
+  .campos-balao02 p {
+    padding: 10px;
+    background-color: var(--branco);
+    font-size: 12px;
+    border-radius: 5px;
+    font-weight: 500;
+  }
+  
+  .overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .avuls-confirma{
+      display: flex;
+      gap: 10px;
+      margin-top: 25px;
+      width: 100%s;
+  }
+  
+  
+  .container-balao-boletos{
+      display: flex;
+      gap: 5px;
+      width: 100%;
+  }
+  
+  .botao-baixa-bole label{
+      font-size: 12px;
+      color: var(--verde);
+      font-weight: 700;
+  }
+  
+  .botao-baixa-bole{
+      width: 20%;
+      margin-left: 10px;
+      background-color: var(--cinza-leve);
+      padding: 20px;
+      border-radius: 10px;
+      height: 150px;
+      margin-top: 10px;
+      gap: 20px;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .tabela-balao{
+    width: 100%;
+  }

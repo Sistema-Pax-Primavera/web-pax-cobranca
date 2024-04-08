@@ -73,6 +73,11 @@ const HeaderCobranca = () => {
         className={activeRoute === "/solicitacoes-cobradores" ? "active" : ""}
       >Solitações Cob.
       </button>
+      <button
+        onClick={() => handleMenuClick("/gerador-boletos/avulso")}
+        className={activeRoute === "/gerador-boletos/avulso" ? "active" : ""}
+      >Gerador de Boletos
+      </button>
 
     </div>
   );

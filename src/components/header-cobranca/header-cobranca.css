@@ -12,6 +12,7 @@
     font-weight: 100;
     font-size: 12px;
     align-items: center;
+    text-align: start;
     gap: 10px;
     background-color: var(--verde);
     color: var(--branco);

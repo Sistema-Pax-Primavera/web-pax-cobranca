@@ -116,6 +116,7 @@ const TableComponent = ({
           <TableRow>
             {headersList.map(({ key, label, sort = false }) => (
               <TableCell
+                style={{fontSize: 12, fontWeight: 600, fontFamily: 'Montserrat', }}
                 key={key}
                 align="center"
                 className="cursor-pointer:  true"
@@ -140,7 +141,7 @@ const TableComponent = ({
             >
               {headersList.map(({ key }, colIndex) => {
                 return (
-                  <TableCell key={key - rowIndex - colIndex} align="center">
+                  <TableCell key={key - rowIndex - colIndex} align="center"  style={{fontSize: 12, fontWeight: 600, fontFamily: 'Montserrat', }}>
                     <div>
                       {hasActions && key === "actions" && (
                         <div className="opcao-associado">
