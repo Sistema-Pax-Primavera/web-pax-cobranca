@@ -11,7 +11,11 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Carregando from "../../../components/carregando";
 import PostAddOutlinedIcon from "@mui/icons-material/PostAddOutlined";
-import CloudDownloadOutlinedIcon from '@mui/icons-material/CloudDownloadOutlined';
+import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
+import Switch from "@mui/material/Switch";
+
+const label = { inputProps: { "aria-label": "Switch demo" } };
+
 function createData(name, mes, valor, vencimento) {
   return { name, mes, valor, vencimento };
 }
@@ -29,9 +33,9 @@ const Avulso = () => {
   const [loading, setLoading] = useState(false);
   const [valorTotal, setValorTotal] = useState(0);
   const [finalizado, setFinalizado] = useState(false); // Novo estado para indicar se o processo foi finalizado
+  const [selectAll, setSelectAll] = useState(false);
 
   const handleRowClick = (name, valor) => {
-    // Modificando a função para receber o valor da parcela
     let newSelectedRows = [...selectedRows];
     if (selectedRows.includes(name)) {
       newSelectedRows = newSelectedRows.filter((row) => row !== name);
@@ -40,9 +44,11 @@ const Avulso = () => {
     }
     setSelectedRows(newSelectedRows);
     setParcelasSelecionadas(newSelectedRows.length);
+    calculateTotal(newSelectedRows);
+  };
 
-    // Calcular o valor total das parcelas selecionadas
-    const total = newSelectedRows.reduce((acc, row) => {
+  const calculateTotal = (selectedRows) => {
+    const total = selectedRows.reduce((acc, row) => {
       const selectedRow = rows.find((r) => r.name === row);
       if (selectedRow && selectedRow.valor) {
         return acc + parseFloat(selectedRow.valor.replace(",", "."));
@@ -50,33 +56,28 @@ const Avulso = () => {
         return acc;
       }
     }, 0);
-
     setValorTotal(total.toFixed(2));
   };
 
-  const selectAllRows = () => {
-    const allRowsNames = rows.map((row) => row.name);
-    setSelectedRows(allRowsNames);
-    setParcelasSelecionadas(allRowsNames.length);
-
-    // Calcular o valor total quando todas as parcelas são selecionadas
-    const total = allRowsNames.reduce((acc, row) => {
-      const selectedRow = rows.find((r) => r.name === row);
-      if (selectedRow && selectedRow.valor) {
-        return acc + parseFloat(selectedRow.valor.replace(",", "."));
-      } else {
-        return acc;
-      }
-    }, 0);
-
-    setValorTotal(total.toFixed(2));
+  const toggleSelectAll = () => {
+    if (selectAll) {
+      setSelectedRows([]);
+      setParcelasSelecionadas(0);
+      setValorTotal(0);
+    } else {
+      const allRowsNames = rows.map((row) => row.name);
+      setSelectedRows(allRowsNames);
+      setParcelasSelecionadas(allRowsNames.length);
+      calculateTotal(allRowsNames);
+    }
+    setSelectAll(!selectAll);
   };
 
   const handleFinalizar = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      setFinalizado(true); // Atualiza o estado para indicar que o processo foi finalizado
+      setFinalizado(true);
     }, 3000);
   };
 
@@ -113,14 +114,9 @@ const Avulso = () => {
                 <label>Valor Total: </label>
                 <p>{valorTotal}</p>
               </div>
-              <div className="campos-avulso01-buttao">     
-                <ButtonIconTextoStart
-                  title={"SELECIONAR TODAS"}   
-                  corFundoBotao={"#006b33"}
-                  corTextoBotao={"#ffff"}
-                  fontWeightBotao={700}
-                  funcao={selectAllRows}
-                />
+              <div className="campos-avulso01-buttao">
+                <Switch checked={selectAll} onChange={toggleSelectAll} />
+                <label>Selecionar Todas</label>
               </div>
               <div className="campos-avulso01-buttao">
                 <ButtonIconTextoStart
@@ -154,17 +150,17 @@ const Avulso = () => {
                           ? "#006b33"
                           : "inherit",
                         color: selectedRows.includes(row.name)
-                          ? "#ffff"
+                          ? "#fff"
                           : "inherit",
                       }}
-                      onClick={() => handleRowClick(row.name, row.valor)} // Passando o valor da parcela para handleRowClick
+                      onClick={() => handleRowClick(row.name, row.valor)}
                     >
                       <TableCell
                         component="th"
                         scope="row"
                         style={{
                           color: selectedRows.includes(row.name)
-                            ? "#ffff"
+                            ? "#fff"
                             : "inherit",
                         }}
                       >
@@ -174,7 +170,7 @@ const Avulso = () => {
                         align="start"
                         style={{
                           color: selectedRows.includes(row.name)
-                            ? "#ffff"
+                            ? "#fff"
                             : "inherit",
                         }}
                       >
@@ -184,7 +180,7 @@ const Avulso = () => {
                         align="start"
                         style={{
                           color: selectedRows.includes(row.name)
-                            ? "#ffff"
+                            ? "#fff"
                             : "inherit",
                         }}
                       >
@@ -194,7 +190,7 @@ const Avulso = () => {
                         align="center"
                         style={{
                           color: selectedRows.includes(row.name)
-                            ? "#ffff"
+                            ? "#fff"
                             : "inherit",
                         }}
                       >
@@ -217,7 +213,7 @@ const Avulso = () => {
             <label>Boleto gerado com sucesso! </label>
             <div>
               <ButtonIconTextoStart
-               icon={<CloudDownloadOutlinedIcon/>}
+                icon={<CloudDownloadOutlinedIcon />}
                 corFundoBotao={"#006b33"}
                 corTextoBotao={"#ffff"}
                 fontWeightBotao={800}

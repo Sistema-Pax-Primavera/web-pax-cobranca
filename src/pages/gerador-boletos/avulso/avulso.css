@@ -49,6 +49,13 @@
 .campos-avulso01-buttao {
   margin-top: 15px;
   width: 20%;
+  display: flex;
+  align-items: center;
+}
+
+.campos-avulso01-buttao label{
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .campos-avulso02 p {

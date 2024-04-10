@@ -11,7 +11,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Carregando from "../../../components/carregando";
 import PostAddOutlinedIcon from "@mui/icons-material/PostAddOutlined";
-import CloudDownloadOutlinedIcon from '@mui/icons-material/CloudDownloadOutlined';
+import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 function createData(name, mes, valor, vencimento) {
   return { name, mes, valor, vencimento };
 }
@@ -31,28 +31,17 @@ const Balao = () => {
   const [finalizado, setFinalizado] = useState(false); // Novo estado para indicar se o processo foi finalizado
 
   const handleRowClick = (name, valor) => {
-    // Modificando a função para receber o valor da parcela
-    let newSelectedRows = [...selectedRows];
-    if (selectedRows.includes(name)) {
-      newSelectedRows = newSelectedRows.filter((row) => row !== name);
-    } else {
-      newSelectedRows.push(name);
-    }
+    let newSelectedRows = [name]; // Seleciona apenas a linha clicada
+  
     setSelectedRows(newSelectedRows);
-    setParcelasSelecionadas(newSelectedRows.length);
-
-    // Calcular o valor total das parcelas selecionadas
-    const total = newSelectedRows.reduce((acc, row) => {
-      const selectedRow = rows.find((r) => r.name === row);
-      if (selectedRow && selectedRow.valor) {
-        return acc + parseFloat(selectedRow.valor.replace(",", "."));
-      } else {
-        return acc;
-      }
-    }, 0);
-
+    setParcelasSelecionadas(1); // Define o número de parcelas selecionadas como 1
+  
+    // Calcular o valor total da parcela selecionada
+    const selectedRow = rows.find((r) => r.name === name);
+    const total = selectedRow && selectedRow.valor ? parseFloat(selectedRow.valor.replace(",", ".")) : 0;
     setValorTotal(total.toFixed(2));
   };
+  
 
   const selectAllRows = () => {
     const allRowsNames = rows.map((row) => row.name);
@@ -104,7 +93,7 @@ const Balao = () => {
                 />
               </div>
             </div>
-            <div className="linhas-campo-balao">  
+            <div className="linhas-campo-balao">
               <div className="campos-balao02">
                 <label>Parcelas Selecionadas: </label>
                 <p>{parcelasSelecionadas}</p>
@@ -113,15 +102,7 @@ const Balao = () => {
                 <label>Valor Total: </label>
                 <p>{valorTotal}</p>
               </div>
-              <div className="campos-balao01-buttao">
-                <ButtonIconTextoStart
-                  title={"SELECIONAR TODAS"}
-                  corFundoBotao={"#006b33"} 
-                  corTextoBotao={"#ffff"}
-                  fontWeightBotao={700}
-                  funcao={selectAllRows}
-                />
-              </div>
+
               <div className="campos-balao01-buttao">
                 <ButtonIconTextoStart
                   title={"FINALIZAR"}
@@ -146,7 +127,7 @@ const Balao = () => {
                 </TableHead>
                 <TableBody>
                   {rows.map((row) => (
-                    <TableRow                
+                    <TableRow
                       key={row.name}
                       sx={{
                         "&:last-child td, &:last-child th": { border: 0 },
@@ -217,7 +198,7 @@ const Balao = () => {
             <label>Boleto gerado com sucesso! </label>
             <div>
               <ButtonIconTextoStart
-               icon={<CloudDownloadOutlinedIcon/>}
+                icon={<CloudDownloadOutlinedIcon />}
                 corFundoBotao={"#006b33"}
                 corTextoBotao={"#ffff"}
                 fontWeightBotao={800}

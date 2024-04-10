@@ -32,20 +32,20 @@ const HeaderGeradorBoletos = () => {
       <label>Gerador Boletos</label>
       <button
         onClick={() => handleMenuClick("/gerador-boletos/avulso")}
-        className={activeRoute === "/avulso" ? "active" : ""}
+        className={activeRoute === "/gerador-boletos/avulso" ? "active" : ""}
       >
         {" "}
         Avulso
       </button>
       <button
         onClick={() => handleMenuClick("/gerador-boletos/balao")}
-        className={activeRoute === "/balao" ? "active" : ""}
+        className={activeRoute === "/gerador-boletos/balao" ? "active" : ""}
       >
         Balão
       </button>
       <button
         onClick={() => handleMenuClick("/gerador-boletos/lote")}
-        className={activeRoute === "/lote" ? "active" : ""}
+        className={activeRoute === "/gerador-boletos/lote" ? "active" : ""}
       >
         Lote
       </button>

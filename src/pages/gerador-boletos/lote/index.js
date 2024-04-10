@@ -150,9 +150,10 @@ const Lote = () => {
         linhasSelecionadas2.filter((item) => item !== index)
       );
     } else {
-      setLinhasSelecionadas2([...linhasSelecionadas, index]);
+      setLinhasSelecionadas2([...linhasSelecionadas2, index]);
     }
   };
+  
   return (
     <div className="avuls-confirma">
       <div className="container-lote-boletos">
@@ -346,16 +347,16 @@ const Lote = () => {
                             <TableBody>
                               {rows.map((row, index) => (
                                 <TableRow
-                                  key={row.name}
-                                  onClick={() => handleTableRowClick2(index)}
-                                  style={{
-                                    cursor: "pointer",
-                                    backgroundColor:
-                                      linhasSelecionadas2.includes(index)
-                                        ? "#006b33"
-                                        : "",
-                                  }}
-                                >
+                                key={row.name}
+                                onClick={() => handleTableRowClick2(index)}
+                                style={{
+                                  cursor: "pointer",
+                                  backgroundColor:
+                                    linhasSelecionadas2.includes(index)
+                                      ? "#006b33"
+                                      : "",
+                                }}
+                              >
                                   <TableCell component="th" scope="row">
                                     {row.name}
                                   </TableCell>
