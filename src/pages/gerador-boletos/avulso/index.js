@@ -113,9 +113,9 @@ const Avulso = () => {
                 <label>Valor Total: </label>
                 <p>{valorTotal}</p>
               </div>
-              <div className="campos-avulso01-buttao">
+              <div className="campos-avulso01-buttao">     
                 <ButtonIconTextoStart
-                  title={"SELECIONAR TODAS"}
+                  title={"SELECIONAR TODAS"}   
                   corFundoBotao={"#006b33"}
                   corTextoBotao={"#ffff"}
                   fontWeightBotao={700}
@@ -154,7 +154,7 @@ const Avulso = () => {
                           ? "#006b33"
                           : "inherit",
                         color: selectedRows.includes(row.name)
-                          ? "#fff"
+                          ? "#ffff"
                           : "inherit",
                       }}
                       onClick={() => handleRowClick(row.name, row.valor)} // Passando o valor da parcela para handleRowClick
@@ -164,7 +164,7 @@ const Avulso = () => {
                         scope="row"
                         style={{
                           color: selectedRows.includes(row.name)
-                            ? "#fff"
+                            ? "#ffff"
                             : "inherit",
                         }}
                       >
@@ -174,7 +174,7 @@ const Avulso = () => {
                         align="start"
                         style={{
                           color: selectedRows.includes(row.name)
-                            ? "#fff"
+                            ? "#ffff"
                             : "inherit",
                         }}
                       >
@@ -184,7 +184,7 @@ const Avulso = () => {
                         align="start"
                         style={{
                           color: selectedRows.includes(row.name)
-                            ? "#fff"
+                            ? "#ffff"
                             : "inherit",
                         }}
                       >
@@ -194,7 +194,7 @@ const Avulso = () => {
                         align="center"
                         style={{
                           color: selectedRows.includes(row.name)
-                            ? "#fff"
+                            ? "#ffff"
                             : "inherit",
                         }}
                       >

@@ -43,6 +43,12 @@ const HeaderGeradorBoletos = () => {
       >
         Balão
       </button>
+      <button
+        onClick={() => handleMenuClick("/gerador-boletos/lote")}
+        className={activeRoute === "/lote" ? "active" : ""}
+      >
+        Lote
+      </button>
 
     </div>
   );
