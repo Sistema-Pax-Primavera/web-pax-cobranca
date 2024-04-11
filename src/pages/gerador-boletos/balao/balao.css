@@ -40,6 +40,12 @@
     flex-direction: column;
     width: 20%;
   }
+
+  .campos-balao02 input{
+    font-size: 12px;
+    padding: 10px;
+    font-weight: 500;
+  }
   
   .campos-balao02 label {
     font-weight: 500;

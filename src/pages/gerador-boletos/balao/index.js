@@ -29,18 +29,58 @@ const Balao = () => {
   const [loading, setLoading] = useState(false);
   const [valorTotal, setValorTotal] = useState(0);
   const [finalizado, setFinalizado] = useState(false); // Novo estado para indicar se o processo foi finalizado
-
+  const [porcentagemDesconto, setPorcentagemDesconto] = useState(0);
+  const [valorTotalDesconto, setValorTotalDesconto] = useState(0);
+  
+  const handlePorcentagemDescontoChange = (event) => {
+    const porcentagem = parseFloat(event.target.value);
+    setPorcentagemDesconto(porcentagem);
+  
+    // Calcula o valor total do desconto
+    const desconto = (porcentagem / 100) * parseFloat(valorTotal);
+    const valorTotalComDesconto = parseFloat(valorTotal) - desconto;
+    setValorTotalDesconto(valorTotalComDesconto.toFixed(2));
+  };
+  
   const handleRowClick = (name, valor) => {
-    let newSelectedRows = [name]; // Seleciona apenas a linha clicada
+    // Verifica se a linha já está selecionada
+    const selectedIndex = selectedRows.indexOf(name);
+    let newSelectedRows = [];
+  
+    if (selectedIndex === -1) {
+      // Se não estiver selecionada, adiciona à lista de selecionadas
+      newSelectedRows = newSelectedRows.concat(selectedRows, name);
+    } else if (selectedIndex === 0) {
+      // Se for a primeira selecionada, remove-a da lista
+      newSelectedRows = newSelectedRows.concat(selectedRows.slice(1));
+    } else if (selectedIndex === selectedRows.length - 1) {
+      // Se for a última selecionada, remove-a da lista
+      newSelectedRows = newSelectedRows.concat(selectedRows.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      // Se estiver no meio, remove-a da lista
+      newSelectedRows = newSelectedRows.concat(
+        selectedRows.slice(0, selectedIndex),
+        selectedRows.slice(selectedIndex + 1)
+      );
+    }
   
     setSelectedRows(newSelectedRows);
-    setParcelasSelecionadas(1); // Define o número de parcelas selecionadas como 1
   
-    // Calcular o valor total da parcela selecionada
-    const selectedRow = rows.find((r) => r.name === name);
-    const total = selectedRow && selectedRow.valor ? parseFloat(selectedRow.valor.replace(",", ".")) : 0;
+    // Atualiza o número de parcelas selecionadas
+    setParcelasSelecionadas(newSelectedRows.length);
+  
+    // Calcula o valor total das parcelas selecionadas
+    const total = rows.reduce((acc, row) => {
+      if (newSelectedRows.includes(row.name)) {
+        return acc + parseFloat(row.valor.replace(",", "."));
+      } else {
+        return acc;
+      }
+    }, 0);
+  
     setValorTotal(total.toFixed(2));
   };
+  
   
 
   const selectAllRows = () => {
@@ -68,6 +108,8 @@ const Balao = () => {
       setFinalizado(true); // Atualiza o estado para indicar que o processo foi finalizado
     }, 3000);
   };
+
+
 
   return (
     <div className="avuls-confirma">
@@ -102,7 +144,14 @@ const Balao = () => {
                 <label>Valor Total: </label>
                 <p>{valorTotal}</p>
               </div>
-
+              <div className="campos-balao02">
+                <label>Porcentagem de Desconto </label>
+                <input type="number" value={porcentagemDesconto} onChange={handlePorcentagemDescontoChange} />
+              </div>
+              <div className="campos-balao02">
+                <label>Valor Total Desconto </label>
+                <p>{valorTotalDesconto}</p>
+              </div>
               <div className="campos-balao01-buttao">
                 <ButtonIconTextoStart
                   title={"FINALIZAR"}
@@ -127,19 +176,19 @@ const Balao = () => {
                 </TableHead>
                 <TableBody>
                   {rows.map((row) => (
-                    <TableRow
-                      key={row.name}
-                      sx={{
-                        "&:last-child td, &:last-child th": { border: 0 },
-                        backgroundColor: selectedRows.includes(row.name)
-                          ? "#006b33"
-                          : "inherit",
-                        color: selectedRows.includes(row.name)
-                          ? "#fff"
-                          : "inherit",
-                      }}
-                      onClick={() => handleRowClick(row.name, row.valor)} // Passando o valor da parcela para handleRowClick
-                    >
+                   <TableRow
+                   key={row.name}
+                   sx={{
+                     "&:last-child td, &:last-child th": { border: 0 },
+                     backgroundColor: selectedRows.includes(row.name)
+                       ? "#006b33"
+                       : "inherit",
+                     color: selectedRows.includes(row.name)
+                       ? "#fff"
+                       : "inherit",
+                   }}
+                   onClick={() => handleRowClick(row.name, row.valor)}
+                 >
                       <TableCell
                         component="th"
                         scope="row"
