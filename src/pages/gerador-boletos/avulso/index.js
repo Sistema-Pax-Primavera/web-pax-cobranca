@@ -13,18 +13,19 @@ import Carregando from "../../../components/carregando";
 import PostAddOutlinedIcon from "@mui/icons-material/PostAddOutlined";
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 import Switch from "@mui/material/Switch";
-
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import ModalAvulso from "../../../components/modal-avulso";
 const label = { inputProps: { "aria-label": "Switch demo" } };
 
-function createData(name, mes, valor, vencimento) {
-  return { name, mes, valor, vencimento };
+function createData(name, mes, codboleto, valor, vencimento) {
+  return { name, mes, codboleto, valor, vencimento };
 }
 
 const rows = [
-  createData("01", "Janeiro", "100,00", "20/01/2024"),
-  createData("02", "Fevereiro", "100,00", "20/02/2024"),
-  createData("03", "Março", "100,00", "20/03/2024"),
-  createData("04", "Abril", "100,00", "20/04/2024"),
+  createData("01", "Janeiro", "132456", "100,00", "20/01/2024"),
+  createData("02", "Fevereiro", "789456", "100,00", "20/02/2024"),
+  createData("03", "Março", "213564", "100,00", "20/03/2024"),
+  createData("04", "Abril", "978513", "100,00", "20/04/2024"),
 ];
 
 const Avulso = () => {
@@ -32,10 +33,20 @@ const Avulso = () => {
   const [parcelasSelecionadas, setParcelasSelecionadas] = useState(0);
   const [loading, setLoading] = useState(false);
   const [valorTotal, setValorTotal] = useState(0);
-  const [finalizado, setFinalizado] = useState(false); // Novo estado para indicar se o processo foi finalizado
+  const [finalizado, setFinalizado] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
+  const [rowsState, setRows] = useState(rows);
+  const [modalAberto, setModalAberto] = useState(false);
 
-  const handleRowClick = (name, valor) => {
+  const abrirModal = () => {
+    setModalAberto(true);
+  };
+
+  const fecharModal = () => {
+    setModalAberto(false);
+  };
+
+  const handleRowClick = (name) => {
     let newSelectedRows = [...selectedRows];
     if (selectedRows.includes(name)) {
       newSelectedRows = newSelectedRows.filter((row) => row !== name);
@@ -49,7 +60,7 @@ const Avulso = () => {
 
   const calculateTotal = (selectedRows) => {
     const total = selectedRows.reduce((acc, row) => {
-      const selectedRow = rows.find((r) => r.name === row);
+      const selectedRow = rowsState.find((r) => r.name === row);
       if (selectedRow && selectedRow.valor) {
         return acc + parseFloat(selectedRow.valor.replace(",", "."));
       } else {
@@ -65,7 +76,7 @@ const Avulso = () => {
       setParcelasSelecionadas(0);
       setValorTotal(0);
     } else {
-      const allRowsNames = rows.map((row) => row.name);
+      const allRowsNames = rowsState.map((row) => row.name);
       setSelectedRows(allRowsNames);
       setParcelasSelecionadas(allRowsNames.length);
       calculateTotal(allRowsNames);
@@ -79,6 +90,29 @@ const Avulso = () => {
       setLoading(false);
       setFinalizado(true);
     }, 3000);
+  };
+
+  const handleValueChange = (event, name) => {
+    const newValue = event.target.value;
+    const newRows = rowsState.map((row) => {
+      if (row.name === name) {
+        return { ...row, valor: newValue };
+      }
+      return row;
+    });
+    setRows(newRows);
+    calculateTotal(selectedRows);
+  };
+
+  const handleVencimentoChange = (event, name) => {
+    const newVencimento = event.target.value;
+    const newRows = rowsState.map((row) => {
+      if (row.name === name) {
+        return { ...row, vencimento: newVencimento };
+      }
+      return row;
+    });
+    setRows(newRows);
   };
 
   return (
@@ -106,11 +140,11 @@ const Avulso = () => {
               </div>
             </div>
             <div className="linhas-campo-avulso">
-              <div className="campos-avulso02">
+              <div className="campos-avulso03">
                 <label>Parcelas Selecionadas: </label>
                 <p>{parcelasSelecionadas}</p>
               </div>
-              <div className="campos-avulso02">
+              <div className="campos-avulso03">
                 <label>Valor Total: </label>
                 <p>{valorTotal}</p>
               </div>
@@ -136,12 +170,16 @@ const Avulso = () => {
                   <TableRow>
                     <TableCell>Parcela</TableCell>
                     <TableCell align="start">Mês</TableCell>
-                    <TableCell align="start">Valor</TableCell>
+                    <TableCell align="start">Cod. Boleto</TableCell>
+                    <TableCell align="start" style={{ width: "20px" }}>
+                      Valor
+                    </TableCell>
                     <TableCell align="center">Vencimento</TableCell>
+                    <TableCell align="left">Opções</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows.map((row) => (
+                  {rowsState.map((row) => (
                     <TableRow
                       key={row.name}
                       sx={{
@@ -153,7 +191,7 @@ const Avulso = () => {
                           ? "#fff"
                           : "inherit",
                       }}
-                      onClick={() => handleRowClick(row.name, row.valor)}
+                      onClick={() => handleRowClick(row.name)}
                     >
                       <TableCell
                         component="th"
@@ -184,17 +222,71 @@ const Avulso = () => {
                             : "inherit",
                         }}
                       >
-                        {row.valor}
+                        {row.codboleto}
                       </TableCell>
+
                       <TableCell
-                        align="center"
+                        align="start"
                         style={{
                           color: selectedRows.includes(row.name)
                             ? "#fff"
                             : "inherit",
                         }}
                       >
-                        {row.vencimento}
+                        <div className="valor-avulso">
+                          <input
+                            type="text"
+                            value={row.valor}
+                            onChange={(event) =>
+                              handleValueChange(event, row.name)
+                            }
+                            onClick={(event) => event.stopPropagation()}
+                          />
+                        </div>
+                      </TableCell>
+                      <TableCell
+                        align="center"
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: selectedRows.includes(row.name)
+                            ? "#fff"
+                            : "inherit",
+                        }}
+                      >
+                        <div className="vencimento-avulso">
+                          <input
+                            type="text"
+                            value={row.vencimento}
+                            onChange={(event) =>
+                              handleVencimentoChange(event, row.name)
+                            }
+                            onClick={(event) => event.stopPropagation()}
+                          />
+                        </div>
+                      </TableCell>
+                      <TableCell
+                        align="start"
+                        style={{
+                          color: selectedRows.includes(row.name)
+                            ? "#fff"
+                            : "inherit",
+                        }}
+                      >
+                        <div className="campos-avulso01-buttao">
+                          <ButtonIconTextoStart
+                            icon={<DashboardIcon fontSize={"small"} />}
+                            corFundoBotao={"#006b33"}
+                            corTextoBotao={"#ffff"}
+                            fontWeightBotao={700}
+                            funcao={abrirModal}
+                          />
+                          <ModalAvulso
+                            openModal={modalAberto}
+                            onCloseModal={fecharModal}
+                          />
+                        </div>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -208,7 +300,7 @@ const Avulso = () => {
             <Carregando />
           </div>
         )}
-        {finalizado && ( // Renderiza o botão para baixar o boleto se o processo estiver finalizado
+        {finalizado && (
           <div className="botao-baixa-bole">
             <label>Boleto gerado com sucesso! </label>
             <div>

@@ -12,16 +12,6 @@ import Paper from "@mui/material/Paper";
 import Carregando from "../../../components/carregando";
 import PostAddOutlinedIcon from "@mui/icons-material/PostAddOutlined";
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
-function createData(name, mes, valor, vencimento) {
-  return { name, mes, valor, vencimento };
-}
-
-const rows = [
-  createData("01", "Janeiro", "100,00", "20/01/2024"),
-  createData("02", "Fevereiro", "100,00", "20/02/2024"),
-  createData("03", "Março", "100,00", "20/03/2024"),
-  createData("04", "Abril", "100,00", "20/04/2024"),
-];
 
 const Balao = () => {
   const [selectedRows, setSelectedRows] = useState([]);
@@ -31,22 +21,22 @@ const Balao = () => {
   const [finalizado, setFinalizado] = useState(false); // Novo estado para indicar se o processo foi finalizado
   const [porcentagemDesconto, setPorcentagemDesconto] = useState(0);
   const [valorTotalDesconto, setValorTotalDesconto] = useState(0);
-  
+
   const handlePorcentagemDescontoChange = (event) => {
     const porcentagem = parseFloat(event.target.value);
     setPorcentagemDesconto(porcentagem);
-  
+
     // Calcula o valor total do desconto
     const desconto = (porcentagem / 100) * parseFloat(valorTotal);
     const valorTotalComDesconto = parseFloat(valorTotal) - desconto;
     setValorTotalDesconto(valorTotalComDesconto.toFixed(2));
   };
-  
+
   const handleRowClick = (name, valor) => {
     // Verifica se a linha já está selecionada
     const selectedIndex = selectedRows.indexOf(name);
     let newSelectedRows = [];
-  
+
     if (selectedIndex === -1) {
       // Se não estiver selecionada, adiciona à lista de selecionadas
       newSelectedRows = newSelectedRows.concat(selectedRows, name);
@@ -63,12 +53,12 @@ const Balao = () => {
         selectedRows.slice(selectedIndex + 1)
       );
     }
-  
+
     setSelectedRows(newSelectedRows);
-  
+
     // Atualiza o número de parcelas selecionadas
     setParcelasSelecionadas(newSelectedRows.length);
-  
+
     // Calcula o valor total das parcelas selecionadas
     const total = rows.reduce((acc, row) => {
       if (newSelectedRows.includes(row.name)) {
@@ -77,11 +67,9 @@ const Balao = () => {
         return acc;
       }
     }, 0);
-  
+
     setValorTotal(total.toFixed(2));
   };
-  
-  
 
   const selectAllRows = () => {
     const allRowsNames = rows.map((row) => row.name);
@@ -108,8 +96,6 @@ const Balao = () => {
       setFinalizado(true); // Atualiza o estado para indicar que o processo foi finalizado
     }, 3000);
   };
-
-
 
   return (
     <div className="avuls-confirma">
@@ -146,7 +132,11 @@ const Balao = () => {
               </div>
               <div className="campos-balao02">
                 <label>Porcentagem de Desconto </label>
-                <input type="number" value={porcentagemDesconto} onChange={handlePorcentagemDescontoChange} />
+                <input
+                  type="number"
+                  value={porcentagemDesconto}
+                  onChange={handlePorcentagemDescontoChange}
+                />
               </div>
               <div className="campos-balao02">
                 <label>Valor Total Desconto </label>
@@ -163,78 +153,127 @@ const Balao = () => {
               </div>
             </div>
           </div>
-          <div className=".tabela-balao">
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Parcela</TableCell>
-                    <TableCell align="start">Mês</TableCell>
-                    <TableCell align="start">Valor</TableCell>
-                    <TableCell align="center">Vencimento</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                   <TableRow
-                   key={row.name}
-                   sx={{
-                     "&:last-child td, &:last-child th": { border: 0 },
-                     backgroundColor: selectedRows.includes(row.name)
-                       ? "#006b33"
-                       : "inherit",
-                     color: selectedRows.includes(row.name)
-                       ? "#fff"
-                       : "inherit",
-                   }}
-                   onClick={() => handleRowClick(row.name, row.valor)}
-                 >
-                      <TableCell
-                        component="th"
-                        scope="row"
-                        style={{
-                          color: selectedRows.includes(row.name)
-                            ? "#fff"
-                            : "inherit",
-                        }}
-                      >
-                        {row.name}
-                      </TableCell>
-                      <TableCell
-                        align="start"
-                        style={{
-                          color: selectedRows.includes(row.name)
-                            ? "#fff"
-                            : "inherit",
-                        }}
-                      >
-                        {row.mes}
-                      </TableCell>
-                      <TableCell
-                        align="start"
-                        style={{
-                          color: selectedRows.includes(row.name)
-                            ? "#fff"
-                            : "inherit",
-                        }}
-                      >
-                        {row.valor}
-                      </TableCell>
-                      <TableCell
-                        align="center"
-                        style={{
-                          color: selectedRows.includes(row.name)
-                            ? "#fff"
-                            : "inherit",
-                        }}
-                      >
-                        {row.vencimento}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
+          <div className="boleto-balao">
+            <div className="linhas-boletos">
+              <div className="campos-linhas-boletos1">
+                <label>Banco do Brasil</label>
+              </div>
+              <div className="campos-linhas-boletos2">
+                <label>000-0</label>
+              </div>
+              <div className="campos-linhas-boletos3">
+                <label>
+                  00000.00000 00000.000000 00000.00000 0 00000000000000
+                </label>
+              </div>
+            </div>
+            <div className="linhas-boletos">
+              <div className="campos-linhas-boletos4">
+                <label>Local de Pagamento</label>
+                <label>
+                  Pagável em qualquer banco até o vencimento.
+                </label>
+              </div>
+              <div className="campos-linhas-boletos5">
+                <label>Vencimento</label>
+                <p>00/00/0000</p>
+              </div>
+            </div>
+            <div className="linhas-boletos">
+              <div className="campos-linhas-boletos4">
+                <label>Beneficiário</label>
+                <label>Teste 01</label>
+              </div>
+              <div className="campos-linhas-boletos5">
+                <label>Agência/Cod. beneficiario</label>
+                <p>0000-0/0000000</p>
+              </div>
+            </div>
+            <div className="linhas-boletos">
+              <div className="campos-linhas-boletos6">
+                <label>Data Documento</label>
+                <label>00/00/0000</label>
+              </div>
+              <div className="campos-linhas-boletos6">
+                <label>Nº do Documento</label>
+                <label>00000000</label>
+              </div>
+              <div className="campos-linhas-boletos7">
+                <label>Espécie DOC</label>
+                <label>DM</label>
+              </div>
+              <div className="campos-linhas-boletos8">
+                <label>Aceite</label>
+                <label>N</label>
+              </div>
+              <div className="campos-linhas-boletos15">
+                <label>Data Processamento</label>
+                <label>00/00/0000</label>
+              </div>
+              <div className="campos-linhas-boletos5">
+                <label>Nosso Número</label>
+                <p>000000000000 0</p>
+              </div>
+            </div>
+            <div className="linhas-boletos">
+              <div className="campos-linhas-boletos9">
+                <label>Uso do Banco</label>
+              </div>
+              <div className="campos-linhas-boletos10">
+                <label>Carteira</label>
+                <label>000</label>
+              </div>
+              <div className="campos-linhas-boletos10">
+                <label>Espécie</label>
+                <label>R$</label>
+              </div>
+              <div className="campos-linhas-boletos11">
+                <label>Quantidade</label>
+                <label>00</label>
+              </div>
+              <div className="campos-linhas-boletos16">
+                <label>Valor</label>
+                <label>00/00/0000</label>
+              </div>
+              <div className="campos-linhas-boletos5">
+                <label>(=)Valor do Documento</label>
+                <p>R$ 123,00</p>
+              </div>
+            </div>
+            <div className="linhas-boletos">
+              <div className="campos-linhas-boletos12">
+                <label>Instruções</label>
+              </div>
+              <div className="campos-colunas-boletos">
+                <div className="campos-linhas-boletos13">
+                  <label>(-)Desconto</label>
+                  <p>R$ 00,00</p>
+                </div>
+                <div className="campos-linhas-boletos13">
+                  <label>(-)Mora/Multa/Juros</label>
+                  <p>R$ 00,00</p>
+                </div>
+                <div className="campos-linhas-boletos13">
+                  <label>(+)Outros acrécimos</label>
+                  <p>R$ 00,00</p>
+                </div>
+                <div className="campos-linhas-boletos13">
+                  <label>(=)Valor Cobrado</label>
+                  <p>R$ 00,00</p>
+                </div>
+              </div>
+            </div>
+            <div className="linhas-boletos">
+              <div className="campos-linhas-boletos40">
+                <label>Pagador:</label>
+                <label>Nome do Pagador:</label>
+                <label>CPF/CNPJ:</label>
+              </div>
+              <div className="campos-linhas-boletos14">
+                <label>Código da Baixa</label>
+              </div>
+            </div>
+            
           </div>
         </div>
         {loading && (

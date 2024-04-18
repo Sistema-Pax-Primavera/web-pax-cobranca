@@ -1,5 +1,5 @@
 .container-lote {
-  width: 80%;
+  width: 85%;
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -19,7 +19,6 @@
 
 .linhas-campo-lote {
   display: flex;
-  align-items: center;
   gap: 5px;
   width: 100%;
 }
@@ -51,12 +50,9 @@
 }
 
 .anual-mensal{
-  width: 95%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  background-color: var(--branco);
-  border-radius: 10px;
 
 }
 
@@ -146,6 +142,63 @@
   width: 100%;
 }
 
+.check-campo-lote{
+  display: flex;
+  width: 35%;
+  flex-direction: column;
+}
+
+.check-campo-lote label{
+  font-weight: 500;
+}
+
+.check-campo-lote select{
+  font-weight: 500;
+}
+
+.option-marcadas-lote{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 400px;
+  flex-wrap: wrap;
+}
+
+.option-marcadas-lote label{
+  font-size: 12px;
+}
+
+.nome-marcada-lote{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: var(--branco);
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.nome-marcada-lote label{
+  font-weight: 500;
+}
+
+.nome-marcada-lote button{
+  background-color: var(--branco);
+  cursor: pointer;
+  padding: 0px;
+  color:var(--vermelho)
+}
+
+.card-mensal-anual{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 50%;
+  background-color: var(--branco);
+  padding: 10px;
+  border-radius: 5px;
+
+}
+
 .confirma-cobrador{
   width: 25%;
   margin-top: 10px;
@@ -191,10 +244,9 @@
 
 .campos-lote3{
   display: flex;
-  width:100%;
-  margin-top: 15px;
+  height: 50px;
+  width:55%;
   align-items: center;
-  background-color: var(--branco);
   border-radius: 5px;
 }
 
@@ -254,7 +306,7 @@
 
 
 .result-cobra-plan{
-  width: 30%;
+  width: 25%;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -276,6 +328,13 @@
 
 .resultado01-cobra label{
   text-align: center;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 700;
+}
+
+.option-selecionada-lotes{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

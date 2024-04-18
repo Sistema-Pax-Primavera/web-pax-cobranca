@@ -9,14 +9,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Carregando from "../../../components/carregando";
-import PostAddOutlinedIcon from "@mui/icons-material/PostAddOutlined";
-import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
-import Checkbox from "@mui/material/Checkbox";
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import GroupIcon from "@mui/icons-material/Group";
 import TaskIcon from "@mui/icons-material/Task";
 import ModalPequena from "../../../components/modal-pequena";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -110,7 +106,35 @@ const Lote = () => {
   const [openModal, setOpenModal] = useState(false);
   const [linhasSelecionadas2, setLinhasSelecionadas2] = useState([]);
   const [cobradoresSelecionados2, setCobradoresSelecionados2] = useState(false);
-  const [openModal2, setOpenModal2] = useState(false);
+  const opcoesDisponiveis = [
+    "Residência",
+    "E-mail",
+    "Correios",
+    "WhatsApp",
+    "Escritório",
+    "Pix",
+    "Recorrente",
+    "Indefinido",
+  ];
+
+  const [itensSelecionados, setItensSelecionados] = useState([]);
+  const [opcoesRestantes, setOpcoesRestantes] = useState(opcoesDisponiveis);
+
+  const handleSelecionarItem = (event) => {
+    const itemSelecionado = event.target.value;
+    if (!itensSelecionados.includes(itemSelecionado)) {
+      setItensSelecionados([...itensSelecionados, itemSelecionado]);
+      setOpcoesRestantes(
+        opcoesRestantes.filter((item) => item !== itemSelecionado)
+      );
+    }
+  };
+
+  const handleRemoverItem = (item) => {
+    const novosItens = itensSelecionados.filter((i) => i !== item);
+    setItensSelecionados(novosItens);
+    setOpcoesRestantes([...opcoesRestantes, item]);
+  };
 
   const handleCloseModal = () => {
     setOpenModal(false);
@@ -153,7 +177,7 @@ const Lote = () => {
       setLinhasSelecionadas2([...linhasSelecionadas2, index]);
     }
   };
-  
+
   return (
     <div className="avuls-confirma">
       <div className="container-lote-boletos">
@@ -161,96 +185,6 @@ const Lote = () => {
         <div className="container-lote">
           <div className="container-lote-2-card">
             <div className="container-lote2">
-              <div className="linhas-campo-lote">
-                <div className="campos-lote01">
-                  <label>Contrato</label>
-                  <input type="number"></input>
-                </div>
-                <div className="campos-lote01">
-                  <label>CEP</label>
-                  <input type="number"></input>
-                </div>
-                <div className="de-ate-lote1">
-                  <label>Dia Vencimento</label>
-                  <div className="de-ate-lote">
-                    <label>De</label>
-                    <input type="number" placeholder="0"></input>
-                    <label>Até</label>
-                    <input type="number" placeholder="31"></input>
-                  </div>
-                </div>
-                <div className="campos-lote01">
-                  <label>Região</label>
-                  <select></select>
-                </div>
-                <div className="filter-botao">
-                  <ModalPequena
-                    icon={<FilterAltIcon fontSize={"small"} />}
-                    corFundoBotao={"#006b33"}
-                    corTextoBotao={"#ffff"}
-                    width={"350px"}
-                    fontWeightBotao={700}
-                    conteudo={
-                      <div className="modal-anual-mensal">
-                        <div className="anual-mensal">
-                          <label>Anual</label>
-                          <div className="busca-ate">
-                            <div className="campos-lote01-ate">
-                              <label>Buscar a partir de</label>
-                              <input type="date"></input>
-                            </div>
-                            <div className="campos-lote01-ate">
-                              <label>Até o dia</label>
-                              <input type="date"></input>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="anual-mensal">
-                          <label>Mensal</label>
-                          <div className="busca-ate">
-                            <div className="campos-lote01-ate">
-                              <label>Adiantados a partir de</label>
-                              <input type="date"></input>
-                            </div>
-                            <div className="campos-lote01-ate">
-                              <label>Vencimentos Adiantadas</label>
-                              <input type="date"></input>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="aplica-filtro-anual-mensal">
-                          <ButtonIconTextoStart
-                            title={"APLICAR FILTRO"}
-                            corFundoBotao={"#006b33"}
-                            corTextoBotao={"#ffff"}
-                            fontWeightBotao={700}
-                          />
-                        </div>
-                      </div>
-                    }
-                  />
-                </div>
-              </div>
-              <div className="linhas-campo-lote">
-                <div className="campos-lote3">
-                  <Checkbox {...label} size="small" />
-                  <label>Residência</label>
-                  <Checkbox {...label} size="small" />
-                  <label>Escritório</label>
-                  <Checkbox {...label} size="small" />
-                  <label>E-mail</label>
-                  <Checkbox {...label} size="small" />
-                  <label>Pix</label>
-                  <Checkbox {...label} size="small" />
-                  <label>Correios</label>
-                  <Checkbox {...label} size="small" />
-                  <label>Recorrente</label>
-                  <Checkbox {...label} size="small" />
-                  <label>WhatsApp</label>
-                  <Checkbox {...label} size="small" />
-                  <label>Indefinido </label>
-                </div>
-              </div>
               <div className="linhas-campo-lote">
                 <div className="campos-lote01-buttao">
                   <ModalPequena
@@ -347,16 +281,16 @@ const Lote = () => {
                             <TableBody>
                               {rows.map((row, index) => (
                                 <TableRow
-                                key={row.name}
-                                onClick={() => handleTableRowClick2(index)}
-                                style={{
-                                  cursor: "pointer",
-                                  backgroundColor:
-                                    linhasSelecionadas2.includes(index)
-                                      ? "#006b33"
-                                      : "",
-                                }}
-                              >
+                                  key={row.name}
+                                  onClick={() => handleTableRowClick2(index)}
+                                  style={{
+                                    cursor: "pointer",
+                                    backgroundColor:
+                                      linhasSelecionadas2.includes(index)
+                                        ? "#006b33"
+                                        : "",
+                                  }}
+                                >
                                   <TableCell component="th" scope="row">
                                     {row.name}
                                   </TableCell>
@@ -385,7 +319,72 @@ const Lote = () => {
                     }
                   />
                 </div>
+                <div className="de-ate-lote1">
+                  <label>Dia Vencimento</label>
+                  <div className="de-ate-lote">
+                    <label>De</label>
+                    <input type="number" placeholder="0"></input>
+                    <label>Até</label>
+                    <input type="number" placeholder="31"></input>
+                  </div>
+                </div>
+                <div className="campos-lote01">
+                  <label>Região</label>
+                  <select></select>
+                </div>
               </div>
+              <div className="linhas-campo-lote">
+                <div className="card-mensal-anual">
+                  <div className="anual-mensal">
+                    <label>Mensal</label>
+                    <div className="busca-ate">
+                      <div className="campos-lote01-ate">
+                        <label>Buscar a partir de</label>
+                        <input type="date"></input>
+                      </div>
+                      <div className="campos-lote01-ate">
+                        <label>Até o dia</label>
+                        <input type="date"></input>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="anual-mensal">
+                    <label>Anual</label>
+                    <div className="busca-ate">
+                      <div className="campos-lote01-ate">
+                        <label>Adiantados a partir de</label>
+                        <input type="date"></input>
+                      </div>
+                      <div className="campos-lote01-ate">
+                        <label>Vencimentos Adiantadas</label>
+                        <input type="date"></input>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="option-selecionada-lotes">
+                  <div className="check-campo-lote">
+                    <label>Selecione:</label>
+                    <select onChange={handleSelecionarItem}>
+                      {opcoesRestantes.map((opcao, index) => (
+                        <option key={index}>{opcao}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="option-marcadas-lote">
+                    {itensSelecionados.map((item, index) => (
+                      <div key={index} className="nome-marcada-lote">
+                        <label>{item}</label>
+                        <button onClick={() => handleRemoverItem(item)}>
+                          <HighlightOffIcon fontSize={"small"} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="linhas-campo-lote"></div>
             </div>
             <div className="result-cobra-plan">
               <div
