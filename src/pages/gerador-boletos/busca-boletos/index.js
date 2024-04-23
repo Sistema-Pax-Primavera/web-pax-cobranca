@@ -9,9 +9,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import ArticleIcon from '@mui/icons-material/Article';
-import PrintIcon from '@mui/icons-material/Print';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import ArticleIcon from "@mui/icons-material/Article";
+import PrintIcon from "@mui/icons-material/Print";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 const contras = [
   contrato(
@@ -142,16 +142,29 @@ const BuscaBoletos = () => {
                             corFundoBotao={"#006b33"}
                             corTextoBotao={"#ffff"}
                             fontWeightBotao={700}
-                            icon={<ArticleIcon fontSize={'small'}/>}
+                            icon={<ArticleIcon fontSize={"small"} />}
                           />
+                          {contra.status === "Pendente" ? (
+                            <div className="options-busca-boletos">
+                              <ButtonIconTextoStart
+                                corFundoBotao={"#006b33"}
+                                corTextoBotao={"#ffff"}
+                                fontWeightBotao={700}
+                                icon={<PrintIcon fontSize={"small"} />}
+                              />
+                            </div>
+                          ) : (
+                            <div className="options-busca-boletos">
+                              <ButtonIconTextoStart
+                                corFundoBotao={"#D9D9D9"}
+                                corTextoBotao={"#ffff"}
+                                fontWeightBotao={700}
+                                icon={<PrintIcon fontSize={"small"} />}
+                              />
+                            </div>
+                          )}
                           <ButtonIconTextoStart
-                            icon={<PrintIcon fontSize={'small'}/>}
-                            corFundoBotao={"#D9D9D9"}
-                            corTextoBotao={"#ffff"}
-                            fontWeightBotao={700}
-                          />
-                          <ButtonIconTextoStart
-                            icon={<HighlightOffIcon fontSize={'small'}/>}
+                            icon={<HighlightOffIcon fontSize={"small"} />}
                             corFundoBotao={"#FF0000"}
                             corTextoBotao={"#ffff"}
                             fontWeightBotao={700}
