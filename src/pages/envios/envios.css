@@ -9,9 +9,23 @@
     display: flex;
     align-items: center;
     gap: 10px; 
-    width: 97%;
+    width: 75%;
     background-color: var(--cinza-leve);
     border-radius: 5px;
+}
+
+.dois-blocos-envios{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 97%;
+}
+
+.bloco-filtro2-envios{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    background-color: var(--cinza-leve);
 }
 
 .check-ativo-inativo-env{
