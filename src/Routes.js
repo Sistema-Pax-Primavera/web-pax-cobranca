@@ -13,6 +13,7 @@ import Avulso from "./pages/gerador-boletos/avulso";
 import Balao from "./pages/gerador-boletos/balao";
 import Lote from "./pages/gerador-boletos/lote";
 import BuscaBoletos from "./pages/gerador-boletos/busca-boletos";
+import AgendamentosCobradores from "./pages/agendamento-cobradores";
 
 const RoutesApp = () => (
     <BrowserRouter basename="pax-primavera/cobranca">
@@ -27,6 +28,7 @@ const RoutesApp = () => (
             <Route exact path="/solicitacoes-cobradores" element={<SolicitacoesCobradores/>} />
             <Route exact path="/rotas" element={<Rotas />} />
             <Route exact path="/gerencial" element={<Gerencial />} />
+            <Route exact path="/agendamento-cobradores" element={<AgendamentosCobradores />} />
 
             <Route exact path="/gerador-boletos/avulso" element={<Avulso />} />
             <Route exact path="/gerador-boletos/balao" element={<Balao />} />
