@@ -11,7 +11,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import GroupIcon from "@mui/icons-material/Group";
 import TaskIcon from "@mui/icons-material/Task";
-import ModalPequena from "../../../components/modal-pequena";
+import ModalPequena from "../../../../../pax-boletos/src/components/modal-pequena";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
