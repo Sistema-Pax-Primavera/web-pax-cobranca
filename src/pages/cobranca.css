@@ -21,4 +21,5 @@
 .colunas-cobranca h1 {
     font-size: 20px;
     color: var(--verde);
+    font-weight: 700;
 }
