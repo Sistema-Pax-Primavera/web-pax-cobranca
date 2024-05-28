@@ -494,7 +494,7 @@ const Cobrador = () => {
             titulo={titulo}
             dados={dados.clientes}
             numeros={dados.clientes.length}
-            onCardClick={handleCardClickBoleto} // Passando a função de callback
+            onCardClick={handleCardClickBoleto}
             onFilterIconClick={(coluna) => toggleModal(coluna)}
           />
         ))}

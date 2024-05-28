@@ -541,7 +541,7 @@ const EscritorioCobranca = () => {
           </div>
         </div>
       </div>
-      <div className="informacoes-cont-cobr">
+      <div className="informacoes-cont-cobr-boleto">
         {Object.entries(dadosPorColuna).map(([titulo, dados], index) => (
           <ColunasCobranca
             key={index}
@@ -561,6 +561,7 @@ const EscritorioCobranca = () => {
           />
         )}
       </div>
+
     </div>
   );
 };

@@ -1,10 +1,8 @@
 .continaer-colunas-cobr {
-    display: flex;
     flex-direction: column;
     gap: 5px;
     background-color: var(--cinza-leve);
     border-radius: 5px;
-
     max-height: 72vh;
     width: 20%;
     padding: 5px;

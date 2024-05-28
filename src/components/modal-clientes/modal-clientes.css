@@ -1,8 +1,8 @@
 .sidebar-cobranca {
+
     display: flex;
     align-items: center;
     width: 100%;
-    background-color: var(--cinza-leve);
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
@@ -42,8 +42,8 @@
 
 }
 
-.atender-clientes-cobranca {
-    background-color: var(--verde);
+
+.sidebar-cobranca .atender-cliente {
     margin-left: 12%;
     margin-right: 2%;
     width: 15%;
@@ -54,14 +54,14 @@
     border-radius: 5px;
 }
 
-.atender-clientes-cobranca button {
+.sidebar-cobranca .atender-cliente button {
     color: var(--branco);
     cursor: pointer;
     width: 100%;
+    height: 40px;
     font-size: 12px;
     border-radius: 5px;
     font-weight: 700;
-    background-color: var(--verde);
 }
 
 .contador-cobranca {
@@ -101,7 +101,7 @@
     cursor: pointer;
 }
 
-.dados-basico-cobran2  {
+.dados-basico-cobran2 {
     width: 94%;
     padding: 5px;
     gap: 20px;
@@ -113,7 +113,7 @@
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.dados-basico-cobran3  {
+.dados-basico-cobran3 {
     width: 50%;
     gap: 15px;
     display: flex;
@@ -176,13 +176,15 @@
     padding: 10px;
     flex-direction: column;
 }
-.historicof9{
+
+.historicof9 {
     display: flex;
     flex-direction: column;
     padding: 10px;
     gap: 10px;
 }
-.historicof9 h1{
+
+.historicof9 h1 {
     font-size: 15px;
     font-weight: 800;
     color: var(--verde);
@@ -191,21 +193,21 @@
     gap: 10px;
 }
 
-.historicof9-close{
+.historicof9-close {
     display: flex;
     align-items: center;
 
 }
 
-.historicof9-close h1{
+.historicof9-close h1 {
     width: 95%;
 }
 
-.historicof9-close button{
+.historicof9-close button {
     color: var(--vermelho);
 }
 
-.historicof9-campos{
+.historicof9-campos {
     display: flex;
     align-items: start;
     justify-content: start;
@@ -218,14 +220,14 @@
     width: 20%;
 }
 
-.campos-tiposf9 label{
+.campos-tiposf9 label {
     font-size: 12px;
     color: var(--preto);
     font-weight: 500;
 
 }
 
-.campos-tiposf9 p{
+.campos-tiposf9 p {
     background-color: var(--cinza-leve);
     border-radius: 5px;
     font-weight: 500;
@@ -241,14 +243,14 @@
     width: 40%;
 }
 
-.campos-tiposf92 label{
+.campos-tiposf92 label {
     font-size: 12px;
     color: var(--preto);
     font-weight: 500;
 
 }
 
-.campos-tiposf92 p{
+.campos-tiposf92 p {
     background-color: var(--cinza-leve);
     border-radius: 5px;
     font-weight: 500;
@@ -264,14 +266,14 @@
     width: 90%;
 }
 
-.campos-tiposf923 label{
+.campos-tiposf923 label {
     font-size: 12px;
     color: var(--preto);
     font-weight: 500;
 
 }
 
-.campos-tiposf923 a{
+.campos-tiposf923 a {
     font-size: 12px;
     color: var(--preto);
     font-weight: 500;
@@ -287,7 +289,7 @@
     font-size: 12px;
 }
 
-.historicof9 p{
+.historicof9 p {
     font-size: 12px;
     font-weight: 600;
 }
@@ -408,7 +410,6 @@
     margin-top: 3px;
     display: flex;
     border-radius: 5px;
-    background-color: var(--verde);
     align-items: star;
     width: 100%;
 }
@@ -426,6 +427,21 @@
     display: flex;
     flex-direction: column;
     width: 85%;
+}
+
+.obs-cobranca-f9 {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+}
+
+.obs-cobranca-f9 textarea {
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    height: 125px;
+    width: 100%;
 }
 
 .obs-cobran-lead textarea {
@@ -492,7 +508,7 @@
     padding: 10px;
 }
 
-.select-text-area-cobran label{
+.select-text-area-cobran label {
     font-weight: 500;
 }
 
@@ -834,7 +850,6 @@ tipos-arquivos-anexos a {
 }
 
 .botao-ativo {
-    background-color: var(--verde);
     color: var(--verde);
     border: var(--verde)
 }

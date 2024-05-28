@@ -18,8 +18,8 @@ const HeaderCobranca = () => {
 
   useEffect(() => {
     const savedPage = localStorage.getItem("page-cobranca");
-
     if (savedPage && savedPage !== location.pathname) {
+      console.log(savedPage)
       localStorage.removeItem("page-cobranca");
       setActiveRoute("");
     } else {
@@ -35,6 +35,11 @@ const HeaderCobranca = () => {
         className={activeRoute === "/gerencial" ? "active" : ""}
       >Dashboard Supervisor
       </button>
+      {/* <button
+        onClick={() => handleMenuClick("/telemarketing")}
+        className={activeRoute === "/telemarketing" ? "active" : ""}
+      >Central de Relacionamento
+      </button> */}
       <button
         onClick={() => handleMenuClick("/escritorio")}
         className={activeRoute === "/escritorio" ? "active" : ""}

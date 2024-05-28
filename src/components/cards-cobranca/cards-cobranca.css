@@ -20,6 +20,6 @@
     color: var(--verde);
 }
 
-.info-card-cobran label {
+.container-cards-cobranca .info-card-cobran label {
     font-size: 9px;
 }

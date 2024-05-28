@@ -33,6 +33,8 @@ import AddIcCallOutlinedIcon from "@mui/icons-material/AddIcCallOutlined";
 import ScheduleOutlinedIcon from "@mui/icons-material/ScheduleOutlined";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import ButtonIconTextoStart from "../button-icon-texto-start";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -55,11 +57,8 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
   const pagamentos = clienteData.dados_cliente.pagamentos;
   const deps = clienteData.dados_cliente.dependentes;
   const observacao = clienteData.dados_cliente.observacao;
-  const [mostrarFormularioBasico, setMostrarFormularioBasico] = useState(false);
   const [mostrarFormularioCadastro, setMostrarFormularioCadastro] =
-    useState(false);
-  const [mostrarFormularioEndereco, setMostrarFormularioEndereco] =
-    useState(false);
+    useState(true);
   const [mostrarFormularioContato, setMostrarFormularioContato] =
     useState(false);
   const [mostrarFormularioPagamento, setMostrarFormularioPagamento] =
@@ -77,6 +76,11 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
   const [contadorAtivo, setContadorAtivo] = useState(false);
   const [categoria, setCategoria] = useState("");
   const [subcategoria, setSubCategoria] = useState("");
+  const [categoriaF9, setCategoriaF9] = useState("");
+  const [subcategoriaF9, setSubCategoriaF9] = useState("");
+  const [comentarioF9, setComentarioF9] = useState("");
+  const [ocorrencia, setOcorrencia] = useState("");
+  const [tipoContato, setTipoContato] = useState("");
   const [comentario, setComentario] = useState("");
   const [historico, setHistorico] = useState([]);
   const [isAtendeu, setIsAtendeu] = useState(false);
@@ -120,6 +124,12 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
     if (contadorAtivo) {
       setContadorAtivo(false);
       setIsAtendimento(false);
+      mostrarFormulario("cadastro")
+      setContador({
+        horas: 0,
+        minutos: 0,
+        segundos: 0,
+      })
     } else {
       setContadorAtivo(true);
       setIsAtendimento(true);
@@ -135,58 +145,32 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
   };
 
   const mostrarFormulario = (tipo) => {
-    if (tipo === "basico") {
+    if (tipo === "contato") {
       setMostrarFormularioCadastro(false);
-      setMostrarFormularioEndereco(false);
-      setMostrarFormularioDependente(false);
-      setMostrarFormularioObservacao(false);
-      setMostrarFormularioContato(false);
-      setMostrarFormularioPagamento(false);
-      setMostrarFormularioBasico(true);
-    } else if (tipo === "contato") {
-      setMostrarFormularioCadastro(false);
-      setMostrarFormularioEndereco(false);
       setMostrarFormularioDependente(false);
       setMostrarFormularioObservacao(false);
       setMostrarFormularioPagamento(false);
-      setMostrarFormularioBasico(false);
       setMostrarFormularioContato(true);
     } else if (tipo === "pagamento") {
       setMostrarFormularioCadastro(false);
-      setMostrarFormularioEndereco(false);
       setMostrarFormularioDependente(false);
       setMostrarFormularioObservacao(false);
-      setMostrarFormularioBasico(false);
       setMostrarFormularioContato(false);
       setMostrarFormularioPagamento(true);
     } else if (tipo === "dependente") {
       setMostrarFormularioCadastro(false);
-      setMostrarFormularioEndereco(false);
-      setMostrarFormularioBasico(false);
       setMostrarFormularioContato(false);
       setMostrarFormularioPagamento(false);
       setMostrarFormularioObservacao(false);
       setMostrarFormularioDependente(true);
     } else if (tipo == "historico") {
       setMostrarFormularioCadastro(false);
-      setMostrarFormularioEndereco(false);
       setMostrarFormularioDependente(false);
-      setMostrarFormularioBasico(false);
       setMostrarFormularioContato(false);
       setMostrarFormularioPagamento(false);
       setMostrarFormularioObservacao(true);
-    } else if (tipo == "endereco") {
-      setMostrarFormularioCadastro(false);
-      setMostrarFormularioDependente(false);
-      setMostrarFormularioBasico(false);
-      setMostrarFormularioContato(false);
-      setMostrarFormularioPagamento(false);
-      setMostrarFormularioObservacao(false);
-      setMostrarFormularioEndereco(true);
     } else if (tipo === "cadastro") {
-      setMostrarFormularioEndereco(false);
       setMostrarFormularioDependente(false);
-      setMostrarFormularioBasico(false);
       setMostrarFormularioContato(false);
       setMostrarFormularioPagamento(false);
       setMostrarFormularioObservacao(false);
@@ -242,14 +226,13 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                 <label>
                   {nome} - CT: {contrato}
                 </label>
-                {/* <p>{cardData.titleResultado}</p> */}
               </div>
             </div>
-            <div className="atender-clientes-cobranca">
-              <ButtonText
+            <div className="atender-cliente">
+              <ButtonIconTextoStart
+                corFundoBotao={contadorAtivo ? "red" : "#006b33"}
                 title={contadorAtivo ? "ENCERRAR" : "ATENDER CLIENTE"}
-                funcao={() => handleAtender()}
-              />
+                funcao={() => handleAtender()} />
             </div>
             <div className="contador-cobranca">
               <p>{`${formatTime(contador.horas)}:${formatTime(
@@ -269,38 +252,12 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                         <div className="opcoes-modal-cobranca">
                           <button
                             className={
-                              mostrarFormularioBasico ? "" : "botao-ativo"
-                            }
-                            onClick={() => mostrarFormulario("basico")}
-                          >
-                            Dados Básicos
-                          </button>
-                          <button
-                            className={
                               mostrarFormularioCadastro ? "" : "botao-ativo"
                             }
-                            onClick={
-                              isAtendimento
-                                ? () => mostrarFormulario("cadastro")
-                                : mostrarMensagem
-                            }
+                            onClick={() => mostrarFormulario("cadastro")}
                           >
                             Titular
                           </button>
-
-                          <button
-                            className={
-                              mostrarFormularioEndereco ? "" : "botao-ativo"
-                            }
-                            onClick={
-                              isAtendimento
-                                ? () => mostrarFormulario("endereco")
-                                : mostrarMensagem
-                            }
-                          >
-                            Endereço
-                          </button>
-
                           <button
                             className={
                               mostrarFormularioContato ? "" : "botao-ativo"
@@ -350,7 +307,7 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                                 : mostrarMensagem
                             }
                           >
-                            Historico F9
+                            Histórico F9
                           </button>
                         </div>
                       </div>
@@ -359,8 +316,70 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                 </div>
               </div>
             </Typography>
-            {mostrarFormularioBasico && (
+            {mostrarFormularioCadastro && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                <div className="container-modal-cobran">
+                  <div className="dados-basico-cobran2">
+                    <div className="infor-modal-cobrancas">
+                      <div className="origin-lead-cobran">
+                        <ButtonIconFundo
+                          icon={
+                            <PersonOutlineOutlinedIcon fontSize={"small"} />
+                          }
+                        />
+                        <div className="lead-origin-cobran">
+                          <label>Genero</label>
+                          <label>{titular.sexo}</label>
+                        </div>
+                      </div>
+                      <div className="origin-lead-cobran">
+                        <ButtonIconFundo
+                          icon={
+                            <CalendarMonthOutlinedIcon fontSize={"small"} />
+                          }
+                        />
+                        <div className="lead-origin-cobran">
+                          <label>Data Contrato</label>
+                          <label>{data_contrato}</label>
+                        </div>
+                      </div>
+                      <div className="origin-lead-cobran">
+                        <ButtonIconFundo
+                          icon={<GroupOutlinedIcon fontSize={"small"} />}
+                        />
+                        <div className="lead-origin-cobran">
+                          <label>Estado Civil</label>
+                          <label>{titular.estado_civil}</label>
+                        </div>
+                      </div>
+                      <div className="origin-lead-cobran">
+                        <ButtonIconFundo
+                          icon={
+                            <PsychologyAltOutlinedIcon fontSize={"small"} />
+                          }
+                        />
+                        <div className="lead-origin-cobran">
+                          <label>Religião</label>
+                          <label>{titular.religiao}</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="infor-modal-cobrancas">
+                      <div className="origin-lead-cobran">
+                        <ButtonIconFundo
+                          icon={
+                            <CalendarMonthOutlinedIcon fontSize={"small"} />
+                          }
+                        />
+                        <div className="lead-origin-cobran">
+                          <label>Data Nascimento</label>
+                          <label>{titular.data_nascimento}</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br></br>
                 <div className="container-modal-cobran">
                   <div className="dados-basico-cobran2">
                     <div className="infor-modal-cobrancas">
@@ -473,75 +492,7 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                     </div>
                   </div>
                 </div>
-              </Typography>
-            )}
-            {mostrarFormularioCadastro && (
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran2">
-                    <div className="infor-modal-cobrancas">
-                      <div className="origin-lead-cobran">
-                        <ButtonIconFundo
-                          icon={
-                            <PersonOutlineOutlinedIcon fontSize={"small"} />
-                          }
-                        />
-                        <div className="lead-origin-cobran">
-                          <label>Gereno</label>
-                          <label>{titular.sexo}</label>
-                        </div>
-                      </div>
-                      <div className="origin-lead-cobran">
-                        <ButtonIconFundo
-                          icon={
-                            <CalendarMonthOutlinedIcon fontSize={"small"} />
-                          }
-                        />
-                        <div className="lead-origin-cobran">
-                          <label>Data Contrato</label>
-                          <label>{data_contrato}</label>
-                        </div>
-                      </div>
-                      <div className="origin-lead-cobran">
-                        <ButtonIconFundo
-                          icon={<GroupOutlinedIcon fontSize={"small"} />}
-                        />
-                        <div className="lead-origin-cobran">
-                          <label>Estado Civil</label>
-                          <label>{titular.estado_civil}</label>
-                        </div>
-                      </div>
-                      <div className="origin-lead-cobran">
-                        <ButtonIconFundo
-                          icon={
-                            <PsychologyAltOutlinedIcon fontSize={"small"} />
-                          }
-                        />
-                        <div className="lead-origin-cobran">
-                          <label>Religião</label>
-                          <label>{titular.religiao}</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="infor-modal-cobrancas">
-                      <div className="origin-lead-cobran">
-                        <ButtonIconFundo
-                          icon={
-                            <CalendarMonthOutlinedIcon fontSize={"small"} />
-                          }
-                        />
-                        <div className="lead-origin-cobran">
-                          <label>Data Nascimento</label>
-                          <label>{titular.data_nascimento}</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Typography>
-            )}
-            {mostrarFormularioEndereco && (
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                <br></br>
                 <div className="container-modal-cobran">
                   <div className="dados-basico-cobran2">
                     <div className="infor-modal-cobrancas">
@@ -645,6 +596,54 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                     </div>
                   </div>
                 </div>
+                <br></br>
+                <div className="container-modal-cobran">
+                  <label>Registrar F9</label>
+                  <div className="dados-basico-cobran2">
+                    <div className="infor-modal-cobrancas">
+                      <div className="obs-cobranca-f9">
+                        <label>Selecione a categoria:</label>
+                        <select
+                          value={categoriaF9}
+                          onChange={(e) => setCategoriaF9(e.target.value)}
+                        >
+                          <option value={null}>
+                            Selecione a categoria
+                          </option>
+                          <option value={1}>Contato via Fone</option>
+                          <option value={2}>Repassado por colaborador</option>
+                        </select>
+                        {categoriaF9 ?
+                          <>
+                            <label>Selecione a sub categoria:</label><select
+                              value={subcategoriaF9}
+                              onChange={(e) => setSubCategoriaF9(e.target.value)}
+                            >
+                              <option value={null}>
+                                Selecione a sub categoria
+                              </option>
+                              <option value={1}>Sub categoria 1 </option>
+                              <option value={2}>Sub categoria 2</option>
+                            </select>
+                          </>
+                          : <></>
+                        }
+                        <br></br>
+                        <textarea
+                          placeholder="Inserir F9..."
+                          value={comentarioF9}
+                        ></textarea>
+                        <div className="add-comentario-cobran">
+                          <ButtonText
+                            title={"Gravar F9"}
+                            funcao={""}
+                          />
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
               </Typography>
             )}
             <Modal
@@ -653,16 +652,13 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
               aria-labelledby="child-modal-title"
               aria-describedby="child-modal-description"
             >
-              <Box sx={{ ...style, width: 500, height:350 }}>
+              <Box sx={{ ...style, width: 500, height: 350 }}>
                 <div className="historicof9">
                   <div className="historicof9-close">
                     <h1>
                       <ScheduleOutlinedIcon fontSize={"small"} />
                       Historico F9
                     </h1>
-                    <button onClick={handleClose}>
-                      <HighlightOffIcon />
-                    </button>
                   </div>
                   <p>Informações</p>
                   <div className="historicof9-campos">
@@ -703,95 +699,129 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               <div className="icon-atividade-cobran">
                 <ButtonIconFundo icon={<ChecklistIcon />} />
-                <label>Realizar Atendimento</label>
+                <label>Atendimento</label>
               </div>
-              <div className="container-modal-cobran">
-                <div className="dados-basico-cobran">
-                  <div className="infor-modal-cobrancas">
-                    <div className="obs-cobranca-dados">
-                      <div className="container-linhas-cobran">
-                        <div className="obs-cobran-lead">
-                          <label>Registrar F9</label>
-                          <textarea
-                            value={comentario}
-                            onChange={handleComentarioChange}
-                          ></textarea>
-                        </div>
-                      </div>
-
-                      <div className="atividade-cobranca">
-                        <div className="campos-atividade-cobranca">
-                          <div className="select-text-area-cobran">
-                            <label>Tipo de Contato</label>
+              {isAtendimento
+                ?
+                <div className="container-modal-cobran">
+                  <div className="dados-basico-cobran">
+                    <div className="infor-modal-cobrancas">
+                      <div className="obs-cobranca-dados">
+                        <div className="container-linhas-cobran">
+                          <div className="obs-cobran-lead">
                             <select
                               value={categoria}
                               onChange={(e) => setCategoria(e.target.value)}
                             >
                               <option value={null}>
-                                Selecione tipo de contato
+                                Selecione a categoria
                               </option>
-                              <option value={1}>Ligação via Telefone</option>
-                              <option value={2}>Ligação via Whatsapp</option>
-                              <option value={3}>Mensagem via Whatsapp</option>
+                              <option value={1}>Retorna Ligação</option>
+                              <option value={2}>Agendamento</option>
+                              <option value={3}>Sem contato</option>
+                              <option value={4}>Divulgação</option>
+                              <option value={5}>Solicitou Cancelamento</option>
+                              <option value={6}>Atualização de Contato</option>
+                              <option value={7}>Boleto enviado</option>
                             </select>
-                            {categoria ? (
-                              <>
-                                <Switch
-                                  checked={isAtendeu}
-                                  onChange={() => setIsAtendeu(!isAtendeu)}
-                                  name="conseguiuFalar"
-                                  inputProps={{
-                                    "aria-label":
-                                      "conseguiu falar com o cliente",
-                                  }}
-                                />
-                                <p>
-                                  Conseguiu falar com o cliente?{" "}
-                                  {isAtendeu ? "Sim" : "Não"}
-                                </p>
-                                <label>Tipo de Categoria</label>
-                                <select
-                                  value={subcategoria}
-                                  onChange={(e) =>
-                                    setSubCategoria(e.target.value)
-                                  }
-                                >
-                                  <option value={null}>
-                                    Selecione tipo de contato
-                                  </option>
-                                  <option value={1}>
-                                    Ligação via Telefone
-                                  </option>
-                                  <option value={2}>
-                                    Ligação via Whatsapp
-                                  </option>
-                                  <option value={3}>
-                                    Mensagem via Whatsapp
-                                  </option>
-                                </select>
-                              </>
-                            ) : (
-                              <></>
-                            )}
-                            {isAtendimento ? (
-                              <>
-                                <div className="add-comentario-cobran">
-                                  <ButtonText
-                                    title={"GRAVAR"}
-                                    funcao={adicionarComentario}
-                                  />
-                                </div>
-                              </>
-                            ) : (
-                              <></>
-                            )}
+                            {categoria ?
+                              <select
+                                value={subcategoria}
+                                onChange={(e) => setSubCategoria(e.target.value)}
+                              >
+                                <option value={null}>
+                                  Selecione a sub categoria
+                                </option>
+                                <option value={1}>Aplicativo PAGSeguro </option>
+                                <option value={2}>COB Confirmado</option>
+                                <option value={3}>Campanha</option>
+                                <option value={4}>Mensal</option>
+                                <option value={5}>Pagto Antecipado</option>
+                              </select>
+                              : <></>
+                            }
+                            <textarea
+                              placeholder="Inserir Observação..."
+                              value={comentario}
+                              onChange={handleComentarioChange}
+                            ></textarea>
+                          </div>
+                        </div>
+
+                        <div className="atividade-cobranca">
+                          <div className="campos-atividade-cobranca">
+                            <div className="select-text-area-cobran">
+                              <div className="icon-atividade-cobran">
+                                <ButtonIconFundo icon={<ChecklistIcon />} />
+                                <label>Tipo de Contato</label>
+                              </div>
+                              <select
+                                value={tipoContato}
+                                onChange={(e) => setTipoContato(e.target.value)}
+                              >
+                                <option value={null}>
+                                  Selecione a categoria
+                                </option>
+                                <option value={1}>Ligação via Telefone</option>
+                                <option value={2}>Ligação via Whatsapp</option>
+                                <option value={3}>Mensagem via Whatsapp</option>
+                              </select>
+                              {tipoContato ? (
+                                <>
+                                  <label>Conseguiu falar com o cliente?</label>
+                                  <select
+                                    value={isAtendeu}
+                                    onChange={(e) => setIsAtendeu(e.target.value)}
+                                  >
+                                    <option value={false}>Não</option>
+                                    <option value={true}>Sim</option>
+                                  </select>
+                                  <label>Selecione a sub categoria</label>
+                                  <select
+                                    value={ocorrencia}
+                                    onChange={(e) =>
+                                      setOcorrencia(e.target.value)
+                                    }
+                                  >
+                                    <option value={null}>
+                                      Selecione tipo de contato
+                                    </option>
+                                    <option value={1}>
+                                      Não atende ligação
+                                    </option>
+                                    <option value={2}>
+                                      Não possui Whatsapp
+                                    </option>
+                                    <option value={3}>
+                                      Deu certo
+                                    </option>
+                                  </select>
+                                </>
+                              ) : (
+                                <></>
+                              )}
+                              {isAtendimento ? (
+                                <>
+                                  <div className="add-comentario-cobran">
+                                    <ButtonText
+                                      title={"Salvar"}
+                                      funcao={adicionarComentario}
+                                    />
+                                  </div>
+                                </>
+                              ) : (
+                                <></>
+                              )}
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+                : <></>
+              }
+
             </Typography>
           </Grid>
         </Grid>

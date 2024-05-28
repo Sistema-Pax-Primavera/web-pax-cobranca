@@ -16,7 +16,7 @@ const CardsCobranca = ({ item, onClick, }) => {
       </div>
       <div className="info-card-cobran">
         <DateRangeIcon fontSize={"small"} />
-        <label>Último pagamento: {ultimo_pagamento}</label>
+        <label>Últ. pagto: {ultimo_pagamento}</label>
       </div>
       <div className="info-card-cobran">
         <QueryBuilderIcon fontSize={"small"} />
@@ -24,7 +24,7 @@ const CardsCobranca = ({ item, onClick, }) => {
       </div>
       <div className="info-card-cobran">
         <DateRangeIcon fontSize={"small"} />
-        <label>Último mês pago: {ultimo_mes_pago}</label>
+        <label>Últ. mês pago: {ultimo_mes_pago}</label>
       </div>
       <div className="info-card-cobran">
         <DateRangeIcon fontSize={"small"} />
