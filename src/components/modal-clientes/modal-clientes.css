@@ -1,8 +1,8 @@
 .sidebar-cobranca {
-
     display: flex;
     align-items: center;
     width: 100%;
+    background-color: var(--cinza-leve);
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
@@ -42,8 +42,8 @@
 
 }
 
-
-.sidebar-cobranca .atender-cliente {
+.atender-clientes-cobranca {
+    background-color: var(--verde);
     margin-left: 12%;
     margin-right: 2%;
     width: 15%;
@@ -54,14 +54,14 @@
     border-radius: 5px;
 }
 
-.sidebar-cobranca .atender-cliente button {
+.atender-clientes-cobranca button {
     color: var(--branco);
     cursor: pointer;
     width: 100%;
-    height: 40px;
     font-size: 12px;
     border-radius: 5px;
     font-weight: 700;
+    background-color: var(--verde);
 }
 
 .contador-cobranca {
@@ -410,6 +410,7 @@
     margin-top: 3px;
     display: flex;
     border-radius: 5px;
+    background-color: var(--verde);
     align-items: star;
     width: 100%;
 }
@@ -427,21 +428,6 @@
     display: flex;
     flex-direction: column;
     width: 85%;
-}
-
-.obs-cobranca-f9 {
-    display: flex;
-    flex-direction: column;
-    width: 85%;
-}
-
-.obs-cobranca-f9 textarea {
-    border-radius: 5px;
-    padding: 10px;
-    border: none;
-    outline: none;
-    height: 125px;
-    width: 100%;
 }
 
 .obs-cobran-lead textarea {
@@ -850,6 +836,6 @@ tipos-arquivos-anexos a {
 }
 
 .botao-ativo {
-    color: var(--verde);
-    border: var(--verde)
+    background-color: var(--verde);
+    color: white !important;
 }
