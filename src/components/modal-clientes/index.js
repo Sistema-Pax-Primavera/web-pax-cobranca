@@ -228,7 +228,7 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                 </label>
               </div>
             </div>
-            <div className="atender-cliente">
+            <div className="atender-clientes-cobranca">
               <ButtonIconTextoStart
                 corFundoBotao={contadorAtivo ? "red" : "#006b33"}
                 title={contadorAtivo ? "ENCERRAR" : "ATENDER CLIENTE"}
@@ -244,8 +244,8 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
         <Grid container spacing={1}>
           <Grid item xs={8}>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              <div className="container-modal-cobran">
-                <div className="dados-basico-cobran">
+              <div className="container-modal-cobran-crm">
+                <div className="dados-basico-cobran-crm">
                   <div className="infor-modal-cobrancas">
                     <div className="origin-lead-cobran">
                       <div className="tipo-atendimento-cobran">
@@ -318,8 +318,8 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
             </Typography>
             {mostrarFormularioCadastro && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran2">
+                <div className="container-modal-cobran-crm">
+                  <div className="dados-basico-cobran-crm2">
                     <div className="infor-modal-cobrancas">
                       <div className="origin-lead-cobran">
                         <ButtonIconFundo
@@ -380,8 +380,8 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                   </div>
                 </div>
                 <br></br>
-                <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran2">
+                <div className="container-modal-cobran-crm">
+                  <div className="dados-basico-cobran-crm2">
                     <div className="infor-modal-cobrancas">
                       <div className="origin-lead-cobran2">
                         <ButtonIconFundo
@@ -493,8 +493,8 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                   </div>
                 </div>
                 <br></br>
-                <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran2">
+                <div className="container-modal-cobran-crm">
+                  <div className="dados-basico-cobran-crm2">
                     <div className="infor-modal-cobrancas">
                       <div className="origin-lead-cobran">
                         <ButtonIconFundo
@@ -525,8 +525,8 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
             )}
             {mostrarFormularioContato && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran2">
+                <div className="container-modal-cobran-crm">
+                  <div className="dados-basico-cobran-crm2">
                     <div className="infor-modal-cobrancas">
                       {titular.contatos.map((item) => (
                         <div key={item.id} className="origin-lead-cobran">
@@ -550,8 +550,8 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
             )}
             {mostrarFormularioPagamento && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran2">
+                <div className="container-modal-cobran-crm">
+                  <div className="dados-basico-cobran-crm2">
                     <div className="infor-modal-cobrancas">
                       <TableComponent
                         headers={headerExtrato}
@@ -566,8 +566,8 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
             )}
             {mostrarFormularioDependente && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran2">
+                <div className="container-modal-cobran-crm">
+                  <div className="dados-basico-cobran-crm2">
                     <div className="infor-modal-cobrancas">
                       <TableComponent
                         headers={headerDependente}
@@ -582,8 +582,8 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
             )}
             {mostrarFormularioObservacao && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran2">
+                <div className="container-modal-cobran-crm">
+                  <div className="dados-basico-cobran-crm2">
                     <div className="infor-modal-cobrancas">
                       <TableComponent
                         headers={headerObservacao}
@@ -597,9 +597,9 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
                   </div>
                 </div>
                 <br></br>
-                <div className="container-modal-cobran">
+                <div className="container-modal-cobran-crm">
                   <label>Registrar F9</label>
-                  <div className="dados-basico-cobran2">
+                  <div className="dados-basico-cobran-crm2">
                     <div className="infor-modal-cobrancas">
                       <div className="obs-cobranca-f9">
                         <label>Selecione a categoria:</label>
@@ -703,8 +703,8 @@ const ModalClientes = ({ open, onClose, clienteData }) => {
               </div>
               {isAtendimento
                 ?
-                <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran">
+                <div className="container-modal-cobran-crm">
+                  <div className="dados-basico-cobran-crm">
                     <div className="infor-modal-cobrancas">
                       <div className="obs-cobranca-dados">
                         <div className="container-linhas-cobran">

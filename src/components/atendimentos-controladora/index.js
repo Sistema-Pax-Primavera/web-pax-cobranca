@@ -17,6 +17,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 function createData(name, quanticlientes, quantiregistros, tempoatendimento) {
   return { name, quanticlientes, quantiregistros, tempoatendimento };
@@ -168,6 +169,22 @@ const AtendimentoControladora = ({ onVoltarClick }) => {
                 </TableBody>
               </Table>
             </TableContainer>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2-content"
+            id="panel2-header"
+          >
+            <div className="icon-table-controladoria">
+              <label>
+                <FilterAltIcon />
+                Filtros
+              </label>
+            </div>
+          </AccordionSummary>
+          <AccordionDetails>
           </AccordionDetails>
         </Accordion>
       </div>

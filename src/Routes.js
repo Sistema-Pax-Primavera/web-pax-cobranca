@@ -26,11 +26,6 @@ const RoutesApp = () => (
             <Route exact path="/gerencial" element={<Gerencial />} />
             <Route exact path="/agendamento-cobradores" element={<AgendamentosCobradores />} />
             <Route exact path="/telemarketing" element={<Telemarketing />} />
-            {/* 
-            <Route exact path="/gerador-boletos/avulso" element={<Avulso />} />
-            <Route exact path="/gerador-boletos/balao" element={<Balao />} />
-            <Route exact path="/gerador-boletos/lote" element={<Lote />} />
-            <Route exact path="/gerador-boletos/busca-boletos" element={<BuscaBoletos />} /> */}
         </Routes>
     </BrowserRouter>
 );

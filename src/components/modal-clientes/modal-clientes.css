@@ -39,11 +39,9 @@
     font-size: 12px;
     color: black;
     font-weight: 200;
-
 }
 
 .atender-clientes-cobranca {
-    background-color: var(--verde);
     margin-left: 12%;
     margin-right: 2%;
     width: 15%;
@@ -85,7 +83,7 @@
     gap: 50px;
 }
 
-.container-modal-cobran {
+.container-modal-cobran-crm {
     z-index: 5;
     padding-left: 10px;
     width: 100%;
@@ -101,7 +99,16 @@
     cursor: pointer;
 }
 
-.dados-basico-cobran2 {
+.dados-basico-cobran-crm {
+    width: 94%;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-radius: 10px;
+}
+
+.dados-basico-cobran-crm2 {
     width: 94%;
     padding: 5px;
     gap: 20px;
@@ -171,7 +178,6 @@
 .tipo-atendimento-cobran {
     width: 95%;
     display: flex;
-    border: 1px solid rgba(0, 0, 0, .6);
     border-radius: 5px;
     padding: 10px;
     flex-direction: column;
@@ -401,7 +407,7 @@
 .obs-cobranca-dados {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1px;
     width: 100%;
 
 }
