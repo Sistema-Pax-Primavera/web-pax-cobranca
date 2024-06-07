@@ -1,7 +1,8 @@
 import { CRM } from '../entities/class/crm';
+import { Mensagens } from '../entities/class/script';
 import httpsInstance from './url';
 
-export const useCRM = () => {
+export const useCobranca = () => {
     const https = httpsInstance();
 
     const getCRMEsc = async () => {
@@ -46,9 +47,16 @@ export const useCRM = () => {
         }
     };
 
+    const getScript = async () => {
+        const response = await https.get("/script");
+        const { data } = response;
+        return data.map((item) => Mensagens(item));
+    };
+
 
     return {
         getCRMEsc,
-        getTelemarketing
+        getTelemarketing,
+        getScript
     }
 }

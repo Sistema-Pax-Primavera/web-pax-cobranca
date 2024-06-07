@@ -10,14 +10,14 @@ import ButtonText from "../../../../pax-associado/src/components/button-texto/in
 import ModalClientes from "../../components/modal-clientes";
 import StoreIcon from '@mui/icons-material/Store';
 import Checkbox from "@mui/material/Checkbox";
-import { useCRM } from "../../service/api";
+import { useCobranca } from "../../service/api";
 import { toast } from "react-toastify";
 import { converterDataParaFormatoBackend } from "../../utils/fuctions";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const EscritorioCobranca = () => {
-  const { getCRMEsc } = useCRM();
+  const { getCRMEsc } = useCobranca();
   const navigate = useNavigate();
   const colunasDinamicas = {
     "1ª Parcela em atraso": { id: 1, clientes: [] },

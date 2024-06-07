@@ -10,7 +10,7 @@ import ButtonText from "../../../../pax-associado/src/components/button-texto/in
 import ModalClientes from "../../components/modal-clientes";
 import BallotIcon from "@mui/icons-material/Ballot";
 import Checkbox from "@mui/material/Checkbox";
-import { useCRM } from "../../service/api";
+import { useCobranca } from "../../service/api";
 import { toast } from "react-toastify";
 import { converterDataParaFormatoBackend } from "../../utils/fuctions";
 import CalendarViewDayIcon from '@mui/icons-material/CalendarViewDay';
@@ -18,7 +18,7 @@ import CalendarViewDayIcon from '@mui/icons-material/CalendarViewDay';
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const Boleto = () => {
-  const { getCRMEsc } = useCRM();
+  const { getCRMEsc } = useCobranca();
   const navigate = useNavigate();
   const colunasDinamicas = {
     "1ª Parcela em atraso": { id: 1, clientes: [] },

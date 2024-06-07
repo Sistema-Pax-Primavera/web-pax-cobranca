@@ -36,7 +36,7 @@ import AddIcCallOutlinedIcon from "@mui/icons-material/AddIcCallOutlined";
 import ScheduleOutlinedIcon from "@mui/icons-material/ScheduleOutlined";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import { useCRM } from "../../service/api";
+import { useCobranca } from "../../service/api";
 import ButtonIcon from "../../components/button-icon";
 import Carregando from "../../components/carregando";
 import ButtonIconTextoStart from "../../components/button-icon-texto-start";
@@ -57,7 +57,7 @@ const style = {
 };
 
 const Telemarketing = () => {
-    const { getTelemarketing } = useCRM();
+    const { getTelemarketing } = useCobranca();
     const [clientes, setClientes] = useState([]);
     const [clienteFiltrado, setClienteFiltrado] = useState(null);
     const [currentCliente, setCurrentCliente] = useState(null);

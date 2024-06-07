@@ -35,11 +35,6 @@ const HeaderCobranca = () => {
         className={activeRoute === "/gerencial" ? "active" : ""}
       >Dashboard Supervisor
       </button>
-      {/* <button
-        onClick={() => handleMenuClick("/telemarketing")}
-        className={activeRoute === "/telemarketing" ? "active" : ""}
-      >Central de Relacionamento
-      </button> */}
       <button
         onClick={() => handleMenuClick("/escritorio")}
         className={activeRoute === "/escritorio" ? "active" : ""}
@@ -83,7 +78,16 @@ const HeaderCobranca = () => {
         className={activeRoute === "/agendamento-cobradores" ? "active" : ""}
       >Agen. Cobradores
       </button>
-
+      <button
+        onClick={() => handleMenuClick("/maps")}
+        className={activeRoute === "/maps" ? "active" : ""}
+      >Mapa de Cobrança
+      </button>
+      <button
+        onClick={() => handleMenuClick("/script")}
+        className={activeRoute === "/script" ? "active" : ""}
+      >Scripts Enviados
+      </button>
     </div>
   );
 };
